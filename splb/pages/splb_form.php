@@ -42,6 +42,22 @@ include("../../koneksi.php");
     text-align: center;
   }
 </style>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+	function getData_ITXVIEWKK(){
+      var _noprodorder = document.getElementById("NO_KARTU_KERJA").value;
+
+			$.get("../api_ITXVIEWKK.php?noprod="+_noprodorder,function(item){
+				document.getElementById("LANGGANAN").value = item.PELANGGAN+'/'+item.BUYER;
+				document.getElementById("ORDER").value = item.PROJECTCODE;
+				document.getElementById("JENIS_KAIN").value = item.ITEMDESCRIPTION;
+				document.getElementById("L_PERMINTAAN").value = item.LEBAR;
+				document.getElementById("G_PERMINTAAN").value = item.GRAMASI;
+				document.getElementById("NO_HANGER").value = item.NO_HANGER;
+				document.getElementById("WARNA").value = item.WARNA;
+			});
+	};
+</script>
 
 <?php
 if ($_POST['kk'] == '') {
@@ -136,11 +152,10 @@ if ($idkk != "") {
   $lgn2 = sqlsrv_query($conn, "select partnername from partners where id='$ssr[buyerid]'");
   $ssr2 = sqlsrv_fetch_array($lgn2);
 }
-// NOW
-// NOW
+
 ?>
 
-<body>
+<body onload='getData_ITXVIEWKK()'>
   <div class="container-fluid" style="background-color: white; padding: 20px 0 20px 0;">
     <div class=" col-md-12">
       <form method="POST" action="?p=postInputSplb">
@@ -153,7 +168,7 @@ if ($idkk != "") {
           <tbody>
             <tr class="baris">
               <td style="width: 180px;" data-no="1">No. KK</td>
-              <td class="bg-warning" data-no="2" colspan="8"><input type="text" class="form-control input-xs" name="NO_KARTU_KERJA" id="NO_KARTU_KERJA" value="<?php echo $_POST['kk'] ?>" readonly style="width: 100%;"></td>
+              <td class="bg-warning" data-no="2" colspan="8"><input type="text" class="form-control input-xs"  name="NO_KARTU_KERJA" id="NO_KARTU_KERJA" value="<?php echo $_POST['kk'] ?>" readonly style="width: 100%;"></td>
               <td data-no="10" colspan="6" style="text-align: center;">SPV/ASST/LDR</td>
             </tr>
             <tr class="baris">
