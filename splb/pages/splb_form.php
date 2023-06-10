@@ -44,27 +44,27 @@ include("../../koneksi.php");
 </style>
 
 <?php
-  if ($_POST['kk'] == '') {
-    $idkk = "";
-  } else {
-    $idkk = $_POST['kk'];
-  }
+if ($_POST['kk'] == '') {
+  $idkk = "";
+} else {
+  $idkk = $_POST['kk'];
+}
 
-  $query = mysqli_query($con, "SELECT * from tbl_splb where `NO_KARTU_KERJA` = $_POST[kk]");
-  $count = mysqli_num_rows($query);
-  if ($count > 0) {
-    echo "<script>alert('KK yang anda input sudah exist !'); window.history.go(-1)</script>";
-  }
+$query = mysqli_query($con, "SELECT * from tbl_splb where `NO_KARTU_KERJA` = $_POST[kk]");
+$count = mysqli_num_rows($query);
+if ($count > 0) {
+  echo "<script>alert('KK yang anda input sudah exist !'); window.history.go(-1)</script>";
+}
 
-  if ($idkk != "") {
-    date_default_timezone_set('Asia/Jakarta');
-    $qry = mysqli_query($con, "SELECT * FROM tbl_adm WHERE nokk='$idkk' and status='1' and ISNULL(tgl_out) ORDER BY id DESC LIMIT 1");
-    $rw = mysqli_fetch_array($qry);
-    $rc = mysqli_num_rows($qry);
-    $tglsvr = sqlsrv_query($conn, "select CONVERT(VARCHAR(10),GETDATE(),105) AS  tgk", array(), array("Scrollable" => 'static'));
-    $sr = sqlsrv_fetch_array($tglsvr);
+if ($idkk != "") {
+  date_default_timezone_set('Asia/Jakarta');
+  $qry = mysqli_query($con, "SELECT * FROM tbl_adm WHERE nokk='$idkk' and status='1' and ISNULL(tgl_out) ORDER BY id DESC LIMIT 1");
+  $rw = mysqli_fetch_array($qry);
+  $rc = mysqli_num_rows($qry);
+  $tglsvr = sqlsrv_query($conn, "select CONVERT(VARCHAR(10),GETDATE(),105) AS  tgk", array(), array("Scrollable" => 'static'));
+  $sr = sqlsrv_fetch_array($tglsvr);
 
-    $sqlLot = sqlsrv_query($conn, " SELECT
+  $sqlLot = sqlsrv_query($conn, " SELECT
       x.*,dbo.fn_StockMovementDetails_GetTotalWeightPCC(0, x.PCBID) as Weight,
       dbo.fn_StockMovementDetails_GetTotalRollPCC(0, x.PCBID) as RollCount
       FROM( SELECT
@@ -101,26 +101,26 @@ include("../../koneksi.php");
         UnitDescription udb ON x.BatchUnitID = udb.ID
       ORDER BY
         x.SODID, x.PCBID ", array(), array("Scrollable" => 'static'));
-    $sLot = sqlsrv_fetch_array($sqlLot);
-    $cLot = sqlsrv_num_rows($sqlLot);
-    $child = $sLot['ChildLevel'];
+  $sLot = sqlsrv_fetch_array($sqlLot);
+  $cLot = sqlsrv_num_rows($sqlLot);
+  $child = $sLot['ChildLevel'];
 
-    if ($child > 0) {
-      $sqlgetparent = sqlsrv_query($conn, "select ID,LotNo from ProcessControlBatches where ID='$sLot[RootID]' and ChildLevel='0'");
-      $rowgp = sqlsrv_fetch_array($sqlgetparent);
+  if ($child > 0) {
+    $sqlgetparent = sqlsrv_query($conn, "select ID,LotNo from ProcessControlBatches where ID='$sLot[RootID]' and ChildLevel='0'");
+    $rowgp = sqlsrv_fetch_array($sqlgetparent);
 
-      //$nomLot=substr("$row2[LotNo]",0,1);
-      $nomLot = $rowgp['LotNo'];
-      $nomorLot = "$nomLot/K$sLot[ChildLevel]&nbsp;";
-    } else {
-      $nomorLot = $sLot['LotNo'];
-    }
+    //$nomLot=substr("$row2[LotNo]",0,1);
+    $nomLot = $rowgp['LotNo'];
+    $nomorLot = "$nomLot/K$sLot[ChildLevel]&nbsp;";
+  } else {
+    $nomorLot = $sLot['LotNo'];
+  }
 
-    $sqlLot1 = "Select count(*) as TotalLot From ProcessControlBatches where PCID='$sLot[PCID]' and RootID='0' and LotNo < '1000'";
-    $qryLot1 = sqlsrv_query($conn, $sqlLot1) or die('A error occured : ');
-    $rowLot = sqlsrv_fetch_array($qryLot1);
+  $sqlLot1 = "Select count(*) as TotalLot From ProcessControlBatches where PCID='$sLot[PCID]' and RootID='0' and LotNo < '1000'";
+  $qryLot1 = sqlsrv_query($conn, $sqlLot1) or die('A error occured : ');
+  $rowLot = sqlsrv_fetch_array($qryLot1);
 
-    $sqls = sqlsrv_query($conn, "select processcontrolJO.SODID,salesorders.ponumber,processcontrol.productid,salesorders.customerid,joborders.documentno,
+  $sqls = sqlsrv_query($conn, "select processcontrolJO.SODID,salesorders.ponumber,processcontrol.productid,salesorders.customerid,joborders.documentno,
       salesorders.buyerid,processcontrolbatches.lotno,productcode,productmaster.color,colorno, hangerno,description,weight,cuttablewidth from Joborders 
       left join processcontrolJO on processcontrolJO.joid = Joborders.id
       left join salesorders on soid= salesorders.id
@@ -129,13 +129,15 @@ include("../../koneksi.php");
       left join productmaster on productmaster.id= processcontrol.productid
       left join productpartner on productpartner.productid= processcontrol.productid
       where processcontrolbatches.documentno='$idkk'", array(), array("Scrollable" => 'static'));
-    $ssr = sqlsrv_fetch_array($sqls);
-    $cek = sqlsrv_num_rows($sqls);
-    $lgn1 = sqlsrv_query($conn, "select partnername from partners where id='$ssr[customerid]'");
-    $ssr1 = sqlsrv_fetch_array($lgn1);
-    $lgn2 = sqlsrv_query($conn, "select partnername from partners where id='$ssr[buyerid]'");
-    $ssr2 = sqlsrv_fetch_array($lgn2);
-  }
+  $ssr = sqlsrv_fetch_array($sqls);
+  $cek = sqlsrv_num_rows($sqls);
+  $lgn1 = sqlsrv_query($conn, "select partnername from partners where id='$ssr[customerid]'");
+  $ssr1 = sqlsrv_fetch_array($lgn1);
+  $lgn2 = sqlsrv_query($conn, "select partnername from partners where id='$ssr[buyerid]'");
+  $ssr2 = sqlsrv_fetch_array($lgn2);
+}
+// NOW
+// NOW
 ?>
 
 <body>
