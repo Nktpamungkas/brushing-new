@@ -98,11 +98,27 @@
                 FROM 
                     ITXVIEW_RESERVATION 
                 WHERE 
-                    PRODUCTIONORDERCODE = '$dt[PRODUCTIONORDERCODE]' AND ITEMTYPEAFICODE = 'KGF'";
+                    PRODUCTIONORDERCODE = '$dt[PRODUCTIONORDERCODE]' AND (ITEMTYPEAFICODE = 'KGF' OR ITEMTYPEAFICODE = 'DYC')";
     $query7 = db2_exec($conn_db2, $sql7);
     $dt7    = db2_fetch_assoc($query7);
     
     //Menampung data yang dihasilkan
+    if($dt7['QTY_ORDER']){
+        $QTY_ORDER  = $dt7['QTY_ORDER'];
+    }else{
+        $QTY_ORDER  = null;
+    }
+    if($dt7['QTY_ORDER_YARD']){
+        $QTY_ORDER_YARD  = $dt7['QTY_ORDER_YARD'];
+    }else{
+        $QTY_ORDER_YARD  = null;
+    }
+    if($dt7['SATUAN_QTY']){
+        $QTY_SATUAN     = $dt7['SATUAN_QTY'];
+    }else{
+        $QTY_SATUAN = null;
+    }
+    $ITEMDESC       = str_replace('"', "`", $dt['ITEMDESCRIPTION']);
     $json = array(
         'PRODUCTIONORDERCODE'   => $dt['PRODUCTIONORDERCODE'],
         'DEAMAND'               => $dt['DEMAND'],
@@ -112,15 +128,15 @@
         'PROJECTCODE'           => $dt['PROJECTCODE'],
         'NO_PO'                 => $dt6['NO_PO'],
         'NO_HANGER'             => $dt['NO_HANGER'],
-        'ITEMDESCRIPTION'       => $dt['ITEMDESCRIPTION'],
+        'ITEMDESCRIPTION'       => $ITEMDESC,
         'DELIVERYDATE'          => $dt3['DELIVERYDATE'],
         'LEBAR'                 => $dt2['LEBAR'],
         'GRAMASI'               => $dt2['GRAMASI'],
         'WARNA'                 => $dt5['WARNA'],
         'NO_WARNA'              => $dt['NO_WARNA'],
-        'QTY_ORDER'             => $dt7['QTY_ORDER'],
-        'QTY_ORDER_YARD'        => $dt7['QTY_ORDER_YARD'],
-        'SATUAN_QTY'            => $dt7['SATUAN_QTY']
+        'QTY_ORDER'             => $QTY_ORDER,
+        'QTY_ORDER_YARD'        => $QTY_ORDER_YARD,
+        'SATUAN_QTY'            => $QTY_SATUAN
     );
     
     //Merubah data kedalam bentuk JSON
