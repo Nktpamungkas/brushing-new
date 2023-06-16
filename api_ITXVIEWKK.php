@@ -30,7 +30,6 @@
 
         $q_qtyorder_tas     = db2_exec($conn_db2, "SELECT * FROM PRODUCTIONDEMAND WHERE CODE = '$dt_ITXVIEWKK_TAS[NO_DEMAND]'");
         $d_qtyorder_tas    = db2_fetch_assoc($q_qtyorder_tas);
-
         $json = array(
             'PRODUCTIONORDERCODE'   => $nokk,
             'DEAMAND'               => $dt_ITXVIEWKK_TAS['NO_DEMAND'],
