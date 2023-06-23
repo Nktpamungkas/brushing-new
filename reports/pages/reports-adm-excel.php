@@ -42,6 +42,7 @@ Kartu Kerja IN</strong>
       <td bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">GROUP SHIFT</font></strong></div></td>
       <td bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">SHIFT</font></strong></div></td>
       <td bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">NOKK</font></strong></div></td>
+      <th width="4%" style="border-right: 1px solid;border-left: 1px solid;"><div align="center"><strong><font size="-2">NO DEMAND</font></strong></div></th>
       <td bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">LANGGANAN</font></strong></div></td>
       <td bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">ORDER</font></strong></div></td>
       <td bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">HANGER</font></strong></div></td>
@@ -76,7 +77,8 @@ WHERE
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo date('H:i', strtotime($rowd['tgl_in']));?></font></div></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['shift'];?></font></div></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['shift1'];?></font></div></td>
-      <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['nokk'];?></font></div></td>
+      <td style="border:1px solid;"><div align="center"><font size="-2">`<?php echo $rowd['nokk'];?></font></div></td>
+      <td style="border:1px solid;"><div align="center"><font size="-2">`<?php echo $rowd['nodemand'];?></font></div></td>
       <td style="border:1px solid;"><font size="-2"><b title="<?php echo $rowd['langganan'];?>"><?php echo substr($rowd['langganan'],0,20)."..";?></b></font></td>
       <td style="border:1px solid;"><font size="-2"><?php echo $rowd['no_order']; ?></font></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['no_item'];?></font></div></td>
@@ -155,6 +157,7 @@ Kartu Kerja OUT</strong>
       <td colspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2"> MASUK</font></strong></div></td>
       <td colspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">KELUAR</font></strong></div></td>
       <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">NOKK</font></strong></div></td>
+      <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">NO DEMAND</font></strong></div></td>
       <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">LANGGANAN</font></strong></div></td>
       <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">ORDER</font></strong></div></td>
       <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">HANGER</font></strong></div></td>
@@ -208,7 +211,8 @@ WHERE
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['shift1'];?></font></div></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['shift_out'];?></font></div></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['shift1_out'];?></font></div></td>
-      <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['nokk'];?></font></div></td>
+      <td style="border:1px solid;"><div align="center"><font size="-2">`<?php echo $rowd['nokk'];?></font></div></td>
+      <td style="border:1px solid;"><div align="center"><font size="-2">`<?php echo $rowd['nodemand'];?></font></div></td>
       <td style="border:1px solid;"><font size="-2"><b title="<?php echo $rowd['langganan'];?>"><?php echo substr($rowd['langganan'],0,20)."..";?></b></font></td>
       <td style="border:1px solid;"><font size="-2"><?php echo $rowd['no_order']; ?></font></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['no_item'];?></font></div></td>
@@ -314,6 +318,7 @@ echo '' . $jam1 .  'H, ' . floor( $menit1 / 60 ) . 'M';?></td>
       <td colspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2"> MASUK</font></strong></div></td>
       <td colspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">KELUAR</font></strong></div></td>
       <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">NOKK</font></strong></div></td>
+      <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">NO DEMAND</font></strong></div></td>
       <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">LANGGANAN</font></strong></div></td>
       <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">ORDER</font></strong></div></td>
       <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;"><div align="center"><strong><font size="-2">HANGER</font></strong></div></td>
@@ -367,7 +372,8 @@ WHERE
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['shift1'];?></font></div></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['shift_out'];?></font></div></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['shift1_out'];?></font></div></td>
-      <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['nokk'];?></font></div></td>
+      <td style="border:1px solid;"><div align="center"><font size="-2">`<?php echo $rowd['nokk'];?></font></div></td>
+      <td style="border:1px solid;"><div align="center"><font size="-2">`<?php echo $rowd['nodemand'];?></font></div></td>
       <td style="border:1px solid;"><font size="-2"><b title="<?php echo $rowd['langganan'];?>"><?php echo substr($rowd['langganan'],0,20)."..";?></b></font></td>
       <td style="border:1px solid;"><font size="-2"><?php echo $rowd['no_order']; ?></font></td>
       <td style="border:1px solid;"><div align="center"><font size="-2"><?php echo $rowd['no_item'];?></font></div></td>

@@ -27,29 +27,6 @@ include_once("../koneksi.php");
 		}
 	</script>
 </head>
-<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript">
-	function getData_ITXVIEWKK(){
-        // var _nodemand = document.getElementById("nodemand").value;
-        var _noprodorder = document.getElementById("nokk").value;
-
-		// if(_noprodorder == ""){
-			
-		// }else{
-			$.get("../api_ITXVIEWKK.php?noprod="+_noprodorder,function(item){
-				document.getElementById("buyer").value = item.PELANGGAN+'/'+item.BUYER;
-				document.getElementById("no_order").value = item.PROJECTCODE;
-				document.getElementById("jenis_kain").value = item.ITEMDESCRIPTION;
-				document.getElementById("lebar").value = item.LEBAR;
-				document.getElementById("gramasi").value = item.GRAMASI;
-				document.getElementById("no_item").value = item.NO_HANGER;
-				document.getElementById("no_warna").value = item.NO_WARNA;
-				document.getElementById("warna").value = item.WARNA;
-				document.getElementById("qty").value = item.QTY_ORDER;
-			});
-		// }
-	};
-</script>
 <body>
 	<?php
 		function nourut()
@@ -165,21 +142,7 @@ include_once("../koneksi.php");
 			}
 		}elseif ($_GET['typekk'] == "NOW") {
 			if ($idkk != "") {
-				// include_once("../now.php");
-				if ($_GET['demand'] != "") {
-					$nomordemand = $_GET['demand'];
-					$anddemand = "AND i.DEAMAND LIKE '%$nomordemand%'";
-				}else{
-					$anddemand = "";
-				}
-				$kk = "SELECT
-							*
-						FROM
-							ITXVIEWKK i 
-						WHERE
-							i.PRODUCTIONORDERCODE LIKE '%$idkk%' $anddemand";
-				$qrykk = db2_exec($conn_db2, $kk);
-				$rw_kk = db2_fetch_assoc($qrykk);
+				include_once("../now.php");
 			}
 		}
 	?>
@@ -193,6 +156,7 @@ include_once("../koneksi.php");
 				$nokk = $nou;
 				$idkk = $nou;
 			}
+			$nodemand = $_POST['demand'];
 			$shift = $_POST['shift'];
 			$shift1 = $_POST['shift2'];
 			$langganan = $_POST['buyer'];
@@ -213,6 +177,7 @@ include_once("../koneksi.php");
 			$tglin = $_POST['tgl_proses_m'] . " " . $_POST['proses_in'];
 			$simpanSql = "INSERT INTO tbl_adm SET 
 										`nokk`			='$nokk',
+										`nodemand`		='$nodemand',
 										`shift`			='$shift',
 										`shift1`		='$shift1',
 										`langganan`		='$langganan',
@@ -258,26 +223,26 @@ include_once("../koneksi.php");
 			$kondisi = $_POST['kondisi'];
 			$tglin = $_POST['tgl_proses_m'] . " " . $_POST['proses_in'];
 			$simpanSql = "UPDATE tbl_adm SET
-									`shift`			='$shift',
-									`shift1`		='$shift1',
-									`langganan`		='$langganan',
-									`no_order`		='$order',
-									`jenis_kain`	='$jenis_kain',
-									`warna`			='$warna',
-									`no_warna`		='$nowarna',
-									`no_item`		='$noitem',
-									`lebar`			='$lebar',
-									`gramasi`		='$gramasi',
-									`lot`			='$lot',
-									`rol`			='$rol',
-									`qty`			='$qty',
-									`panjang`		='$yard',
-									`proses`		='$proses',
-									`catatan`		='$note',
-									`kondisi_kain`	='$kondisi',
-									`tgl_update`	=now(),
-									`tgl_in`		='$tglin'
-			WHERE `id`='$_POST[id]'";
+								`shift`			='$shift',
+								`shift1`		='$shift1',
+								`langganan`		='$langganan',
+								`no_order`		='$order',
+								`jenis_kain`	='$jenis_kain',
+								`warna`			='$warna',
+								`no_warna`		='$nowarna',
+								`no_item`		='$noitem',
+								`lebar`			='$lebar',
+								`gramasi`		='$gramasi',
+								`lot`			='$lot',
+								`rol`			='$rol',
+								`qty`			='$qty',
+								`panjang`		='$yard',
+								`proses`		='$proses',
+								`catatan`		='$note',
+								`kondisi_kain`	='$kondisi',
+								`tgl_update`	=now(),
+								`tgl_in`		='$tglin'
+							WHERE `id`='$_POST[id]'";
 			mysqli_query($con,$simpanSql) or die("Gagal Ubah" . mysqli_error());
 
 			// Refresh form
@@ -320,23 +285,20 @@ include_once("../koneksi.php");
 				</td>
 				<td width="1%">:</td>
 				<td width="28%">
-					<input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?php echo $_GET['idkk']; ?>" />
-					<input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
+					<input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?php echo $_GET['idkk']; ?>" /><input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
 
-					<?php if($_GET['typekk'] == 'NOW') { ?>
-						<select style="width: 40%" name="demand" id="demand" onchange='getData_ITXVIEWKK()' required>
-								<?php
-									if($_GET['idkk']) :
-										$qry_demand = db2_exec($conn_db2, "SELECT * FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE LIKE '%$idkk%' AND DEAMAND LIKE '%$nomordemand%'");
-								?>
-								<option value="" disabled selected>Pilih Nomor Demand</option>
-								<?php while ($r_demand = db2_fetch_assoc($qry_demand)) {  ?>
-									<option value="<?= $r_demand['DEAMAND']; ?>" <?php if($_GET['demand'] == $r_demand['DEAMAND']){ echo "SELECTED"; } ?>><?= $r_demand['DEAMAND']; ?></option>
-								<?php } ?>
-								<?php else : ?>
-								<option value="" disabled selected>Masukan Nomor Production Order</option>
-								<?php endif; ?>
-						</select>
+					<?php if ($_GET['typekk'] == 'NOW') { ?>
+					<select style="width: 40%" name="demand" id="demand" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+document.getElementById(`nokk`).value+'&demand='+this.value" required>
+						<option value="" disabled selected>Pilih Nomor Demand</option>
+						<?php 
+						$sql_ITXVIEWKK_demand  = db2_exec($conn_db2, "SELECT DEAMAND AS DEMAND FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE = '$idkk'");
+						while ($r_demand = db2_fetch_assoc($sql_ITXVIEWKK_demand)) :
+						?>
+						<option value="<?= $r_demand['DEMAND']; ?>" <?php if($r_demand['DEMAND'] == $_GET['demand']){ echo 'SELECTED'; } ?>><?= $r_demand['DEMAND']; ?></option>
+						<?php endwhile; ?>
+					</select>
+					<?php } else { ?>
+						<input name="demand" id="demand" type="text" placeholder="Nomor Demand">
 					<?php } ?>
 				</td>
 				<td width="14%">
@@ -364,11 +326,15 @@ include_once("../koneksi.php");
 				</td>
 				<td>:</td>
 				<td>
-					<?php if ($cek > 0) {
+					<?php if ($_GET['typekk'] == "NOW") : ?>
+						<?php $langganan_buyer =  $dt_pelanggan_buyer['PELANGGAN'] . '/' . $dt_pelanggan_buyer['BUYER']; ?>
+					<?php else : ?>
+						<?php if ($cek > 0) {
 						$langganan_buyer =  $ssr1['partnername'] . "/" . $ssr2['partnername'];
-					} else {
+						} else {
 						$langganan_buyer =  $rw['langganan'];
-					} ?>
+						} ?>
+					<?php endif; ?>
 					<input name="buyer" type="text" id="buyer" size="45" value="<?= $langganan_buyer; ?>"/>
 				</td>
 				<td><strong>Shift</strong></td>
@@ -392,13 +358,17 @@ include_once("../koneksi.php");
 				</td>
 				<td>:</td>
 				<td>
-					<?php 
-						if ($cek > 0) {
-							$no_order =  $ssr['documentno'];
-						} else {
-							$no_order =  $rw['no_order'];
-						} 
-					?>
+					<?php if ($_GET['typekk'] == "NOW") : ?>
+						<?php $no_order =  $dt_ITXVIEWKK['PROJECTCODE']; ?>
+					<?php else : ?>
+						<?php if ($cek > 0) {
+						$no_order =  $ssr['documentno'];
+						} else if ($rc > 0) {
+						$no_order =  $rw['no_order'];
+						} else if ($rcAdm > 0) {
+						$no_order = $rwAdm['no_order'];
+						} ?>
+					<?php endif; ?>
 					<input type="text" name="no_order" id="no_order" value="<?= $no_order; ?>" />
 				</td>
 				<td>
@@ -424,13 +394,17 @@ include_once("../koneksi.php");
 				</td>
 				<td valign="top">:</td>
 				<td>
-					<?php 
-						if ($cek > 0) {
-							$jk = $ssr['productcode'] . " / " . $ssr['description'];
-						} else {
-							$jk = $rw['jenis_kain'];
-						} 
-					?>
+					<?php if ($_GET['typekk'] == "NOW") : ?>
+						<?php $jk = $dt_ITXVIEWKK['ITEMDESCRIPTION']; ?>
+					<?php else : ?>
+						<?php if ($cek > 0) {
+						$jk = $ssr['productcode'] . " / " . $ssr['description'];
+						} else if ($rc > 0) {
+						$jk = $rw['jenis_kain'];
+						} else if ($rcAdm > 0) {
+						$jk = $rwAdm['jenis_kain'];
+						} ?>
+					<?php endif; ?>
 					<textarea name="jenis_kain" cols="35" id="jenis_kain"><?= $jk; ?></textarea>
 				</td>
 				<td valign="top">
@@ -443,11 +417,17 @@ include_once("../koneksi.php");
 				<td scope="row"><strong>Hanger/Item</strong></td>
 				<td>:</td>
 				<td>
-					<?php if ($cek > 0) {
+					<?php if ($_GET['typekk'] == "NOW") : ?>
+						<?php $hanger = $dt_ITXVIEWKK['NO_HANGER']; ?>
+					<?php else : ?>
+						<?php if ($cek > 0) {
 							$hanger = $ssr['productcode'];
-						} else {
+						} else if ($rc > 0) {
 							$hanger = $rw['no_item'];
-						} ?>
+						} else if ($rcAdm > 0) {
+							$hanger = $rwAdm['no_item'];
+						}?>
+					<?php endif; ?>
 					<input type="text" name="no_item" id="no_item" value="<?= $hanger; ?>" />
 				</td>
 				<td width="14%"><strong>Lebar X Gramasi</strong></td>
@@ -458,25 +438,31 @@ include_once("../koneksi.php");
 					} else {
 						$nlebar = $rw['lebar'];
 					} ?>
-					<input name="lebar" type="text" id="lebar" size="6" value="<?= $nlebar; ?>" placeholder="0" />
+					<input name="lebar" type="text" id="lebar" size="6" value="<?= floor($dt_lg['LEBAR']); ?><?= $nlebar; ?>" placeholder="0" />
 					&quot; X
 					<?php if ($cek > 0) {
 						$ngramasi = $ssr['weight'];
 					} else {
 						$ngramasi = $rw['gramasi'];
 					} ?>
-					<input name="gramasi" type="text" id="gramasi" size="6" value="<?= $ngramasi; ?>" placeholder="0" />
+					<input name="gramasi" type="text" id="gramasi" size="6" value="<?= floor($dt_lg['GRAMASI']); ?><?= $ngramasi; ?>" placeholder="0" />
 				</td>
 			</tr>
 			<tr>
 				<td scope="row"><strong>No Warna</strong></td>
 				<td>:</td>
 				<td>
-					<?php if ($cek > 0) {
-						$nomor_warna = $ssr['colorno'];
-					} else {
-						$nomor_warna = $rw['no_warna'];
-					} ?>
+					<?php if ($_GET['typekk'] == "NOW") : ?>
+						<?php $nomor_warna = $dt_ITXVIEWKK['NO_WARNA']; ?>
+					<?php else : ?>
+						<?php if ($cek > 0) {
+							$nomor_warna = $ssr['colorno'];
+						} else if ($rc > 0) {
+							$nomor_warna = $rw['no_warna'];
+						} else if ($rcAdm > 0) {
+							$nomor_warna = $rwAdm['no_warna'];
+						}?>
+					<?php endif; ?>
 					<input name="no_warna" type="text" id="no_warna" size="35" value="<?= $nomor_warna; ?>" />
 				</td>
 				<td width="14%"><strong>Berat</strong></td>
@@ -487,7 +473,7 @@ include_once("../koneksi.php");
 					} else {
 						$berat = $rw['qty'];
 					} ?>
-					<input name="qty" type="text" id="qty" size="8" value="<?= $berat; ?>" placeholder="0.00" />
+					<input name="qty" type="text" id="qty" size="8" value="<?= $dt_qtyorder['QTY_ORDER']; ?><?= $berat; ?>" placeholder="0.00" />
 					<strong>Kg</strong>
 				</td>
 			</tr>
@@ -502,11 +488,11 @@ include_once("../koneksi.php");
 					} else {
 						$nama_warna = $rw['warna'];
 					} ?>
-					<input name="warna" type="text" id="warna" size="35" value="<?= $nama_warna; ?>" />
+					<input name="warna" type="text" id="warna" size="35" value="<?= $dt_warna['WARNA']; ?><?= $nama_warna; ?>" />
 				</td>
 				<td><strong>Panjang</strong></td>
 				<td>:</td>
-				<td><input name="qty2" type="text" id="qty2" size="8" value="<?php echo $rw['panjang']; ?>" placeholder="0.00" onFocus="jumlah();" />
+				<td><input name="qty2" type="text" id="qty2" size="8" value="<?= $dt_qtyorder['QTY_ORDER_YARD']; ?><?php echo $rw['panjang']; ?>" placeholder="0.00" onFocus="jumlah();" />
 					<strong>Yard</strong>
 				</td>
 			</tr>
