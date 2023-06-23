@@ -11,25 +11,6 @@ include("../koneksi.php");
   <title>Home</title>
 </head>
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript">
-  function getData_ITXVIEWKK() {
-    // var _nodemand = document.getElementById("nodemand").value;
-    var _noprodorder = document.getElementById("nokk").value;
-
-    // if(_noprodorder == ""){
-
-    // }else{
-    $.get("../api_ITXVIEWKK.php?noprod=" + _noprodorder, function(item) {
-      document.getElementById("buyer").value = item.PELANGGAN + '/' + item.BUYER;
-      document.getElementById("no_order").value = item.PROJECTCODE;
-      document.getElementById("jenis_kain").value = item.ITEMDESCRIPTION;
-      document.getElementById("warna").value = item.WARNA;
-      document.getElementById("qty").value = item.QTY_ORDER;
-    });
-    // }
-  };
-</script>
-
 <body>
   <?php
   function nourut()
@@ -149,161 +130,153 @@ include("../koneksi.php");
       $ssr2 = sqlsrv_fetch_array($lgn2);
     }
   } elseif ($_GET['typekk'] == "NOW") {
-    if ($_GET['id'] != "") {
-      $idk = $_GET['id'];
-    } else {
-      $idk = $_POST['id'];
-    }
-    $qry = mysqli_query($con, "SELECT * FROM tbl_produksi WHERE id='$idk' ORDER BY id DESC LIMIT 1");
-    $rw = mysqli_fetch_array($qry);
     if ($idkk != "") {
-      if ($_GET['demand'] != "") {
-        $nomordemand = $_GET['demand'];
-        $anddemand = "AND i.DEAMAND LIKE '%$nomordemand%'";
+      include_once("../now.php");
+    }else{ // EDIT
+      if ($_GET['id'] != "") {
+        $idk = $_GET['id'];
       } else {
-        $anddemand = "";
+        $idk = $_POST['id'];
       }
-      $kk = "SELECT
-							*
-						FROM
-							ITXVIEWKK i 
-						WHERE
-							i.PRODUCTIONORDERCODE LIKE '%$idkk%' $anddemand";
-      $qrykk = db2_exec($conn_db2, $kk);
-      $rw_kk = db2_fetch_assoc($qrykk);
+      $qry = mysqli_query($con, "SELECT * FROM tbl_produksi WHERE id='$idk' ORDER BY id DESC LIMIT 1");
+      $rw = mysqli_fetch_array($qry);
     }
   }
   ?>
 
   <?php
-  if (isset($_POST['btnSimpan']) and $_GET['id'] == "") {
-    if ($_POST['nokk'] != "") {
-      $nokk = $_POST['nokk'];
-      $idkk = $_POST['nokk'];
-    } else {
-      $nokk = $nou;
-      $idkk = $nou;
-    }
-    $shift = $_POST['shift'];
-    $shift1 = $_POST['shift2'];
-    $langganan = $_POST['buyer'];
-    $order = $_POST['no_order'];
-    $jenis_kain = str_replace("'", "", $_POST['jenis_kain']);
-    $warna = str_replace("'", "", $_POST['warna']);
-    $lot = $_POST['lot'];
-    $qty = $_POST['qty'];
-    $rol = $_POST['rol'];
-    $mesin = $_POST['no_mesin'];
-    $nmmesin = $_POST['nama_mesin'];
-    $proses = $_POST['proses'];
-    $jam_in = $_POST['proses_in'];
-    $jam_out = $_POST['proses_out'];
-    $proses_jam = $_POST['proses_jam'];
-    $proses_menit = $_POST['proses_menit'];
-    $tgl_proses_in = $_POST['tgl_proses_m'];
-    $tgl_proses_out = $_POST['tgl_proses_k'];
-    $mulai = $_POST['stop_mulai'];
-    $selesai = $_POST['stop_selesai'];
-    $stop_jam = $_POST['stop_jam'];
-    $stop_menit = $_POST['stop_menit'];
-    $tgl_stop_m = $_POST['tgl_stop_m'];
-    $tgl_stop_s = $_POST['tgl_stop_s'];
-    $kd = $_POST['kd_stop'];
-    $tgl = $_POST['tgl'];
-    $acc_kain = str_replace("'", "", $_POST['acc_kain']);
-    $ket = str_replace("'", "", $_POST['ket']);
-    $simpanSql = "INSERT INTO tbl_produksi SET 
-                                              `nokk`='$nokk',
-                                              `shift`='$shift',
-                                              `shift1`='$shift1',
-                                              `no_mesin`='$mesin',
-                                              `nama_mesin`='$nmmesin',
-                                              `langganan`='$langganan',
-                                              `no_order`='$order',
-                                              `jenis_kain`='$jenis_kain',
-                                              `warna`='$warna',
-                                              `lot`='$lot',
-                                              `rol`='$rol',
-                                              `qty`='$qty',
-                                              `proses`='$proses',
-                                              `jam_in`='$jam_in',
-                                              `jam_out`='$jam_out',
-                                              `tgl_proses_in`='$tgl_proses_in',
-                                              `tgl_proses_out`='$tgl_proses_out',
-                                              `stop_l`='$mulai',
-                                              `stop_r`='$selesai',
-                                              `tgl_stop_l`='$tgl_stop_m',
-                                              `tgl_stop_r`='$tgl_stop_s',
-                                              `kd_stop`='$kd',
-                                              `tgl_buat`=now(),
-                                              `acc_staff`='$acc_kain',
-                                              `ket`='$ket',
-                                              `tgl_update`='$tgl'
-                                              ";
-    mysqli_query($con, $simpanSql) or die("Gagal Simpan" . mysqli_error());
+    if (isset($_POST['btnSimpan']) and $_GET['id'] == "") {
+      if ($_POST['nokk'] != "") {
+        $nokk = $_POST['nokk'];
+        $idkk = $_POST['nokk'];
+      } else {
+        $nokk = $nou;
+        $idkk = $nou;
+      }
+      $nodemand = $_POST['demand'];
+      $shift = $_POST['shift'];
+      $shift1 = $_POST['shift2'];
+      $langganan = $_POST['buyer'];
+      $order = $_POST['no_order'];
+      $jenis_kain = str_replace("'", "", $_POST['jenis_kain']);
+      $warna = str_replace("'", "", $_POST['warna']);
+      $lot = $_POST['lot'];
+      $qty = $_POST['qty'];
+      $rol = $_POST['rol'];
+      $mesin = $_POST['no_mesin'];
+      $nmmesin = $_POST['nama_mesin'];
+      $proses = $_POST['proses'];
+      $jam_in = $_POST['proses_in'];
+      $jam_out = $_POST['proses_out'];
+      $proses_jam = $_POST['proses_jam'];
+      $proses_menit = $_POST['proses_menit'];
+      $tgl_proses_in = $_POST['tgl_proses_m'];
+      $tgl_proses_out = $_POST['tgl_proses_k'];
+      $mulai = $_POST['stop_mulai'];
+      $selesai = $_POST['stop_selesai'];
+      $stop_jam = $_POST['stop_jam'];
+      $stop_menit = $_POST['stop_menit'];
+      $tgl_stop_m = $_POST['tgl_stop_m'];
+      $tgl_stop_s = $_POST['tgl_stop_s'];
+      $kd = $_POST['kd_stop'];
+      $tgl = $_POST['tgl'];
+      $acc_kain = str_replace("'", "", $_POST['acc_kain']);
+      $ket = str_replace("'", "", $_POST['ket']);
+      $simpanSql = "INSERT INTO tbl_produksi SET 
+                                                `nokk`='$nokk',
+                                                `nodemand` = '$nodemand',
+                                                `shift`='$shift',
+                                                `shift1`='$shift1',
+                                                `no_mesin`='$mesin',
+                                                `nama_mesin`='$nmmesin',
+                                                `langganan`='$langganan',
+                                                `no_order`='$order',
+                                                `jenis_kain`='$jenis_kain',
+                                                `warna`='$warna',
+                                                `lot`='$lot',
+                                                `rol`='$rol',
+                                                `qty`='$qty',
+                                                `proses`='$proses',
+                                                `jam_in`='$jam_in',
+                                                `jam_out`='$jam_out',
+                                                `tgl_proses_in`='$tgl_proses_in',
+                                                `tgl_proses_out`='$tgl_proses_out',
+                                                `stop_l`='$mulai',
+                                                `stop_r`='$selesai',
+                                                `tgl_stop_l`='$tgl_stop_m',
+                                                `tgl_stop_r`='$tgl_stop_s',
+                                                `kd_stop`='$kd',
+                                                `tgl_buat`=now(),
+                                                `acc_staff`='$acc_kain',
+                                                `ket`='$ket',
+                                                `tgl_update`='$tgl'
+                                                ";
+      mysqli_query($con, $simpanSql) or die("Gagal Simpan" . mysqli_error());
 
-    // Refresh form
-    echo "<meta http-equiv='refresh' content='0; url=?idkk=$idkk&status=Data Sudah DiSimpan'>";
-  } else if (isset($_POST['btnSimpan']) and $_GET['id'] != "") {
-    $langganan = $_POST['buyer'];
-    $order = $_POST['no_order'];
-    $jenis_kain = str_replace("'", "", $_POST['jenis_kain']);
-    $warna = str_replace("'", "", $_POST['warna']);
-    $lot = $_POST['lot'];
-    $qty = $_POST['qty'];
-    $rol = $_POST['rol'];
-    $mesin = $_POST['no_mesin'];
-    $nmmesin = $_POST['nama_mesin'];
-    $proses = $_POST['proses'];
-    $shift = $_POST['shift'];
-    $shift1 = $_POST['shift2'];
-    $jam_in = $_POST['proses_in'];
-    $jam_out = $_POST['proses_out'];
-    $proses_jam = $_POST['proses_jam'];
-    $proses_menit = $_POST['proses_menit'];
-    $tgl_proses_in = $_POST['tgl_proses_m'];
-    $tgl_proses_out = $_POST['tgl_proses_k'];
-    $mulai = $_POST['stop_mulai'];
-    $selesai = $_POST['stop_selesai'];
-    $stop_jam = $_POST['stop_jam'];
-    $stop_menit = $_POST['stop_menit'];
-    $tgl_stop_m = $_POST['tgl_stop_m'];
-    $tgl_stop_s = $_POST['tgl_stop_s'];
-    $kd = $_POST['kd_stop'];
-    $tgl = $_POST['tgl'];
-    $acc_kain = str_replace("'", "", $_POST['acc_kain']);
-    $ket = str_replace("'", "", $_POST['ket']);
-    $simpanSql = "UPDATE tbl_produksi SET 
-                            `shift`='$shift',
-                            `shift1`='$shift1',
-                            `no_mesin`='$mesin',
-                            `nama_mesin`='$nmmesin',
-                            `langganan`='$langganan',
-                            `no_order`='$order',
-                            `jenis_kain`='$jenis_kain',
-                            `warna`='$warna',
-                            `lot`='$lot',
-                            `rol`='$rol',
-                            `qty`='$qty',
-                            `proses`='$proses',
-                            `jam_in`='$jam_in',
-                            `jam_out`='$jam_out',
-                            `tgl_proses_in`='$tgl_proses_in',
-                            `tgl_proses_out`='$tgl_proses_out',
-                            `stop_l`='$mulai',
-                            `stop_r`='$selesai',
-                            `tgl_stop_l`='$tgl_stop_m',
-                            `tgl_stop_r`='$tgl_stop_s',
-                            `kd_stop`='$kd',
-                            `acc_staff`='$acc_kain',
-                            `tgl_update`='$tgl',
-                            `ket`='$ket'
-                            WHERE `id`='$_POST[id]'";
-    mysqli_query($con, $simpanSql) or die("Gagal Ubah" . mysqli_error());
-    $idk = $_POST['id'];
-    // Refresh form
-    echo "<meta http-equiv='refresh' content='0; url=?id=$idk&status=Data Sudah DiUbah'>";
-  }
+      // Refresh form
+      echo "<meta http-equiv='refresh' content='0; url=?idkk=$idkk&status=Data Sudah DiSimpan'>";
+    } else if (isset($_POST['btnSimpan']) and $_GET['id'] != "") {
+      $nodemand = $_POST['demand'];
+      $langganan = $_POST['buyer'];
+      $order = $_POST['no_order'];
+      $jenis_kain = str_replace("'", "", $_POST['jenis_kain']);
+      $warna = str_replace("'", "", $_POST['warna']);
+      $lot = $_POST['lot'];
+      $qty = $_POST['qty'];
+      $rol = $_POST['rol'];
+      $mesin = $_POST['no_mesin'];
+      $nmmesin = $_POST['nama_mesin'];
+      $proses = $_POST['proses'];
+      $shift = $_POST['shift'];
+      $shift1 = $_POST['shift2'];
+      $jam_in = $_POST['proses_in'];
+      $jam_out = $_POST['proses_out'];
+      $proses_jam = $_POST['proses_jam'];
+      $proses_menit = $_POST['proses_menit'];
+      $tgl_proses_in = $_POST['tgl_proses_m'];
+      $tgl_proses_out = $_POST['tgl_proses_k'];
+      $mulai = $_POST['stop_mulai'];
+      $selesai = $_POST['stop_selesai'];
+      $stop_jam = $_POST['stop_jam'];
+      $stop_menit = $_POST['stop_menit'];
+      $tgl_stop_m = $_POST['tgl_stop_m'];
+      $tgl_stop_s = $_POST['tgl_stop_s'];
+      $kd = $_POST['kd_stop'];
+      $tgl = $_POST['tgl'];
+      $acc_kain = str_replace("'", "", $_POST['acc_kain']);
+      $ket = str_replace("'", "", $_POST['ket']);
+      $simpanSql = "UPDATE tbl_produksi SET 
+                              `nodemand` = '$nodemand',
+                              `shift`='$shift',
+                              `shift1`='$shift1',
+                              `no_mesin`='$mesin',
+                              `nama_mesin`='$nmmesin',
+                              `langganan`='$langganan',
+                              `no_order`='$order',
+                              `jenis_kain`='$jenis_kain',
+                              `warna`='$warna',
+                              `lot`='$lot',
+                              `rol`='$rol',
+                              `qty`='$qty',
+                              `proses`='$proses',
+                              `jam_in`='$jam_in',
+                              `jam_out`='$jam_out',
+                              `tgl_proses_in`='$tgl_proses_in',
+                              `tgl_proses_out`='$tgl_proses_out',
+                              `stop_l`='$mulai',
+                              `stop_r`='$selesai',
+                              `tgl_stop_l`='$tgl_stop_m',
+                              `tgl_stop_r`='$tgl_stop_s',
+                              `kd_stop`='$kd',
+                              `acc_staff`='$acc_kain',
+                              `tgl_update`='$tgl',
+                              `ket`='$ket'
+                              WHERE `id`='$_POST[id]'";
+      mysqli_query($con, $simpanSql) or die("Gagal Ubah" . mysqli_error());
+      $idk = $_POST['id'];
+      // Refresh form
+      echo "<meta http-equiv='refresh' content='0; url=?id=$idk&status=Data Sudah DiUbah'>";
+    }
   ?>
   <form id="form1" name="form1" method="post" action="">
     <table width="100%" border="0">
@@ -340,32 +313,25 @@ include("../koneksi.php");
         </td>
         <td width="1%">:</td>
         <td width="30%">
-          <input type="hidden" value="<?php echo $_GET['id']; ?>" name="id" />
-          <?php if($_GET['id']) : ?>
-              <input name="nokk" type="text" id="nokk" size="17" value="<?= $rw['nokk']; ?>">
-              <input name="demand" type="text" id="demand" size="17" value="<?= $rw['nodemand']; ?>">
-
-          <?php else : ?>
-            <input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?php echo $_GET['idkk']; ?>" />
+            <input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?= $_GET['idkk']; ?><?= $rw['nokk']; ?>" /><input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
 
             <?php if ($_GET['typekk'] == 'NOW') { ?>
-              <select style="width: 40%" name="demand" id="demand" onchange='getData_ITXVIEWKK()' required>
-                <?php
-                if ($_GET['idkk']) :
-                  $qry_demand = db2_exec($conn_db2, "SELECT * FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE LIKE '%$idkk%' AND DEAMAND LIKE '%$nomordemand%'");
-                ?>
+              <?php if($_GET['id']) : ?>
+							  <input name="demand" id="demand" type="text" value="<?= $rw['nodemand']; ?>" placeholder="Nomor Demand">
+              <?php else : ?>
+                <select style="width: 40%" name="demand" id="demand" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+document.getElementById(`nokk`).value+'&demand='+this.value" required>
                   <option value="" disabled selected>Pilih Nomor Demand</option>
-                  <?php while ($r_demand = db2_fetch_assoc($qry_demand)) {  ?>
-                    <option value="<?= $r_demand['DEAMAND']; ?>" <?php if ($_GET['demand'] == $r_demand['DEAMAND']) {
-                                                                    echo "SELECTED";
-                                                                  } ?>><?= $r_demand['DEAMAND']; ?></option>
-                  <?php } ?>
-                <?php else : ?>
-                  <option value="" disabled selected>Masukan Nomor Production Order</option>
-                <?php endif; ?>
-              </select>
-            <?php } ?>
-          <?php endif; ?>
+                  <?php 
+                    $sql_ITXVIEWKK_demand  = db2_exec($conn_db2, "SELECT DEAMAND AS DEMAND FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE = '$idkk'");
+                    while ($r_demand = db2_fetch_assoc($sql_ITXVIEWKK_demand)) :
+                  ?>
+                  <option value="<?= $r_demand['DEMAND']; ?>" <?php if($r_demand['DEMAND'] == $_GET['demand'].$rw['nodemand']){ echo 'SELECTED'; } ?>><?= $r_demand['DEMAND']; ?></option>
+                  <?php endwhile; ?>
+                </select>
+              <?php endif; ?>
+            <?php } else { ?>
+							<input name="demand" id="demand" type="text" placeholder="Nomor Demand">
+						<?php } ?>
         </td>
         <td width="8%">
           <h4>Group Shift</h4>
@@ -374,14 +340,11 @@ include("../koneksi.php");
         <td width="3%">
           <select name="shift" id="shift" required>
             <option value="">Pilih</option>
-            <option value="A" <?php if ($rw['shift'] == "A") {
-                                echo "SELECTED";
+            <option value="A" <?php if ($rw['shift'] == "A") { echo "SELECTED";
                               } ?>>A</option>
-            <option value="B" <?php if ($rw['shift'] == "B") {
-                                echo "SELECTED";
+            <option value="B" <?php if ($rw['shift'] == "B") { echo "SELECTED";
                               } ?>>B</option>
-            <option value="C" <?php if ($rw['shift'] == "C") {
-                                echo "SELECTED";
+            <option value="C" <?php if ($rw['shift'] == "C") { echo "SELECTED";
                               } ?>>C</option>
           </select>
         </td>
@@ -407,12 +370,8 @@ include("../koneksi.php");
         </td>
         <td>:</td>
         <td>
-          <?php if ($cek > 0) {
-            $langganan_buyer =  $ssr1['partnername'] . "/" . $ssr2['partnername'];
-          } else {
-            $langganan_buyer =  $rw['langganan'];
-          } ?>
-          <input name="buyer" type="text" id="buyer" size="45" value="<?= $langganan_buyer; ?>" />
+            <?php $langganan_buyer =  $dt_pelanggan_buyer['PELANGGAN'] . '/' . $dt_pelanggan_buyer['BUYER']; ?>
+          <input name="buyer" type="text" id="buyer" size="45" value="<?= $langganan_buyer; ?><?= $rw['langganan']; ?>" />
         </td>
         <td>
           <h4>Tgl Brushing</h4>
@@ -428,12 +387,18 @@ include("../koneksi.php");
         </td>
         <td>:</td>
         <td>
-          <?php if ($cek > 0) {
-            $no_order =  $ssr['documentno'];
-          } else {
-            $no_order =  $rw['no_order'];
-          } ?>
-          <input type="text" name="no_order" id="no_order" value="<?= $no_order; ?>" />
+          <?php if ($_GET['typekk'] == "NOW") : ?>
+            <?php $no_order =  $dt_ITXVIEWKK['PROJECTCODE']; ?>
+          <?php else : ?>
+            <?php if ($cek > 0) {
+              $no_order =  $ssr['documentno'];
+            } else if ($rc > 0) {
+              // $no_order =  
+            } else if ($rcAdm > 0) {
+              $no_order = $rwAdm['no_order'];
+            } ?>
+          <?php endif; ?>
+          <input type="text" name="no_order" id="no_order" value="<?= $no_order; ?><?= $rw['no_order']; ?>" />
         </td>
         <td>
           <h4>Proses</h4>
@@ -458,12 +423,18 @@ include("../koneksi.php");
         </td>
         <td valign="top">:</td>
         <td>
-          <?php if ($cek > 0) {
-            $jk = $ssr['productcode'] . " / " . $ssr['description'];
-          } else {
-            $jk = $rw['jenis_kain'];
-          } ?>
-          <textarea name="jenis_kain" cols="35" id="jenis_kain"><?= $jk; ?></textarea>
+          <?php if ($_GET['typekk'] == "NOW") : ?>
+            <?php $jk = $dt_ITXVIEWKK['ITEMDESCRIPTION']; ?>
+          <?php else : ?>
+            <?php if ($cek > 0) {
+              $jk = $ssr['productcode'] . " / " . $ssr['description'];
+            } else if ($rc > 0) {
+              // $jk = $rw['jenis_kain'];
+            } else if ($rcAdm > 0) {
+              $jk = $rwAdm['jenis_kain'];
+            } ?>
+          <?php endif; ?>
+          <textarea name="jenis_kain" cols="35" id="jenis_kain"><?= $jk; ?><?= $rw['jenis_kain']; ?></textarea>
         </td>
         <td valign="top">
           <h4>Keterangan</h4>
@@ -482,7 +453,7 @@ include("../koneksi.php");
           } else {
             $nama_warna = $rw['warna'];
           } ?>
-          <input name="warna" type="text" id="warna" size="35" value="<?= $nama_warna; ?>" />
+          <input name="warna" type="text" id="warna" size="35" value="<?= $dt_warna['WARNA']; ?><?= $nama_warna; ?>" />
         </td>
         <td width="8%"><strong>Quantity</strong></td>
         <td width="1%">:</td>
@@ -492,7 +463,7 @@ include("../koneksi.php");
           } else {
             $berat = $rw['qty'];
           } ?>
-          <input name="qty" type="text" id="qty" size="5" value="<?= $berat; ?>" placeholder="0.00" />
+          <input name="qty" type="text" id="qty" size="5" value="<?= $dt_qtyorder['QTY_ORDER']; ?><?= $berat; ?>" placeholder="0.00" />
         </td>
       </tr>
       <tr>
