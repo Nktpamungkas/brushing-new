@@ -132,6 +132,8 @@ include("../koneksi.php");
   } elseif ($_GET['typekk'] == "NOW") {
     if ($idkk != "") {
       include_once("../now.php");
+      $qry = mysqli_query($con,"SELECT * FROM tbl_adm WHERE nokk='$idkk' and status='1' and ISNULL(tgl_out) ORDER BY id DESC LIMIT 1");
+      $rw = mysqli_fetch_array($qry);
     }else{ // EDIT
       if ($_GET['id'] != "") {
         $idk = $_GET['id'];
@@ -313,7 +315,7 @@ include("../koneksi.php");
         </td>
         <td width="1%">:</td>
         <td width="30%">
-            <input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?= $_GET['idkk']; ?><?= $rw['nokk']; ?>" /><input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
+            <input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?= $_GET['idkk']; ?>" /><input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
 
             <?php if ($_GET['typekk'] == 'NOW') { ?>
               <?php if($_GET['id']) : ?>
@@ -325,7 +327,7 @@ include("../koneksi.php");
                     $sql_ITXVIEWKK_demand  = db2_exec($conn_db2, "SELECT DEAMAND AS DEMAND FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE = '$idkk'");
                     while ($r_demand = db2_fetch_assoc($sql_ITXVIEWKK_demand)) :
                   ?>
-                  <option value="<?= $r_demand['DEMAND']; ?>" <?php if($r_demand['DEMAND'] == $_GET['demand'].$rw['nodemand']){ echo 'SELECTED'; } ?>><?= $r_demand['DEMAND']; ?></option>
+                  <option value="<?= $r_demand['DEMAND']; ?>" <?php if($r_demand['DEMAND'] == $_GET['demand']){ echo 'SELECTED'; } ?>><?= $r_demand['DEMAND']; ?></option>
                   <?php endwhile; ?>
                 </select>
               <?php endif; ?>
