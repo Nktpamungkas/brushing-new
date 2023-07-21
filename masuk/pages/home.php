@@ -143,7 +143,7 @@ include_once("../koneksi.php");
 		}elseif ($_GET['typekk'] == "NOW") {
 			if ($idkk != "") {
 				include_once("../now.php");
-				$qry = mysqli_query($con,"SELECT * FROM tbl_adm WHERE nokk='$idkk' and status='1' and ISNULL(tgl_out) ORDER BY id DESC LIMIT 1");
+				$qry = mysqli_query($con,"SELECT * FROM tbl_adm WHERE nokk='$idkk' and nodemand = '$_GET[demand]' and status='1' and ISNULL(tgl_out) ORDER BY id DESC LIMIT 1");
 				$rw = mysqli_fetch_array($qry);
 			}
 		}

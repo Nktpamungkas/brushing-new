@@ -60,13 +60,13 @@ include("../koneksi.php");
       $idkk = $_GET['idkk'];
     }
 
-    if ($idkk != "") {
+    if ($idkk != "" AND $_GET['demand'] != "") {
       date_default_timezone_set('Asia/Jakarta');
-      $qry1 = mysqli_query($con, "SELECT * FROM tbl_adm WHERE nokk='$idkk' and status='2'  ORDER BY id DESC LIMIT 1");
+      $qry1 = mysqli_query($con, "SELECT * FROM tbl_adm WHERE nokk='$idkk' and nodemand = '$_GET[demand]' and status='2'  ORDER BY id DESC LIMIT 1");
       $rw1 = mysqli_fetch_array($qry1);
       $rc1 = mysqli_num_rows($qry1);
 
-      $qry = mysqli_query($con, "SELECT * FROM tbl_adm WHERE nokk='$idkk' and status='1' and ISNULL(tgl_out) ORDER BY id DESC LIMIT 1");
+      $qry = mysqli_query($con, "SELECT * FROM tbl_adm WHERE nokk='$idkk' and nodemand = '$_GET[demand]' and status='1' and ISNULL(tgl_out) ORDER BY id DESC LIMIT 1");
       $rw = mysqli_fetch_array($qry);
       $rc = mysqli_num_rows($qry);
       if ($rc > 0) {
@@ -141,7 +141,7 @@ include("../koneksi.php");
 					<input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
 
 					<?php if($_GET['typekk'] == 'NOW') { ?>
-						<select style="width: 40%" name="demand" id="demand" onchange='getData_ITXVIEWKK()' required>
+            <select style="width: 40%" name="demand" id="demand" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+document.getElementById(`nokk`).value+'&demand='+this.value" required>
 								<?php
 									if($_GET['idkk']) :
 										$qry_demand = db2_exec($conn_db2, "SELECT * FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE LIKE '%$idkk%' AND DEAMAND LIKE '%$nomordemand%'");
@@ -151,7 +151,6 @@ include("../koneksi.php");
 									<option value="<?= $r_demand['DEAMAND']; ?>" <?php if($_GET['demand'] == $r_demand['DEAMAND']){ echo "SELECTED"; } ?>><?= $r_demand['DEAMAND']; ?></option>
 								<?php } ?>
 								<?php else : ?>
-								<option value="" disabled selected>Masukan Nomor Production Order</option>
 								<?php endif; ?>
 						</select>
 					<?php } ?>
