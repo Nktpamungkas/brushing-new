@@ -473,11 +473,7 @@ include("../koneksi.php");
           <h4>Lot</h4>
         </td>
         <td>:</td>
-        <td><input name="lot" type="text" id="lot" size="5" value="<?php if ($cLot > 0) {
-                                                                      echo $rowLot['TotalLot'] . "-" . $nomorLot;
-                                                                    } else {
-                                                                      echo $rw['lot'];
-                                                                    } ?>" /></td>
+        <td><input name="lot" type="text" id="lot" size="5" value="<?= $dt_ITXVIEWKK['LOT']; ?>" /></td>
         <td>
           <h4>Nama Mesin</h4>
         </td>

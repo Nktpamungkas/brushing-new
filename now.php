@@ -20,7 +20,8 @@
                                             TRIM(DSUBCODE02) || '-' || TRIM(DSUBCODE03)  AS NO_HANGER,
                                             TRIM(ITEMDESCRIPTION) AS ITEMDESCRIPTION,
                                             DELIVERYDATE, 
-                                            KARTUKERJA
+                                            KARTUKERJA,
+                                            LOT
                                         FROM 
                                             ITXVIEWKK 
                                         WHERE 
