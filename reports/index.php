@@ -125,7 +125,7 @@ $page    = strtolower($page);
                         </div>
                         <div class="art-layout-cell layout-item-0" style="width: 100%">
                             <p style="float:center;">
-                                Copyright © 2017 All Rights Reserved.</p>
+                                Copyright © 2024 All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

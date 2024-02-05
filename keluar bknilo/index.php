@@ -14,7 +14,7 @@ $page    = strtolower($page);
 <head>
     <!-- Created by Artisteer v4.3.0.60745 -->
     <meta charset="utf-8">
-    <title>SETTING PERBEDAAN LOT BRUSHING</title>
+    <title>Keluar</title>
     <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
     <link rel="icon" type="image/png" href="../images/icon.png">
     <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -81,8 +81,8 @@ $page    = strtolower($page);
                     <li><a href="../index.php">Main</a></li>
                     <li><a href="../masuk/">Masuk</a></li>
                     <li><a href="../data-brushing/">Data BRUSHING</a></li>
-                    <li><a href="../keluar/">Keluar</a></li>
-                    <li><a href="index.php" class="active">SPLB</a></li>
+                    <li><a href="index.php" class="active">Keluar</a></li>
+                    <li><a href="../splb/">SPLB</a></li>
                     <li><a href="../reports/">Reports</a>
                 </ul>
             </div>
@@ -124,7 +124,7 @@ $page    = strtolower($page);
                         </div>
                         <div class="art-layout-cell layout-item-0" style="width: 100%">
                             <p style="float:center;">
-                                Copyright © 2024 All Rights Reserved.</p>
+                                Copyright © 2017 All Rights Reserved.</p>
                         </div>
                     </div>
                 </div>

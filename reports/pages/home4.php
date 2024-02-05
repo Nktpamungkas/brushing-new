@@ -14,9 +14,12 @@
       if (lprn == "Stoppage Mesin") {
         window.location.href = "?p=home2";
       }
-      if (lprn == "Rangkuman Produksi") {
-        window.location.href = "?p=home4";
+      if (lprn == "Adm Brushing") {
+        window.location.href = "?p=home3";
       }
+	  if (lprn == "Efisiensi") {
+        window.location.href = "?p=home5";
+      }	
 
     }
   </script>
@@ -45,6 +48,7 @@
             <option value="Rangkuman Produksi" selected>Rangkuman Produksi</option>
             <option value="Stoppage Mesin">Stoppage Mesin</option>
             <option value="Adm Brushing">Adm Brushing</option>
+			<option value="Efisiensi">Efisiensi</option>  
           </select>
         </td>
       </tr>

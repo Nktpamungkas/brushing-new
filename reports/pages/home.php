@@ -22,7 +22,9 @@ include("../koneksi.php");
       if (lprn == "Rangkuman Produksi") {
         window.location.href = "?p=home4";
       }
-
+	  if (lprn == "Efisiensi") {
+        window.location.href = "?p=home5";
+      }
     }
   </script>
 </head>
@@ -50,6 +52,7 @@ include("../koneksi.php");
             <option value="Rangkuman Produksi">Rangkuman Produksi</option>
             <option value="Stoppage Mesin">Stoppage Mesin</option>
             <option value="Adm Brushing">Adm Brushing</option>
+			<option value="Efisiensi">Efisiensi</option>  
           </select>
         </td>
       </tr>

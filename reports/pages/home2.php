@@ -11,7 +11,7 @@ function ganti()
 	if(lprn=="Produksi Brushing"){window.location.href="?p=home";}
 	if(lprn=="Adm Brushing"){window.location.href="?p=home3";}
 	if(lprn=="Rangkuman Produksi"){window.location.href="?p=home4";}
-
+	if (lprn == "Efisiensi"){window.location.href = "?p=home5";}
 }
 </script>
 </head>
@@ -36,6 +36,7 @@ function ganti()
               <option value="Rangkuman Produksi">Rangkuman Produksi</option>
               <option value="Stoppage Mesin" selected>Stoppage Mesin</option>
               <option value="Adm Brushing">Adm Brushing</option>
+			  <option value="Efisiensi">Efisiensi</option>	
             </select></td>
         </tr>
         <tr valign="middle">

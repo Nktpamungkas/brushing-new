@@ -87,11 +87,26 @@
           <table width="100%" border="0" class="table-list1">
             <thead>
               <tr>
-                <td width="6%" rowspan="2"><img src="IndoBaru.jpg" alt="" width="60" height="60"></td>
-                <td width="75%" height="41" align="center" valign="middle"><h2>FORM LAPORAN PRODUKSI HARIAN </h2></td>
+                <td width="6%" rowspan="5"><img src="IndoBaru.jpg" alt="" width="60" height="60"></td>
+                <td width="75%" rowspan="5">
+                  <div align="center">
+                    <h2>FORM LAPORAN PRODUKSI HARIAN </h2>
+                  </div>
+                </td>
+                <td width="8%">No. Form</td>
+                <td width="11%">: FW-14-BRS-01</td>
               </tr>
               <tr>
-                <td align="center"><strong>FW – 14 – BRS – 01 / 05</strong></td>
+                <td>No. Revisi</td>
+                <td>: 02</td>
+              </tr>
+              <tr>
+                <td>Tgl. Terbit</td>
+                <td>: 01 Juni 2014</td>
+              </tr>
+              <tr>
+                <td>Halaman</td>
+                <td>: </td>
               </tr>
               <thead>
           </table>
