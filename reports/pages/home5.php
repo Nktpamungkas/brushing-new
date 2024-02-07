@@ -14,13 +14,15 @@
       if (lprn == "Stoppage Mesin") {
         window.location.href = "?p=home2";
       }
-	  if (lprn == "Adm Brushing") {
+      if (lprn == "Adm Brushing") {
         window.location.href = "?p=home3";
-      }	
+      }
       if (lprn == "Rangkuman Produksi") {
         window.location.href = "?p=home4";
       }
-
+      if (lprn == "Schedule") {
+        window.location.href = "?p=home6";
+      }
     }
   </script>
 </head>
@@ -48,7 +50,8 @@
             <option value="Rangkuman Produksi">Rangkuman Produksi</option>
             <option value="Stoppage Mesin">Stoppage Mesin</option>
             <option value="Adm Brushing">Adm Brushing</option>
-			<option value="Efisiensi" selected>Efisiensi</option>  
+            <option value="Efisiensi" selected>Efisiensi</option>
+            <option value="Schedule">Schedule</option>
           </select>
         </td>
       </tr>
@@ -56,39 +59,41 @@
         <td><strong>Tanggal Awal</strong></td>
         <td>:</td>
         <td><input name="awal" type="text" id="awal" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.awal);return false;" size="14" required="required" />
-          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.awal);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal" style="border:none" align="absmiddle" border="0" /></a></td>
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.awal);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal" style="border:none" align="absmiddle" border="0" /></a>
+        </td>
       </tr>
       <tr>
         <td><strong>Tanggal Akhir</strong></td>
         <td>:</td>
         <td><input name="akhir" type="text" id="akhir" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.akhir);return false;" size="14" required="required" />
-          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.akhir);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal" style="border:none" align="absmiddle" border="0" /></a></td>
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.akhir);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal" style="border:none" align="absmiddle" border="0" /></a>
+        </td>
       </tr>
       <tr>
         <td><strong>Mesin</strong></td>
         <td>:</td>
         <td><select name="nama_mesin" id="nama_mesin" onchange="myFunction();" required="required">
-          <option value="">Pilih</option>
-		  <option value="ALL">ALL</option>	
-          <?php $qry1 = mysqli_query($con, "SELECT nama FROM tbl_mesin ORDER BY nama ASC");
+            <option value="">Pilih</option>
+            <option value="ALL">ALL</option>
+            <?php $qry1 = mysqli_query($con, "SELECT nama FROM tbl_mesin ORDER BY nama ASC");
             while ($r = mysqli_fetch_array($qry1)) {
             ?>
-          <option value="<?php echo $r['nama']; ?>"><?php echo $r['nama']; ?></option>
-          <?php } ?>
-        </select></td>
+              <option value="<?php echo $r['nama']; ?>"><?php echo $r['nama']; ?></option>
+            <?php } ?>
+          </select></td>
       </tr>
       <tr>
         <td><strong>No Mesin</strong></td>
         <td>:</td>
         <td><select name="no_mesin" id="no_mesin" onchange="myFunction();" required="required">
-          <option value="">Pilih</option>
-          <option value="ALL">ALL</option>
-          <?php $qry1 = mysqli_query($con, "SELECT no_mesin FROM tbl_no_mesin ORDER BY no_mesin ASC");
+            <option value="">Pilih</option>
+            <option value="ALL">ALL</option>
+            <?php $qry1 = mysqli_query($con, "SELECT no_mesin FROM tbl_no_mesin ORDER BY no_mesin ASC");
             while ($r = mysqli_fetch_array($qry1)) {
             ?>
-          <option value="<?php echo $r['no_mesin']; ?>"><?php echo $r['no_mesin']; ?></option>
-          <?php } ?>
-        </select></td>
+              <option value="<?php echo $r['no_mesin']; ?>"><?php echo $r['no_mesin']; ?></option>
+            <?php } ?>
+          </select></td>
       </tr>
       <tr>
         <td><strong>Group Shift</strong></td>
@@ -99,14 +104,15 @@
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
-          </select></td>
+          </select>
+        </td>
       </tr>
       <tr>
         <td><strong>Operator</strong></td>
         <td>:</td>
         <td><select name="acc_kain" id="acc_kain">
             <option value="">Pilih</option>
-			<option value="ALL">ALL</option>
+            <option value="ALL">ALL</option>
             <?php $qryacc = mysqli_query($con, "SELECT nama FROM tbl_staff ORDER BY nama ASC");
             while ($racc = mysqli_fetch_array($qryacc)) {
             ?>
