@@ -30,7 +30,7 @@ include("../koneksi.php");
 
 <body>
   <?php
-    function nourut()
+  function nourut()
     {
       include("../koneksi.php");
       $format = date("ymd");
@@ -60,7 +60,7 @@ include("../koneksi.php");
       $idkk = $_GET['idkk'];
     }
 
-    if ($idkk != "" AND $_GET['demand'] != "") {
+    if ($idkk != "" and $_GET['demand'] != "") {
       date_default_timezone_set('Asia/Jakarta');
       $qry1 = mysqli_query($con, "SELECT * FROM tbl_adm WHERE nokk='$idkk' and nodemand = '$_GET[demand]' and status='2'  ORDER BY id DESC LIMIT 1");
       $rw1 = mysqli_fetch_array($qry1);
@@ -74,27 +74,26 @@ include("../koneksi.php");
         echo "<script>alert('Sudah Keluar $rw1[tgl_out] ke $rw1[tujuan]' );</script>";
       }
     }
-    //
-
   ?>
 
   <?php
     if (isset($_POST['btnSimpan'])) {
-      $shift = $_POST['shift'];
-      $shift1 = $_POST['shift2'];
-      $note = str_replace("'", "''", $_POST['catatan']);
-      $tujuan = $_POST['tujuan'];
-      $tglout = $_POST['tgl_proses_k'] . " " . $_POST['proses_out'];
-      
+      $shift      = $_POST['shift'];
+      $shift1     = $_POST['shift2'];
+      $note       = str_replace("'", "''", $_POST['catatan']);
+      $tujuan     = $_POST['tujuan'];
+      $tglout     = $_POST['tgl_proses_k'] . " " . $_POST['proses_out'];
+
       $simpanSql = "UPDATE tbl_adm SET
-                      `shift_out`='$shift',
-                      `shift1_out`='$shift1',
-                      `catatan`='$note',
-                      `tujuan`='$tujuan',
-                      `tgl_update`=now(),
-                      `status`='2',
-                      `tgl_out`='$tglout'
-                  WHERE `id`='$_POST[id]'";
+                        `shift_out`             = '$shift',
+                        `shift1_out`            = '$shift1',
+                        `catatan`               = '$note',
+                        `tujuan`                = '$tujuan',
+                        `tgl_update`            = now(),
+                        `status`                = '2',
+                        `tgl_out`               = '$tglout',
+                        `jumlah_gerobak_out`		= '$_POST[jumlah_gerobak_out]'
+                    WHERE `id`='$_POST[id]'";
       mysqli_query($con, $simpanSql) or die("Gagal Ubah" . mysqli_error());
 
       // Refresh form
@@ -114,66 +113,72 @@ include("../koneksi.php");
         </th>
       </tr>
       <tr>
-				<td scope="row">
-					<h4>Pilih Asal Kartu Kerja</h4>
-				</td>
-				<td width="1%">:</td>
-				<td>
-					<select style="width: 40%" id="typekk" name="typekk" onchange="window.location='?typekk='+this.value" required>
-						<option value="" disabled selected>-Pilih Tipe Kartu Kerja-</option>
-						<option value="KKLama" <?php if($_GET['typekk'] == "KKLama"){ echo "SELECTED"; }?>>KK Lama</option>
-						<option value="NOW" <?php if($_GET['typekk'] == "NOW"){ echo "SELECTED"; } ?>>KK NOW</option> -->
-					</select=>
-				</td>
-				<td>
-				</td>
-				<td width="1%"></td>
-				<td width="45%">
-				</td>
-			</tr> 
+        <td scope="row">
+          <h4>Pilih Asal Kartu Kerja</h4>
+        </td>
+        <td width="1%">:</td>
+        <td>
+          <select style="width: 40%" id="typekk" name="typekk" onchange="window.location='?typekk='+this.value" required>
+            <option value="" disabled selected>-Pilih Tipe Kartu Kerja-</option>
+            <option value="KKLama" <?php if ($_GET['typekk'] == "KKLama") {
+                                      echo "SELECTED";
+                                    } ?>>KK Lama</option>
+            <option value="NOW" <?php if ($_GET['typekk'] == "NOW") {
+                                  echo "SELECTED";
+                                } ?>>KK NOW</option> -->
+            </select=>
+        </td>
+        <td>
+        </td>
+        <td width="1%"></td>
+        <td width="45%">
+        </td>
+      </tr>
       <tr>
-				<td width="11%" scope="row">
-					<h4>Nokk</h4>
-				</td>
-				<td width="1%">:</td>
-				<td width="28%">
-					<input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?php echo $_GET['idkk']; ?>" />
-					<input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
+        <td width="11%" scope="row">
+          <h4>Nokk</h4>
+        </td>
+        <td width="1%">:</td>
+        <td width="28%">
+          <input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?php echo $_GET['idkk']; ?>" />
+          <input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
 
-					<?php if($_GET['typekk'] == 'NOW') { ?>
+          <?php if ($_GET['typekk'] == 'NOW') { ?>
             <select style="width: 40%" name="demand" id="demand" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+document.getElementById(`nokk`).value+'&demand='+this.value" required>
-								<?php
-									if($_GET['idkk']) :
-										$qry_demand = db2_exec($conn_db2, "SELECT * FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE LIKE '%$idkk%' AND DEAMAND LIKE '%$nomordemand%'");
-								?>
-								<option value="" disabled selected>Pilih Nomor Demand</option>
-								<?php while ($r_demand = db2_fetch_assoc($qry_demand)) {  ?>
-									<option value="<?= $r_demand['DEAMAND']; ?>" <?php if($_GET['demand'] == $r_demand['DEAMAND']){ echo "SELECTED"; } ?>><?= $r_demand['DEAMAND']; ?></option>
-								<?php } ?>
-								<?php else : ?>
-								<?php endif; ?>
-						</select>
-					<?php } ?>
-				</td>
-				<td width="14%">
-					<h4>Group Shift</h4>
-				</td>
-				<td width="1%">:</td>
-				<td width="45%">
-					<select name="shift" id="shift" required>
-						<option value="">Pilih</option>
-						<option value="A" <?php if ($rw['shift'] == "A") {
-												echo "selected";
-											} ?>>A</option>
-						<option value="B" <?php if ($rw['shift'] == "B") {
-												echo "selected";
-											} ?>>B</option>
-						<option value="C" <?php if ($rw['shift'] == "C") {
-												echo "selected";
-											} ?>>C</option>
-					</select>
-				</td>
-			</tr>
+              <?php
+              if ($_GET['idkk']) :
+                $qry_demand = db2_exec($conn_db2, "SELECT * FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE LIKE '%$idkk%' AND DEAMAND LIKE '%$nomordemand%'");
+              ?>
+                <option value="" disabled selected>Pilih Nomor Demand</option>
+                <?php while ($r_demand = db2_fetch_assoc($qry_demand)) {  ?>
+                  <option value="<?= $r_demand['DEAMAND']; ?>" <?php if ($_GET['demand'] == $r_demand['DEAMAND']) {
+                                                                  echo "SELECTED";
+                                                                } ?>><?= $r_demand['DEAMAND']; ?></option>
+                <?php } ?>
+              <?php else : ?>
+              <?php endif; ?>
+            </select>
+          <?php } ?>
+        </td>
+        <td width="14%">
+          <h4>Group Shift</h4>
+        </td>
+        <td width="1%">:</td>
+        <td width="45%">
+          <select name="shift" id="shift" required>
+            <option value="">Pilih</option>
+            <option value="A" <?php if ($rw['shift'] == "A") {
+                                echo "selected";
+                              } ?>>A</option>
+            <option value="B" <?php if ($rw['shift'] == "B") {
+                                echo "selected";
+                              } ?>>B</option>
+            <option value="C" <?php if ($rw['shift'] == "C") {
+                                echo "selected";
+                              } ?>>C</option>
+          </select>
+        </td>
+      </tr>
       <tr>
         <td scope="row">
           <h4>Langganan/Buyer</h4>
@@ -303,12 +308,12 @@ include("../koneksi.php");
         </td>
         <td>:</td>
         <td><input name="proses_out" type="text" id="proses_out" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
-  var time = this.value;
-  if (time.match(/^\d{2}$/) !== null) {
-     this.value = time + ':';
-  } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
-     this.value = time + '';
-  }" value="<?php echo $rw['jam_out'] ?>" size="5" maxlength="5" required />
+                var time = this.value;
+                if (time.match(/^\d{2}$/) !== null) {
+                  this.value = time + ':';
+                } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
+                  this.value = time + '';
+                }" value="<?php echo $rw['jam_out'] ?>" size="5" maxlength="5" required />
           <input name="tgl_proses_k" type="text" id="tgl_proses_k" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_proses_k);return false;" value="<?php echo $rw['tgl_proses_out']; ?>" size="10" required />
           <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_proses_k);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal3" style="border:none" align="absmiddle" border="0" /></a>
         </td>
@@ -327,6 +332,15 @@ include("../koneksi.php");
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
+      <tr>
+				<td scope="row">
+					<h4>Jumlah Gerobak</h4>
+				</td>
+				<td>:</td>
+				<td>
+					<input name="jumlah_gerobak_out" type="text" size="3" placeholder="0" value="<?= $rw['jumlah_gerobak_out'] ?>">
+				</td>
+			</tr>
       <tr>
         <td colspan="6" scope="row"><input type="submit" name="btnSimpan" id="btnSimpan" value="Simpan" class="art-button" />
           <input type="button" name="batal" id="batal" value="Batal" onclick="window.location.href='index.php'" class="art-button" />

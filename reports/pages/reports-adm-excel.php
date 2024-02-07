@@ -18,9 +18,7 @@
 </head>
 
 <body>
-  <?php
-    if ($_GET['jenis'] == "Kartu IN") {
-  ?>
+  <?php if ($_GET['jenis'] == "Kartu IN") { ?>
     <?php
       $tglawal = $_GET['tgl1'];
       $tglakhir = $_GET['tgl2'];
@@ -149,6 +147,11 @@
                 <font size="-2">CATATAN</font>
               </strong></div>
           </td>
+          <td bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;">
+            <div align="center"><strong>
+                <font size="-2">Jumlah Gerobak IN</font>
+              </strong></div>
+          </td>
         </tr>
         <?php
           $sql = mysqli_query($con, " SELECT 
@@ -252,6 +255,9 @@
             <td style="border:1px solid;">
               <font size="-2"><?php echo $rowd['catatan']; ?></font>
             </td>
+            <td style="border:1px solid;">
+              <font size="-2"><?php echo $rowd['jumlah_gerobak_in']; ?></font>
+            </td>
           </tr>
         <?php
           $totqty = $totqty + $rowd['rol'];
@@ -260,6 +266,9 @@
           $no++;
         } ?>
         <tr style="border:1px solid;">
+          <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
@@ -291,26 +300,29 @@
           <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
         </tr>
       </table>
     </form>
-  <?php } else if ($_GET['jenis'] == "Kartu OUT") {
-
-    $tglawal = $_GET['tgl1'];
-    $tglakhir = $_GET['tgl2'];
-    $jns = $_GET['jenis'];
-    $shft = $_GET['shift'];
-    if ($tglakhir != "" and $tglawal != "") {
-      $tgl = " DATE_FORMAT(`tgl_out`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
-    } else {
-      $tgl = " ";
-    }
-    if ($shft == "ALL") {
-      $shift = " ";
-    } else {
-      $shift = " AND `shift1_out`='$shft' ";
-    }
-  ?>
+  <?php } else if ($_GET['jenis'] == "Kartu OUT") { ?>
+    <?php
+      $tglawal = $_GET['tgl1'];
+      $tglakhir = $_GET['tgl2'];
+      $jns = $_GET['jenis'];
+      $shft = $_GET['shift'];
+      if ($tglakhir != "" and $tglawal != "") {
+        $tgl = " DATE_FORMAT(`tgl_out`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
+      } else {
+        $tgl = " ";
+      }
+      if ($shft == "ALL") {
+        $shift = " ";
+      } else {
+        $shift = " AND `shift1_out`='$shft' ";
+      }
+    ?>
     <form id="form1" name="form1" method="post" action="">
       <strong> Periode: <?php echo $tglawal; ?> s/d <?php echo $tglakhir; ?></strong><br />
       <strong>Shift: <?php echo $shft; ?></strong>
@@ -428,6 +440,11 @@
                 <font size="-2">PROSES DEPT. BERIKUTNYA</font>
               </strong></div>
           </td>
+          <td rowspan="2" bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;">
+            <div align="center"><strong>
+                <font size="-2">Jumlah Gerobak OUT</font>
+              </strong></div>
+          </td>
         </tr>
         <tr style="border:1px solid;">
           <td bgcolor="#99FF99" style="border:1px solid;vertical-align:middle;">
@@ -505,139 +522,142 @@
           while ($rowd = mysqli_fetch_array($sql)) {
             $bgcolor = ($c++ & 1) ? '#33CCFF' : '#FFCC99';
         ?>
-          <tr style="border:1px solid;">
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $no; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo date('Y-m-d', strtotime($rowd['tgl_in'])); ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo date('H:i', strtotime($rowd['tgl_in'])); ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo date('Y-m-d', strtotime($rowd['tgl_out'])); ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo date('H:i', strtotime($rowd['tgl_out'])); ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['shift']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['shift1']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['shift_out']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['shift1_out']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2">`<?php echo $rowd['nokk']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2">`<?php echo $rowd['nodemand']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><b title="<?php echo $rowd['langganan']; ?>"><?php echo substr($rowd['langganan'], 0, 20) . ".."; ?></b></font>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><b title="<?= $rowd['buyer']; ?>"><?= $rowd['buyer']; ?></b></font>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><?php echo $rowd['no_order']; ?></font>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['no_item']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><b title="<?php echo $rowd['jenis_kain']; ?>"><?php echo substr($rowd['jenis_kain'], 0, 20) . ".."; ?></b></font>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><b title="<?php echo $rowd['warna']; ?>"><?php echo substr($rowd['no_warna'], 0, 10) . ".."; ?></b></font>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><b title="<?php echo $rowd['warna']; ?>"><?php echo substr($rowd['warna'], 0, 10) . ".."; ?></b></font>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['lot']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['rol']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['qty']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['panjang']; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php
-                                $awal  = strtotime($rowd['tgl_in']);
-                                $akhir = strtotime($rowd['tgl_out']);
-                                $diff  = $akhir - $awal;
+        <tr style="border:1px solid;">
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $no; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo date('Y-m-d', strtotime($rowd['tgl_in'])); ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo date('H:i', strtotime($rowd['tgl_in'])); ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo date('Y-m-d', strtotime($rowd['tgl_out'])); ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo date('H:i', strtotime($rowd['tgl_out'])); ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['shift']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['shift1']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['shift_out']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['shift1_out']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2">`<?php echo $rowd['nokk']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2">`<?php echo $rowd['nodemand']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><b title="<?php echo $rowd['langganan']; ?>"><?php echo substr($rowd['langganan'], 0, 20) . ".."; ?></b></font>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><b title="<?= $rowd['buyer']; ?>"><?= $rowd['buyer']; ?></b></font>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><?php echo $rowd['no_order']; ?></font>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['no_item']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><b title="<?php echo $rowd['jenis_kain']; ?>"><?php echo substr($rowd['jenis_kain'], 0, 20) . ".."; ?></b></font>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><b title="<?php echo $rowd['warna']; ?>"><?php echo substr($rowd['no_warna'], 0, 10) . ".."; ?></b></font>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><b title="<?php echo $rowd['warna']; ?>"><?php echo substr($rowd['warna'], 0, 10) . ".."; ?></b></font>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['lot']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['rol']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['qty']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['panjang']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php
+                              $awal  = strtotime($rowd['tgl_in']);
+                              $akhir = strtotime($rowd['tgl_out']);
+                              $diff  = $akhir - $awal;
 
-                                $jam   = floor($diff / (60 * 60));
-                                $menit = $diff - $jam * (60 * 60);
-                                $tjam   = round($diff / (60 * 60), 2);
-                                $hari   = round($tjam / 24, 2);
-                                echo '' . $jam .  'H, ' . floor($menit / 60) . 'M'; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $hari; ?></font>
-              </div>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><?php echo $rowd['kondisi_kain']; ?></font>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><?php echo $rowd['proses']; ?></font>
-            </td>
-            <td style="border:1px solid;">
-              <font size="-2"><?php echo $rowd['catatan']; ?></font>
-            </td>
-            <td style="border:1px solid;">
-              <div align="center">
-                <font size="-2"><?php echo $rowd['tujuan']; ?></font>
-              </div>
-            </td>
-          </tr>
+                              $jam   = floor($diff / (60 * 60));
+                              $menit = $diff - $jam * (60 * 60);
+                              $tjam   = round($diff / (60 * 60), 2);
+                              $hari   = round($tjam / 24, 2);
+                              echo '' . $jam .  'H, ' . floor($menit / 60) . 'M'; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $hari; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><?php echo $rowd['kondisi_kain']; ?></font>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><?php echo $rowd['proses']; ?></font>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><?php echo $rowd['catatan']; ?></font>
+          </td>
+          <td style="border:1px solid;">
+            <div align="center">
+              <font size="-2"><?php echo $rowd['tujuan']; ?></font>
+            </div>
+          </td>
+          <td style="border:1px solid;">
+            <font size="-2"><?php echo $rowd['jumlah_gerobak_out']; ?></font>
+          </td>
+        </tr>
         <?php
           $totqty = $totqty + $rowd['rol'];
           $totberat = $totberat + $rowd['qty'];
@@ -647,6 +667,9 @@
           $no++;
         } ?>
         <tr style="border:1px solid;">
+          <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
@@ -690,31 +713,34 @@
           <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
           <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
+          <td bgcolor="#99FF99">&nbsp;</td>
         </tr>
       </table>
     </form>
-  <?php } else {
-
-    $tglawal = $_GET['tgl1'];
-    $tglakhir = $_GET['tgl2'];
-    $jns = $_GET['jenis'];
-    $shft = $_GET['shift'];
-    if ($tglakhir != "" and $tglawal != "") {
-      $tgl = " DATE_FORMAT(`tgl_in`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
-    } else {
-      $tgl = " ";
-    }
-    if ($shft == "ALL") {
-      $shift = " ";
-    } else {
-      $shift = " AND `shift1_out`='$shft' ";
-    }
-    if ($jns != "") {
-      $jkk = " AND `kondisi_kain`='$jns' ";
-    } else {
-      $jkk = "";
-    }
-  ?>
+  <?php } else { ?>
+    <?php
+      $tglawal = $_GET['tgl1'];
+      $tglakhir = $_GET['tgl2'];
+      $jns = $_GET['jenis'];
+      $shft = $_GET['shift'];
+      if ($tglakhir != "" and $tglawal != "") {
+        $tgl = " DATE_FORMAT(`tgl_in`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
+      } else {
+        $tgl = " ";
+      }
+      if ($shft == "ALL") {
+        $shift = " ";
+      } else {
+        $shift = " AND `shift1_out`='$shft' ";
+      }
+      if ($jns != "") {
+        $jkk = " AND `kondisi_kain`='$jns' ";
+      } else {
+        $jkk = "";
+      }
+    ?>
     <form id="form1" name="form1" method="post" action="">
       <strong> Periode: <?php echo $tglawal; ?> s/d <?php echo $tglakhir; ?></strong><br />
       <strong>Shift: <?php echo $shft; ?></strong>

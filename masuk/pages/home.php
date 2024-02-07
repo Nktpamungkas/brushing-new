@@ -110,8 +110,8 @@ include_once("../koneksi.php");
 				$child = $sLot['ChildLevel'];
 
 				if ($child > 0) {
-					$sqlgetparent = sqlsrv_query($conn,"select ID,LotNo from ProcessControlBatches where ID='$sLot[RootID]' and ChildLevel='0'");
-					$rowgp = sqlsrv_fetch_array($sqlgetparent);
+					$sqlgetparent 	= sqlsrv_query($conn,"select ID,LotNo from ProcessControlBatches where ID='$sLot[RootID]' and ChildLevel='0'");
+					$rowgp 			= sqlsrv_fetch_array($sqlgetparent);
 
 					//$nomLot=substr("$row2[LotNo]",0,1);
 					$nomLot = $rowgp['LotNo'];
@@ -158,49 +158,49 @@ include_once("../koneksi.php");
 				$nokk = $nou;
 				$idkk = $nou;
 			}
-			$nodemand = $_POST['demand'];
-			$shift = $_POST['shift'];
-			$shift1 = $_POST['shift2'];
-			$langganan = $_POST['buyer'];
-			$order = $_POST['no_order'];
+			$nodemand 	= $_POST['demand'];
+			$shift 		= $_POST['shift'];
+			$shift1 	= $_POST['shift2'];
+			$langganan 	= $_POST['buyer'];
+			$order 		= $_POST['no_order'];
 			$jenis_kain = str_replace("'", "''", $_POST['jenis_kain']);
-			$noitem = $_POST['no_item'];
-			$nowarna = $_POST['no_warna'];
-			$warna = str_replace("'", "''", $_POST['warna']);
-			$note = str_replace("'", "''", $_POST['catatan']);
-			$lot = $_POST['lot'];
-			$qty = $_POST['qty'];
-			$rol = $_POST['rol'];
-			$yard = $_POST['qty2'];
-			$lebar = $_POST['lebar'];
-			$gramasi = $_POST['gramasi'];
-			$proses = $_POST['proses'];
-			$kondisi = $_POST['kondisi'];
-			$tglin = $_POST['tgl_proses_m'] . " " . $_POST['proses_in'];
-			$simpanSql = "INSERT INTO tbl_adm SET 
-										`nokk`			='$nokk',
-										`nodemand`		='$nodemand',
-										`shift`			='$shift',
-										`shift1`		='$shift1',
-										`langganan`		='$langganan',
-										`no_order`		='$order',
-										`jenis_kain`	='$jenis_kain',
-										`warna`			='$warna',
-										`no_warna`		='$nowarna',
-										`no_item`		='$noitem',
-										`lebar`			='$lebar',
-										`gramasi`		='$gramasi',
-										`lot`			='$lot',
-										`rol`			='$rol',
-										`qty`			='$qty',
-										`panjang`		='$yard',
-										`proses`		='$proses',
-										`catatan`		='$note',
-										`kondisi_kain`	='$kondisi',
-										`tgl_buat`		=now(),
-										`tgl_update`	=now(),
-										`tgl_in`		='$tglin'
-										";
+			$noitem 	= $_POST['no_item'];
+			$nowarna 	= $_POST['no_warna'];
+			$warna 		= str_replace("'", "''", $_POST['warna']);
+			$note 		= str_replace("'", "''", $_POST['catatan']);
+			$lot 		= $_POST['lot'];
+			$qty 		= $_POST['qty'];
+			$rol 		= $_POST['rol'];
+			$yard 		= $_POST['qty2'];
+			$lebar 		= $_POST['lebar'];
+			$gramasi 	= $_POST['gramasi'];
+			$proses 	= $_POST['proses'];
+			$kondisi 	= $_POST['kondisi'];
+			$tglin 		= $_POST['tgl_proses_m'] . " " . $_POST['proses_in'];
+			$simpanSql 	= "INSERT INTO tbl_adm SET 
+											`nokk`					='$nokk',
+											`nodemand`				='$nodemand',
+											`shift`					='$shift',
+											`shift1`				='$shift1',
+											`langganan`				='$langganan',
+											`no_order`				='$order',
+											`jenis_kain`			='$jenis_kain',
+											`warna`					='$warna',
+											`no_warna`				='$nowarna',
+											`no_item`				='$noitem',
+											`lebar`					='$lebar',
+											`gramasi`				='$gramasi',
+											`lot`					='$lot',
+											`rol`					='$rol',
+											`qty`					='$qty',
+											`panjang`				='$yard',
+											`proses`				='$proses',
+											`catatan`				='$note',
+											`kondisi_kain`			='$kondisi',
+											`tgl_buat`				= now(),
+											`tgl_update`			= now(),
+											`tgl_in`				='$tglin',
+											`jumlah_gerobak_in`		='$_POST[jumlah_gerobak_in]'";
 			mysqli_query($con,$simpanSql) or die("Gagal Simpan" . mysqli_error());
 
 			// Refresh form
@@ -225,26 +225,28 @@ include_once("../koneksi.php");
 			$kondisi = $_POST['kondisi'];
 			$tglin = $_POST['tgl_proses_m'] . " " . $_POST['proses_in'];
 			$simpanSql = "UPDATE tbl_adm SET
-								`shift`			='$shift',
-								`shift1`		='$shift1',
-								`langganan`		='$langganan',
-								`no_order`		='$order',
-								`jenis_kain`	='$jenis_kain',
-								`warna`			='$warna',
-								`no_warna`		='$nowarna',
-								`no_item`		='$noitem',
-								`lebar`			='$lebar',
-								`gramasi`		='$gramasi',
-								`lot`			='$lot',
-								`rol`			='$rol',
-								`qty`			='$qty',
-								`panjang`		='$yard',
-								`proses`		='$proses',
-								`catatan`		='$note',
-								`kondisi_kain`	='$kondisi',
-								`tgl_update`	=now(),
-								`tgl_in`		='$tglin'
-							WHERE `id`='$_POST[id]'";
+									`shift`					= '$shift',
+									`shift1`				= '$shift1',
+									`langganan`				= '$langganan',
+									`no_order`				= '$order',
+									`jenis_kain`			= '$jenis_kain',
+									`warna`					= '$warna',
+									`no_warna`				= '$nowarna',
+									`no_item`				= '$noitem',
+									`lebar`					= '$lebar',
+									`gramasi`				= '$gramasi',
+									`lot`					= '$lot',
+									`rol`					= '$rol',
+									`qty`					= '$qty',
+									`panjang`				= '$yard',
+									`proses`				= '$proses',
+									`catatan`				= '$note',
+									`kondisi_kain`			= '$kondisi',
+									`tgl_update`			= now(),
+									`tgl_in`				= '$tglin',
+									`jumlah_gerobak_in`		='$_POST[jumlah_gerobak_in]'
+								WHERE 
+									`id`='$_POST[id]'";
 			mysqli_query($con,$simpanSql) or die("Gagal Ubah" . mysqli_error());
 
 			// Refresh form
@@ -552,6 +554,15 @@ include_once("../koneksi.php");
 													} ?>" required />
 					<a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_proses_m);return false;">
 					<img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal2" style="border:none" align="absmiddle" border="0" /></a>
+				</td>
+			</tr>
+			<tr>
+				<td scope="row">
+					<h4>Jumlah Gerobak</h4>
+				</td>
+				<td>:</td>
+				<td>
+					<input name="jumlah_gerobak_in" type="text" size="3" placeholder="0" value="<?= $rw['jumlah_gerobak_in'] ?>">
 				</td>
 			</tr>
 			<tr>
