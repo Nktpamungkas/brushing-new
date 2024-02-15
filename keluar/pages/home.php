@@ -338,7 +338,7 @@ include("../koneksi.php");
 				</td>
 				<td>:</td>
 				<td>
-					<input name="jumlah_gerobak_out" type="text" size="3" placeholder="0" value="<?= $rw['jumlah_gerobak_out'] ?>">
+					<input name="jumlah_gerobak_out" type="text" size="3" placeholder="0" value="<?= $rw['jumlah_gerobak_out'] ?>" required>
 				</td>
 			</tr>
       <tr>
