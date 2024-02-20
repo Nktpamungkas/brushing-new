@@ -191,13 +191,34 @@ include("../koneksi.php");
       $proses_menit = $_POST['proses_menit'];
       $tgl_proses_in = $_POST['tgl_proses_m'];
       $tgl_proses_out = $_POST['tgl_proses_k'];
-      $mulai = $_POST['stop_mulai'];
-      $selesai = $_POST['stop_selesai'];
+    
+     
       $stop_jam = $_POST['stop_jam'];
       $stop_menit = $_POST['stop_menit'];
-      $tgl_stop_m = $_POST['tgl_stop_m'];
-      $tgl_stop_s = $_POST['tgl_stop_s'];
-      $kd = $_POST['kd_stop'];
+    
+      // Tambahan
+      $no_gerobak = $_POST['no_gerobak'];
+      $jenis_kartu = $_POST['jenis_kartu'];
+      $jumlah_gerobak = $_POST['jumlah_gerobak'];
+      $mulai1 = $_POST['stop_mulai1'];
+      $mulai2 = $_POST['stop_mulai2'];
+      $mulai3 = $_POST['stop_mulai3'];
+      $selesai1 = $_POST['stop_selesai1'];
+      $selesai2 = $_POST['stop_selesai2'];
+      $selesai3 = $_POST['stop_selesai3'];
+      $tgl_stop_m1 = $_POST['tgl_stop_m1'];
+      $tgl_stop_m2 = $_POST['tgl_stop_m2'];
+      $tgl_stop_m3 = $_POST['tgl_stop_m3'];
+      $tgl_stop_s1 = $_POST['tgl_stop_s1'];
+      $tgl_stop_s2 = $_POST['tgl_stop_s2'];
+      $tgl_stop_s3 = $_POST['tgl_stop_s3'];
+
+      $kd1 = $_POST['kd_stop1'];
+      $kd2 = $_POST['kd_stop2'];
+      $kd3 = $_POST['kd_stop3'];
+      // End
+
+  
       $tgl = $_POST['tgl'];
       $acc_kain = str_replace("'", "", $_POST['acc_kain']);
       $ket = str_replace("'", "", $_POST['ket']);
@@ -225,11 +246,37 @@ include("../koneksi.php");
                                                 `jam_out`='$jam_out',
                                                 `tgl_proses_in`='$tgl_proses_in',
                                                 `tgl_proses_out`='$tgl_proses_out',
-                                                `stop_l`='$mulai',
-                                                `stop_r`='$selesai',
-                                                `tgl_stop_l`='$tgl_stop_m',
-                                                `tgl_stop_r`='$tgl_stop_s',
-                                                `kd_stop`='$kd',
+
+                                         -- Tambahan
+                                                `no_gerobak` ='$no_gerobak',
+                                                `jenis_kartu` ='$jenis_kartu', 
+                                                `jumlah_gerobak` ='$jumlah_gerobak',
+                                                `stop_l_1`='$mulai1',
+                                                `stop_l_2`='$mulai2',
+                                                `stop_l_3`='$mulai3',
+
+
+                                                `stop_r_1`='$selesai1',
+                                                `stop_r_2`='$selesai2',
+                                                `stop_r_3`='$selesai3',
+
+                                                `tgl_stop_l_1`='$tgl_stop_m1',
+                                                `tgl_stop_l_2`='$tgl_stop_m2',
+                                                `tgl_stop_l_3`='$tgl_stop_m3',
+
+
+                                                `tgl_stop_r_1`='$tgl_stop_s1',
+                                                `tgl_stop_r_2`='$tgl_stop_s2',
+                                                `tgl_stop_r_3`='$tgl_stop_s3',
+
+                                                `kd_stop1`='$kd1',
+                                                `kd_stop2`='$kd2',
+                                                `kd_stop3`='$kd3',
+
+                                          -- End
+
+
+
                                                 `tgl_buat`=now(),
                                                 `acc_staff`='$acc_kain',
                                                 `ket`='$ket',
@@ -264,13 +311,32 @@ include("../koneksi.php");
       $proses_menit = $_POST['proses_menit'];
       $tgl_proses_in = $_POST['tgl_proses_m'];
       $tgl_proses_out = $_POST['tgl_proses_k'];
-      $mulai = $_POST['stop_mulai'];
-      $selesai = $_POST['stop_selesai'];
+
       $stop_jam = $_POST['stop_jam'];
       $stop_menit = $_POST['stop_menit'];
-      $tgl_stop_m = $_POST['tgl_stop_m'];
-      $tgl_stop_s = $_POST['tgl_stop_s'];
-      $kd = $_POST['kd_stop'];
+
+       // Tambahan
+       $no_gerobak = $_POST['no_gerobak'];
+       $jenis_kartu = $_POST['jenis_kartu'];
+       $jumlah_gerobak = $_POST['jumlah_gerobak'];
+       $mulai1 = $_POST['stop_mulai1'];
+       $mulai2 = $_POST['stop_mulai2'];
+       $mulai3 = $_POST['stop_mulai3'];
+       $selesai1 = $_POST['stop_selesai1'];
+       $selesai2 = $_POST['stop_selesai2'];
+       $selesai3 = $_POST['stop_selesai3'];
+       $tgl_stop_m1 = $_POST['tgl_stop_m1'];
+       $tgl_stop_m2 = $_POST['tgl_stop_m2'];
+       $tgl_stop_m3 = $_POST['tgl_stop_m3'];
+       $tgl_stop_s1 = $_POST['tgl_stop_s1'];
+       $tgl_stop_s2 = $_POST['tgl_stop_s2'];
+       $tgl_stop_s3 = $_POST['tgl_stop_s3'];
+ 
+       $kd1 = $_POST['kd_stop1'];
+       $kd2 = $_POST['kd_stop2'];
+       $kd3 = $_POST['kd_stop3'];
+       // End
+
       $tgl = $_POST['tgl'];
       $acc_kain = str_replace("'", "", $_POST['acc_kain']);
       $ket = str_replace("'", "", $_POST['ket']);
@@ -297,11 +363,33 @@ include("../koneksi.php");
                               `jam_out`='$jam_out',
                               `tgl_proses_in`='$tgl_proses_in',
                               `tgl_proses_out`='$tgl_proses_out',
-                              `stop_l`='$mulai',
-                              `stop_r`='$selesai',
-                              `tgl_stop_l`='$tgl_stop_m',
-                              `tgl_stop_r`='$tgl_stop_s',
-                              `kd_stop`='$kd',
+                             
+                              -- Tambahan
+                                `no_gerobak` ='$no_gerobak',
+                                `jenis_kartu` ='$jenis_kartu', 
+                                `jumlah_gerobak` ='$jumlah_gerobak',
+
+                                `stop_l_1`='$mulai1',
+                                `stop_l_2`='$mulai2',
+                                `stop_l_3`='$mulai3',
+
+                                `stop_r_1`='$selesai1',
+                                `stop_r_2`='$selesai2',
+                                `stop_r_3`='$selesai3',
+
+                                `tgl_stop_l_1`='$tgl_stop_m1',
+                                `tgl_stop_l_2`='$tgl_stop_m2',
+                                `tgl_stop_l_3`='$tgl_stop_m3',
+
+                                `tgl_stop_r_1`='$tgl_stop_s1',
+                                `tgl_stop_r_2`='$tgl_stop_s2',
+                                `tgl_stop_r_3`='$tgl_stop_s3',
+                                
+                                `kd_stop1`='$kd1',
+                                `kd_stop2`='$kd2',
+                                `kd_stop3`='$kd3',
+                              -- End
+                             
                               `acc_staff`='$acc_kain',
                               `tgl_update`='$tgl',
 							  `speed`='$speed',
@@ -456,6 +544,23 @@ include("../koneksi.php");
         </td>
       </tr>
       <tr>
+        <td scope="row">
+          <h4>No. Gerobak</h4>
+        </td>
+        <td>:</td>
+        <td>          
+          <input type="text" name="no_gerobak" id="no_gerobak" />
+        </td>
+        <td>
+          <h4>jumlah Gerobak </h4>
+        </td>
+        <td>:</td>
+        <td colspan="3">
+          <input type="number" name="jumlah_gerobak" id="jumlah_gerobak" placeholder="0" />
+         
+        </td>
+      </tr>
+      <tr>
         <td valign="top" scope="row">
           <h4>Jenis Kain</h4>
         </td>
@@ -497,21 +602,10 @@ include("../koneksi.php");
         <input type="text" name="no_item" id="no_item" value="<?= $hanger; ?>" /></td>
         <td><strong>Speed</strong></td>
         <td>:</td>
-        <td colspan="3"><select name="speed" id="speed" required="required">
-          <option value="">Pilih</option>
-		  <option value="5">5</option>
-		  <option value="10">10</option>
-		  <option value="15">15</option>
-		  <option value="20">20</option>
-		  <option value="25">25</option>
-		  <option value="30">30</option>
-		  <option value="35">35</option>
-		  <option value="40">40</option>
-		  <option value="45">45</option>
-		  <option value="50">50</option>
-		  <option value="55">55</option>
-		  <option value="60">60</option>	
-        </select></td>
+        <td colspan="3">
+         
+          <input type="number" name="speed" id="speed" placeholder="0"/></td>
+        </td>
       </tr>
       <tr>
         <td scope="row"><strong>Warna</strong></td>
@@ -529,14 +623,14 @@ include("../koneksi.php");
 					} else {
 						$nlebar = $rw['lebar'];
 					} ?>
-          <input name="lebar" type="text" id="lebar" size="6" value="<?php if(!empty($nlebar)){ echo $nlebar; }else{ echo floor($dt_lg['LEBAR']); }   ?>" placeholder="0" />
+          <input name="lebar" type="text" id="lebar" size="6" placeholder="0" />
 &quot; X
  <?php if ($cek > 0) {
 						$ngramasi = $ssr['weight'];
 					} else {
 						$ngramasi = $rw['gramasi'];
 					} ?>
- <input name="gramasi" type="text" id="gramasi" size="6" value="<?php if(!empty($ngramasi)) { echo $ngramasi; } else { echo floor($dt_lg['GRAMASI']);}  ?>" placeholder="0" /></td>
+ <input name="gramasi" type="text" id="gramasi" size="6" placeholder="0" /></td>
       </tr>
       <tr>
         <td scope="row">
@@ -570,10 +664,18 @@ include("../koneksi.php");
       </tr>
       <tr>
         <td scope="row">
-          <h4>&nbsp;</h4>
+          <h4>Jenis Kartu </h4>
         </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>:</td>
+        <td><select name="jenis_kartu" id="jenis_kartu">
+            <option value="">Pilih</option>
+            <option value="Proses 1 Roll">Proses 1 Roll</option>
+            <option value="Kain Test">Kain Test</option>
+            <option value="Development">Development</option>
+           
+          </select>
+         
+        </td>
         <td>
           <h4>Nama Mesin</h4>
         </td>
@@ -593,10 +695,21 @@ include("../koneksi.php");
       </tr>
       <tr>
         <td scope="row">
-          <h4>&nbsp;</h4>
+          <h4>Operator</h4>
         </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>:</td>
+        <td><select name="acc_kain" id="acc_kain">
+            <option value="">Pilih</option>
+            <?php $qryacc = mysqli_query($con, "SELECT nama FROM tbl_staff ORDER BY id ASC");
+            while ($racc = mysqli_fetch_array($qryacc)) {
+            ?>
+              <option value="<?php echo $racc['nama']; ?>" <?php if ($racc['nama'] == $rw['acc_staff']) {
+                                                              echo "SELECTED";
+                                                            } ?>><?php echo $racc['nama']; ?></option>
+            <?php } ?>
+          </select>
+          <input type="button" name="btnacc" id="btnacc" value="..." onclick="window.open('pages/data-acc.php','MyWindow','height=400,width=650');" />
+        </td>
         <td><strong>No. Mesin</strong></td>
         <td>:</td>
         <td colspan="3"><select name="no_mesin" id="no_mesin" onchange="myFunction();" required="required">
@@ -644,72 +757,142 @@ include("../koneksi.php");
           <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_proses_k);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal3" style="border:none" align="absmiddle" border="0" /></a>
         *</td>
       </tr>
-      <tr>
-        <td scope="row">
-          <h4>Mulai Stop Mesin</h4>
+      <tr style="width: 500px;">
+        <td colspan="1">
+          <h4>Mulai Stop Mesin 1</h4>
         </td>
         <td>:</td>
         <td>
-          <input name="stop_mulai" type="text" id="stop_mulai" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+          <input name="stop_mulai1" type="text" id="stop_mulai1" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
             var time = this.value;
             if (time.match(/^\d{2}$/) !== null) {
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_l'] ?>" size="5" maxlength="5" required/>
-          <input name="tgl_stop_m" type="text" id="tgl_stop_m" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m);return false;" value="<?php echo $rw['tgl_stop_l']; ?>" size="10" />
-          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
+            }" value="<?php echo $rw['stop_l_1'] ?>" size="5" maxlength="5" required/>
+          <input name="tgl_stop_m1" type="text" id="tgl_stop_m1" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m1);return false;" value="<?php echo $rw['tgl_stop_l_1']; ?>" size="10" />
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m1);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
         *</td>
         <td>
-          <h4>Selesai Stop Mesin</h4>
+          <h4>Selesai Stop Mesin 1</h4>
         </td>
         <td>:</td>
-        <td colspan="3">
-          <input name="stop_selesai" type="text" id="stop_selesai" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+        <td colspan="3" >
+          <input name="stop_selesai1" type="text" id="stop_selesai1" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
             var time = this.value;
             if (time.match(/^\d{2}$/) !== null) {
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_r'] ?>" size="5" maxlength="5" required/>
-          <input name="tgl_stop_s" type="text" id="tgl_stop_s" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s);return false;" value="<?php echo $rw['tgl_stop_r']; ?>" size="10" />
-          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
-        </td>
-      </tr>
-      <tr>
-        <td scope="row">
-          <h4>Kode Stop</h4>
-        </td>
-        <td>:</td>
-        <td><select name="kd_stop" id="kd_stop">
+            }" value="<?php echo $rw['stop_r_1'] ?>" size="5" maxlength="5" required/>
+          <input name="tgl_stop_s1" type="text" id="tgl_stop_s1" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s1);return false;" value="<?php echo $rw['tgl_stop_r_1']; ?>" size="10" />
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s1);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
+          <b>Kode Stop 1 : </b> 
+          <select name="kd_stop1" id="kd_stop1">
             <option value="">Pilih</option>
             <?php $qry1 = mysqli_query($con, "SELECT kode FROM tbl_stop_mesin ORDER BY id ASC");
             while ($r = mysqli_fetch_array($qry1)) {
             ?>
-              <option value="<?php echo $r['kode']; ?>" <?php if ($rw['kd_stop'] == $r['kode']) {
+              <option value="<?php echo $r['kode']; ?>" <?php if ($rw['kd_stop1'] == $r['kode']) {
                                                           echo "SELECTED";
                                                         } ?>><?php echo $r['kode']; ?></option>
             <?php } ?>
           </select>
           <input type="button" name="btnstop" id="btnstop" value="..." onclick="window.open('pages/data-stop.php','MyWindow','height=400,width=650');" />
+      
         </td>
-        <td>
-          <h4>Operator</h4>
+      
+      </tr>   
+      <tr>
+        <td scope="row">
+          <h4>Mulai Stop Mesin 2</h4>
         </td>
         <td>:</td>
-        <td colspan="3"><select name="acc_kain" id="acc_kain">
+        <td>
+          <input name="stop_mulai2" type="text" id="stop_mulai2" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+            var time = this.value;
+            if (time.match(/^\d{2}$/) !== null) {
+              this.value = time + ':';
+            } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
+              this.value = time + '';
+            }" value="<?php echo $rw['stop_l_2'] ?>" size="5" maxlength="5" required/>
+          <input name="tgl_stop_m2" type="text" id="tgl_stop_m2" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m2);return false;" value="<?php echo $rw['tgl_stop_l_2']; ?>" size="10" />
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m2);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
+        *</td>
+        <td>
+          <h4>Selesai Stop Mesin 2</h4>
+        </td>
+        <td>:</td>
+        <td colspan="3">
+          <input name="stop_selesai1" type="text" id="stop_selesai1" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+            var time = this.value;
+            if (time.match(/^\d{2}$/) !== null) {
+              this.value = time + ':';
+            } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
+              this.value = time + '';
+            }" value="<?php echo $rw['stop_r_2'] ?>" size="5" maxlength="5" required/>
+          <input name="tgl_stop_s2" type="text" id="tgl_stop_s2" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s2);return false;" value="<?php echo $rw['tgl_stop_r_2']; ?>" size="10" />
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s2);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
+            <b>Kode Stop 2 :</b> <select name="kd_stop2" id="kd_stop2">
             <option value="">Pilih</option>
-            <?php $qryacc = mysqli_query($con, "SELECT nama FROM tbl_staff ORDER BY id ASC");
-            while ($racc = mysqli_fetch_array($qryacc)) {
+            <?php $qry1 = mysqli_query($con, "SELECT kode FROM tbl_stop_mesin ORDER BY id ASC");
+            while ($r = mysqli_fetch_array($qry1)) {
             ?>
-              <option value="<?php echo $racc['nama']; ?>" <?php if ($racc['nama'] == $rw['acc_staff']) {
-                                                              echo "SELECTED";
-                                                            } ?>><?php echo $racc['nama']; ?></option>
+              <option value="<?php echo $r['kode']; ?>" <?php if ($rw['kd_stop2'] == $r['kode']) {
+                                                          echo "SELECTED";
+                                                        } ?>><?php echo $r['kode']; ?></option>
             <?php } ?>
           </select>
-          <input type="button" name="btnacc" id="btnacc" value="..." onclick="window.open('pages/data-acc.php','MyWindow','height=400,width=650');" />
+          <input type="button" name="btnstop" id="btnstop" value="..." onclick="window.open('pages/data-stop.php','MyWindow','height=400,width=650');" />
+      
         </td>
       </tr>
+      
+      <tr>
+        <td scope="row">
+          <h4>Mulai Stop Mesin 3</h4>
+        </td>
+        <td>:</td>
+        <td>
+          <input name="stop_mulai3" type="text" id="stop_mulai3" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+            var time = this.value;
+            if (time.match(/^\d{2}$/) !== null) {
+              this.value = time + ':';
+            } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
+              this.value = time + '';
+            }" value="<?php echo $rw['stop_l_3'] ?>" size="5" maxlength="5" required/>
+          <input name="tgl_stop_m3" type="text" id="tgl_stop_m3" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m3);return false;" value="<?php echo $rw['tgl_stop_l_3']; ?>" size="10" />
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m3);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
+        *</td>
+        <td>
+          <h4>Selesai Stop Mesin 3</h4>
+        </td>
+        <td>:</td>
+        <td colspan="4">
+          <input name="stop_selesai1" type="text" id="stop_selesai1" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+            var time = this.value;
+            if (time.match(/^\d{2}$/) !== null) {
+              this.value = time + ':';
+            } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
+              this.value = time + '';
+            }" value="<?php echo $rw['stop_r_3'] ?>" size="5" maxlength="5" required/>
+          <input name="tgl_stop_s3" type="text" id="tgl_stop_s3" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s3);return false;" value="<?php echo $rw['tgl_stop_r_3']; ?>" size="10" />
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s3);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
+          <b>Kode Stop 3 :</b> <select name="kd_stop3" id="kd_stop3">
+            <option value="">Pilih</option>
+            <?php $qry1 = mysqli_query($con, "SELECT kode FROM tbl_stop_mesin ORDER BY id ASC");
+            while ($r = mysqli_fetch_array($qry1)) {
+            ?>
+              <option value="<?php echo $r['kode']; ?>" <?php if ($rw['kd_stop3'] == $r['kode']) {
+                                                          echo "SELECTED";
+                                                        } ?>><?php echo $r['kode']; ?></option>
+            <?php } ?>
+          </select>
+          <input type="button" name="btnstop" id="btnstop" value="..." onclick="window.open('pages/data-stop.php','MyWindow','height=400,width=650');" />
+        
+        </td>
+      </tr>
+     
       <tr>
         <td scope="row">&nbsp;</td>
         <td>&nbsp;</td>
