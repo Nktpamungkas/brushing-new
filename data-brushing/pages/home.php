@@ -200,20 +200,20 @@ include("../koneksi.php");
       $no_gerobak = $_POST['no_gerobak'];
       $jenis_kartu = $_POST['jenis_kartu'];
       $jumlah_gerobak = $_POST['jumlah_gerobak'];
-      $mulai1 = $_POST['stop_mulai1'];
+      $mulai = $_POST['stop_mulai'];
       $mulai2 = $_POST['stop_mulai2'];
       $mulai3 = $_POST['stop_mulai3'];
-      $selesai1 = $_POST['stop_selesai1'];
+      $selesai = $_POST['stop_selesai'];
       $selesai2 = $_POST['stop_selesai2'];
       $selesai3 = $_POST['stop_selesai3'];
-      $tgl_stop_m1 = $_POST['tgl_stop_m1'];
+      $tgl_stop_m = $_POST['tgl_stop_m'];
       $tgl_stop_m2 = $_POST['tgl_stop_m2'];
       $tgl_stop_m3 = $_POST['tgl_stop_m3'];
-      $tgl_stop_s1 = $_POST['tgl_stop_s1'];
+      $tgl_stop_s = $_POST['tgl_stop_s'];
       $tgl_stop_s2 = $_POST['tgl_stop_s2'];
       $tgl_stop_s3 = $_POST['tgl_stop_s3'];
 
-      $kd1 = $_POST['kd_stop1'];
+      $kd = $_POST['kd_stop'];
       $kd2 = $_POST['kd_stop2'];
       $kd3 = $_POST['kd_stop3'];
       // End
@@ -251,25 +251,25 @@ include("../koneksi.php");
                                                 `no_gerobak` ='$no_gerobak',
                                                 `jenis_kartu` ='$jenis_kartu', 
                                                 `jumlah_gerobak` ='$jumlah_gerobak',
-                                                `stop_l_1`='$mulai1',
-                                                `stop_l_2`='$mulai2',
-                                                `stop_l_3`='$mulai3',
+                                                `stop_l`='$mulai',
+                                                `stop_2`='$mulai2',
+                                                `stop_3`='$mulai3',
 
 
-                                                `stop_r_1`='$selesai1',
+                                                `stop_r`='$selesai',
                                                 `stop_r_2`='$selesai2',
                                                 `stop_r_3`='$selesai3',
 
-                                                `tgl_stop_l_1`='$tgl_stop_m1',
-                                                `tgl_stop_l_2`='$tgl_stop_m2',
-                                                `tgl_stop_l_3`='$tgl_stop_m3',
+                                                `tgl_stop_l`='$tgl_stop_m',
+                                                `tgl_stop_2`='$tgl_stop_m2',
+                                                `tgl_stop_3`='$tgl_stop_m3',
 
 
-                                                `tgl_stop_r_1`='$tgl_stop_s1',
+                                                `tgl_stop_r`='$tgl_stop_s',
                                                 `tgl_stop_r_2`='$tgl_stop_s2',
                                                 `tgl_stop_r_3`='$tgl_stop_s3',
 
-                                                `kd_stop1`='$kd1',
+                                                `kd_stop`='$kd',
                                                 `kd_stop2`='$kd2',
                                                 `kd_stop3`='$kd3',
 
@@ -319,20 +319,20 @@ include("../koneksi.php");
        $no_gerobak = $_POST['no_gerobak'];
        $jenis_kartu = $_POST['jenis_kartu'];
        $jumlah_gerobak = $_POST['jumlah_gerobak'];
-       $mulai1 = $_POST['stop_mulai1'];
+       $mulai = $_POST['stop_mulai'];
        $mulai2 = $_POST['stop_mulai2'];
        $mulai3 = $_POST['stop_mulai3'];
-       $selesai1 = $_POST['stop_selesai1'];
+       $selesai = $_POST['stop_selesai'];
        $selesai2 = $_POST['stop_selesai2'];
        $selesai3 = $_POST['stop_selesai3'];
-       $tgl_stop_m1 = $_POST['tgl_stop_m1'];
+       $tgl_stop_m = $_POST['tgl_stop_m'];
        $tgl_stop_m2 = $_POST['tgl_stop_m2'];
        $tgl_stop_m3 = $_POST['tgl_stop_m3'];
-       $tgl_stop_s1 = $_POST['tgl_stop_s1'];
+       $tgl_stop_s = $_POST['tgl_stop_s'];
        $tgl_stop_s2 = $_POST['tgl_stop_s2'];
        $tgl_stop_s3 = $_POST['tgl_stop_s3'];
  
-       $kd1 = $_POST['kd_stop1'];
+       $kd = $_POST['kd_stop'];
        $kd2 = $_POST['kd_stop2'];
        $kd3 = $_POST['kd_stop3'];
        // End
@@ -364,31 +364,33 @@ include("../koneksi.php");
                               `tgl_proses_in`='$tgl_proses_in',
                               `tgl_proses_out`='$tgl_proses_out',
                              
-                              -- Tambahan
-                                `no_gerobak` ='$no_gerobak',
-                                `jenis_kartu` ='$jenis_kartu', 
-                                `jumlah_gerobak` ='$jumlah_gerobak',
+                           -- Tambahan
+                                  `no_gerobak` ='$no_gerobak',
+                                                `jenis_kartu` ='$jenis_kartu', 
+                                                `jumlah_gerobak` ='$jumlah_gerobak',
+                                                `stop_l`='$mulai',
+                                                `stop_2`='$mulai2',
+                                                `stop_3`='$mulai3',
 
-                                `stop_l_1`='$mulai1',
-                                `stop_l_2`='$mulai2',
-                                `stop_l_3`='$mulai3',
 
-                                `stop_r_1`='$selesai1',
-                                `stop_r_2`='$selesai2',
-                                `stop_r_3`='$selesai3',
+                                                `stop_r`='$selesai',
+                                                `stop_r_2`='$selesai2',
+                                                `stop_r_3`='$selesai3',
 
-                                `tgl_stop_l_1`='$tgl_stop_m1',
-                                `tgl_stop_l_2`='$tgl_stop_m2',
-                                `tgl_stop_l_3`='$tgl_stop_m3',
+                                                `tgl_stop_l`='$tgl_stop_m',
+                                                `tgl_stop_2`='$tgl_stop_m2',
+                                                `tgl_stop_3`='$tgl_stop_m3',
 
-                                `tgl_stop_r_1`='$tgl_stop_s1',
-                                `tgl_stop_r_2`='$tgl_stop_s2',
-                                `tgl_stop_r_3`='$tgl_stop_s3',
-                                
-                                `kd_stop1`='$kd1',
-                                `kd_stop2`='$kd2',
-                                `kd_stop3`='$kd3',
-                              -- End
+
+                                                `tgl_stop_r`='$tgl_stop_s',
+                                                `tgl_stop_r_2`='$tgl_stop_s2',
+                                                `tgl_stop_r_3`='$tgl_stop_s3',
+
+                                                `kd_stop`='$kd',
+                                                `kd_stop2`='$kd2',
+                                                `kd_stop3`='$kd3',
+
+                                          -- End
                              
                               `acc_staff`='$acc_kain',
                               `tgl_update`='$tgl',
@@ -763,37 +765,37 @@ include("../koneksi.php");
         </td>
         <td>:</td>
         <td>
-          <input name="stop_mulai1" type="text" id="stop_mulai1" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+          <input name="stop_mulai" type="text" id="stop_mulai" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
             var time = this.value;
             if (time.match(/^\d{2}$/) !== null) {
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_l_1'] ?>" size="5" maxlength="5" required/>
-          <input name="tgl_stop_m1" type="text" id="tgl_stop_m1" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m1);return false;" value="<?php echo $rw['tgl_stop_l_1']; ?>" size="10" />
-          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m1);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
+            }" value="<?php echo $rw['stop_l'] ?>" size="5" maxlength="5" required/>
+          <input name="tgl_stop_m" type="text" id="tgl_stop_m" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m);return false;" value="<?php echo $rw['tgl_stop_l']; ?>" size="10" />
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
         *</td>
         <td>
           <h4>Selesai Stop Mesin 1</h4>
         </td>
         <td>:</td>
         <td colspan="3" >
-          <input name="stop_selesai1" type="text" id="stop_selesai1" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+          <input name="stop_selesai" type="text" id="stop_selesai" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
             var time = this.value;
             if (time.match(/^\d{2}$/) !== null) {
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_r_1'] ?>" size="5" maxlength="5" required/>
-          <input name="tgl_stop_s1" type="text" id="tgl_stop_s1" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s1);return false;" value="<?php echo $rw['tgl_stop_r_1']; ?>" size="10" />
-          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s1);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
+            }" value="<?php echo $rw['stop_r'] ?>" size="5" maxlength="5" required/>
+          <input name="tgl_stop_s" type="text" id="tgl_stop_s" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s);return false;" value="<?php echo $rw['tgl_stop_r']; ?>" size="10" />
+          <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
           <b>Kode Stop 1 : </b> 
-          <select name="kd_stop1" id="kd_stop1">
+          <select name="kd_stop" id="kd_stop">
             <option value="">Pilih</option>
             <?php $qry1 = mysqli_query($con, "SELECT kode FROM tbl_stop_mesin ORDER BY id ASC");
             while ($r = mysqli_fetch_array($qry1)) {
             ?>
-              <option value="<?php echo $r['kode']; ?>" <?php if ($rw['kd_stop1'] == $r['kode']) {
+              <option value="<?php echo $r['kode']; ?>" <?php if ($rw['kd_stop'] == $r['kode']) {
                                                           echo "SELECTED";
                                                         } ?>><?php echo $r['kode']; ?></option>
             <?php } ?>
@@ -824,7 +826,7 @@ include("../koneksi.php");
         </td>
         <td>:</td>
         <td colspan="3">
-          <input name="stop_selesai1" type="text" id="stop_selesai1" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+          <input name="stop_selesai2" type="text" id="stop_selesai2" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
             var time = this.value;
             if (time.match(/^\d{2}$/) !== null) {
               this.value = time + ':';
@@ -869,7 +871,7 @@ include("../koneksi.php");
         </td>
         <td>:</td>
         <td colspan="4">
-          <input name="stop_selesai1" type="text" id="stop_selesai1" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
+          <input name="stop_selesai3" type="text" id="stop_selesai3" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25 " onkeyup="
             var time = this.value;
             if (time.match(/^\d{2}$/) !== null) {
               this.value = time + ':';
