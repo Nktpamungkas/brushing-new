@@ -180,7 +180,7 @@ include("../koneksi.php");
       $warna = str_replace("'", "", $_POST['warna']);
       $lot = $_POST['lot'];
       $qty = $_POST['qty'];
-	  $qty2 = $_POST['qty2'];	
+	    $qty2 = $_POST['qty2'];	
       $rol = $_POST['rol'];
       $mesin = $_POST['no_mesin'];
       $nmmesin = $_POST['nama_mesin'];
@@ -222,10 +222,10 @@ include("../koneksi.php");
       $tgl = $_POST['tgl'];
       $acc_kain = str_replace("'", "", $_POST['acc_kain']);
       $ket = str_replace("'", "", $_POST['ket']);
-	  $speed = $_POST['speed'];	
-	  $lebar = $_POST['lebar'];
-	  $gramasi = $_POST['gramasi'];
-	  $item = $_POST['no_item'];	
+      $speed = $_POST['speed'];	
+      $lebar = $_POST['lebar'];
+      $gramasi = $_POST['gramasi'];
+      $item = $_POST['no_item'];	
       $simpanSql = "INSERT INTO tbl_produksi SET 
                                                 `nokk`='$nokk',
                                                 `nodemand` = '$nodemand',
@@ -240,50 +240,37 @@ include("../koneksi.php");
                                                 `lot`='$lot',
                                                 `rol`='$rol',
                                                 `qty`='$qty',
-												`qty2`='$qty2',
+												                        `qty2`='$qty2',
                                                 `proses`='$proses',
                                                 `jam_in`='$jam_in',
                                                 `jam_out`='$jam_out',
                                                 `tgl_proses_in`='$tgl_proses_in',
                                                 `tgl_proses_out`='$tgl_proses_out',
-
-                                         -- Tambahan
                                                 `no_gerobak` ='$no_gerobak',
                                                 `jenis_kartu` ='$jenis_kartu', 
                                                 `jumlah_gerobak` ='$jumlah_gerobak',
                                                 `stop_l`='$mulai',
                                                 `stop_2`='$mulai2',
                                                 `stop_3`='$mulai3',
-
-
                                                 `stop_r`='$selesai',
                                                 `stop_r_2`='$selesai2',
                                                 `stop_r_3`='$selesai3',
-
                                                 `tgl_stop_l`='$tgl_stop_m',
                                                 `tgl_stop_2`='$tgl_stop_m2',
                                                 `tgl_stop_3`='$tgl_stop_m3',
-
-
                                                 `tgl_stop_r`='$tgl_stop_s',
                                                 `tgl_stop_r_2`='$tgl_stop_s2',
                                                 `tgl_stop_r_3`='$tgl_stop_s3',
-
                                                 `kd_stop`='$kd',
                                                 `kd_stop2`='$kd2',
                                                 `kd_stop3`='$kd3',
-
-                                          -- End
-
-
-
                                                 `tgl_buat`=now(),
                                                 `acc_staff`='$acc_kain',
                                                 `ket`='$ket',
-												`speed`='$speed',
-												`lebar`='$lebar',
-												`gramasi`='$gramasi',
-												`no_item`='$item',
+                                                `speed`='$speed',
+                                                `lebar`='$lebar',
+                                                `gramasi`='$gramasi',
+                                                `no_item`='$item',
                                                 `tgl_update`='$tgl'
                                                 ";
       mysqli_query($con, $simpanSql) or die("Gagal Simpan" . mysqli_error());
