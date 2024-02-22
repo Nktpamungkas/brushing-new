@@ -149,24 +149,42 @@
             </th>
             <th colspan="2" style="border:1px solid;vertical-align:middle;">
               <div align="center"><strong>
-                  <font size="-2">STOP MESIN</font>
+                  <font size="-2">STOP MESIN 1</font>
+                </strong></div>
+            </th>
+            <th colspan="2" style="border:1px solid;vertical-align:middle;">
+              <div align="center"><strong>
+                  <font size="-2">STOP MESIN 2</font>
+                </strong></div>
+            </th>
+            <th colspan="2" style="border:1px solid;vertical-align:middle;">
+              <div align="center"><strong>
+                  <font size="-2">STOP MESIN 3</font>
                 </strong></div>
             </th>
             <th rowspan="2" style="border:1px solid;vertical-align:middle;">
               <div align="center"><strong>
-                  <font size="-2">TOTAL STOP</font>
+                  <font size="-2">TOTAL STOP 1</font>
                 </strong></div>
             </th>
             <th rowspan="2" style="border:1px solid;vertical-align:middle;">
               <div align="center"><strong>
-                  <font size="-2">KODE STOP</font>
+                  <font size="-2">TOTAL STOP 2</font>
                 </strong></div>
             </th>
+            <th rowspan="2" style="border:1px solid;vertical-align:middle;">
+              <div align="center"><strong>
+                  <font size="-2">TOTAL STOP 3</font>
+                </strong></div>
+            </th>
+            
             <th rowspan="2" style="border:1px solid;vertical-align:middle;">
               <div align="center"><strong>
                   <font size="-2">SHIFT</font>
                 </strong></div>
             </th>
+            
+            
             <th rowspan="2" style="border:1px solid;vertical-align:middle;">
               <div align="center"><strong>
                   <font size="-2">AKSI</font>
@@ -182,6 +200,26 @@
             <th style="border:1px solid;">
               <div align="center"><strong>
                   <font size="-2">OUT</font>
+                </strong></div>
+            </th>
+            <th style="border:1px solid;">
+              <div align="center"><strong>
+                  <font size="-2">JAM</font>
+                </strong></div>
+            </th>
+            <th style="border:1px solid;">
+              <div align="center"><strong>
+                  <font size="-2">S/D</font>
+                </strong></div>
+            </th>
+            <th style="border:1px solid;">
+              <div align="center"><strong>
+                  <font size="-2">JAM</font>
+                </strong></div>
+            </th>
+            <th style="border:1px solid;">
+              <div align="center"><strong>
+                  <font size="-2">S/D</font>
                 </strong></div>
             </th>
             <th style="border:1px solid;">
@@ -268,6 +306,26 @@
               </td>
               <td style="border:1px solid;">
                 <div align="center">
+                  <font size="-2"><?php echo $rowd['stop_2']; ?></font>
+                </div>
+              </td>
+              <td style="border:1px solid;">
+                <div align="center">
+                  <font size="-2"><?php echo $rowd['stop_r_2']; ?></font>
+                </div>
+              </td>
+              <td style="border:1px solid;">
+                <div align="center">
+                  <font size="-2"><?php echo $rowd['stop_3']; ?></font>
+                </div>
+              </td>
+              <td style="border:1px solid;">
+                <div align="center">
+                  <font size="-2"><?php echo $rowd['stop_r_3']; ?></font>
+                </div>
+              </td>
+              <td style="border:1px solid;">
+                <div align="center">
                   <font size="-2">
                     <?php
                     date_default_timezone_set('Asia/Jakarta');
@@ -283,14 +341,42 @@
               </td>
               <td style="border:1px solid;">
                 <div align="center">
-                  <font size="-2"><?php echo $rowd['kd_stop']; ?></font>
+                  <font size="-2">
+                    <?php
+                    date_default_timezone_set('Asia/Jakarta');
+                    $time1 = strtotime($rowd['tgl_stop_2'] . " " . $rowd['stop_2']);
+                    $time2 = strtotime($rowd['tgl_stop_r_2'] . " " . $rowd['stop_r_2']);
+                    $diff  = $time2 - $time1;
+
+                    $jam   = floor($diff / (60 * 60));
+                    $menit = $diff - $jam * (60 * 60);
+                    echo  $jam .  ' jam ' . floor($menit / 60) . ' menit';
+                    ?></font>
                 </div>
               </td>
+              <td style="border:1px solid;">
+                <div align="center">
+                  <font size="-2">
+                    <?php
+                    date_default_timezone_set('Asia/Jakarta');
+                    $time1 = strtotime($rowd['tgl_stop_3'] . " " . $rowd['stop_3']);
+                    $time2 = strtotime($rowd['tgl_stop_r_3'] . " " . $rowd['stop_r_3']);
+                    $diff  = $time2 - $time1;
+
+                    $jam   = floor($diff / (60 * 60));
+                    $menit = $diff - $jam * (60 * 60);
+                    echo  $jam .  ' jam ' . floor($menit / 60) . ' menit';
+                    ?></font>
+                </div>
+              </td>
+            
+                  
               <td style="border:1px solid;">
                 <div align="center">
                   <font size="-2"><?php echo $rowd['shift']; ?></font>
                 </div>
               </td>
+            
               <td style="border:1px solid;"><input type="button" name="hapus" id="hapus" value="Hapus" onClick="confirmDelete('?p=hapus-report&id=<?php echo $rowd['idp']; ?>&tgl1=<?php echo $tglawal; ?>&tgl2=<?php echo $tglakhir; ?>&shift=<?php echo $shft; ?>&jns=Produksi Brushing&nama_mesin=<?php echo $rowd['nama_mesin']; ?>&no_mesin=<?php echo $rowd['no_mesin']; ?>');" />
                 <input type="button" name="ubah" id="ubah" value="Ubah" onclick="window.location.href='../data-brushing/index.php?typekk=NOW&id=<?php echo $rowd['idp']; ?>';" />
               </td>
