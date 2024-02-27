@@ -758,7 +758,7 @@ include("../koneksi.php");
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_l'] ?>" size="5" maxlength="5" required/>
+            }" value="<?php echo $rw['stop_l'] ?>" size="5" maxlength="5" />
           <input name="tgl_stop_m" type="text" id="tgl_stop_m" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m);return false;" value="<?php echo $rw['tgl_stop_l']; ?>" size="10" />
           <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
         *</td>
@@ -773,7 +773,7 @@ include("../koneksi.php");
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_r'] ?>" size="5" maxlength="5" required/>
+            }" value="<?php echo $rw['stop_r'] ?>" size="5" maxlength="5" />
           <input name="tgl_stop_s" type="text" id="tgl_stop_s" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s);return false;" value="<?php echo $rw['tgl_stop_r']; ?>" size="10" />
           <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
           <b>Kode Stop 1 : </b> 
@@ -804,8 +804,8 @@ include("../koneksi.php");
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_l_2'] ?>" size="5" maxlength="5" required/>
-          <input name="tgl_stop_m2" type="text" id="tgl_stop_m2" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m2);return false;" value="<?php echo $rw['tgl_stop_l_2']; ?>" size="10" />
+            }" value="<?php echo $rw['stop_2'] ?>" size="5" maxlength="5" />
+          <input name="tgl_stop_m2" type="text" id="tgl_stop_m2" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m2);return false;" value="<?php echo $rw['tgl_stop_2']; ?>" size="10" />
           <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m2);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
         *</td>
         <td>
@@ -819,10 +819,11 @@ include("../koneksi.php");
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_r_2'] ?>" size="5" maxlength="5" required/>
-          <input name="tgl_stop_s2" type="text" id="tgl_stop_s2" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s2);return false;" value="<?php echo $rw['tgl_stop_r_2']; ?>" size="10" />
+            }" value="<?php echo $rw['stop_r_2'] ?>" size="5" maxlength="5" />
+          <input name="tgl_stop_s2" type="text" id="tgl_stop_s2" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s2);return false;" value="<?php echo $rw['tgl_stop_2']; ?>" size="10" />
           <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s2);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
-            <b>Kode Stop 2 :</b> <select name="kd_stop2" id="kd_stop2">
+            <b>Kode Stop 2 :</b> 
+            <select name="kd_stop2" id="kd_stop2">
             <option value="">Pilih</option>
             <?php $qry1 = mysqli_query($con, "SELECT kode FROM tbl_stop_mesin ORDER BY id ASC");
             while ($r = mysqli_fetch_array($qry1)) {
@@ -849,8 +850,8 @@ include("../koneksi.php");
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_l_3'] ?>" size="5" maxlength="5" required/>
-          <input name="tgl_stop_m3" type="text" id="tgl_stop_m3" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m3);return false;" value="<?php echo $rw['tgl_stop_l_3']; ?>" size="10" />
+            }" value="<?php echo $rw['stop_3'] ?>" size="5" maxlength="5" />
+          <input name="tgl_stop_m3" type="text" id="tgl_stop_m3" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m3);return false;" value="<?php echo $rw['tgl_stop_3']; ?>" size="10" />
           <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_m3);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal4" style="border:none" align="absmiddle" border="0" /></a>
         *</td>
         <td>
@@ -864,10 +865,11 @@ include("../koneksi.php");
               this.value = time + ':';
             } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
               this.value = time + '';
-            }" value="<?php echo $rw['stop_r_3'] ?>" size="5" maxlength="5" required/>
+            }" value="<?php echo $rw['stop_r_3'] ?>" size="5" maxlength="5" />
           <input name="tgl_stop_s3" type="text" id="tgl_stop_s3" placeholder="0000-00-00" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s3);return false;" value="<?php echo $rw['tgl_stop_r_3']; ?>" size="10" />
           <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_stop_s3);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal5" style="border:none" align="absmiddle" border="0" /></a>*
-          <b>Kode Stop 3 :</b> <select name="kd_stop3" id="kd_stop3">
+          <b>Kode Stop 3 :</b> 
+          <select name="kd_stop3" id="kd_stop3">
             <option value="">Pilih</option>
             <?php $qry1 = mysqli_query($con, "SELECT kode FROM tbl_stop_mesin ORDER BY id ASC");
             while ($r = mysqli_fetch_array($qry1)) {
