@@ -58,6 +58,8 @@ No. Mesin: <?php echo $mc; ?></strong><br />
       <th rowspan="2" bgcolor="#99FF99">NO GEROBAK</th>
       <th rowspan="2" bgcolor="#99FF99">JENIS KARTU</th>
       <th rowspan="2" bgcolor="#99FF99">JUMLAH GEROBAK</th>
+      <th rowspan="2" bgcolor="#99FF99">Total Waktu</th>
+      <th rowspan="2" bgcolor="#99FF99">% Efisiensi</th>
     </tr>
     <tr>
       <th bgcolor="#99FF99">TGL</th>
@@ -179,6 +181,60 @@ WHERE
       <td><?php echo $rowd['no_gerobak'];?></td>
       <td><?php echo $rowd['jenis_kartu'];?></td>
       <td><?php echo $rowd['jumlah_gerobak'];?></td>
+      <td><?php
+      date_default_timezone_set('Asia/Jakarta');
+      // Menit Proses
+      $time3=strtotime($rowd['tgl_proses_in']." ".$rowd['jam_in']);
+      $time4=strtotime($rowd['tgl_proses_out']." ".$rowd['jam_out']);
+      $diff1  = $time4-$time3;
+      $menit_proses =  floor($diff1 / 60);
+
+      // Menit lama stop 1
+      $time1=strtotime($rowd['tgl_stop_l']." ".$rowd['stop_l']);
+		  $time2=strtotime($rowd['tgl_stop_r']." ".$rowd['stop_r']);
+        $diff_1  = $time2 - $time1;
+        $menit_lama_1 = floor($diff_1/60);
+
+      // Menit lama stop 2
+      $time5 = strtotime($rowd['tgl_stop_2'] . " " . $rowd['stop_2']);
+      $time6 = strtotime($rowd['tgl_stop_r_2'] . " " . $rowd['stop_r_2']);
+      $diff_2  = $time6 - $time5;
+      $menit_lama_2 = floor($diff_2/60);
+
+      // Menit lama stop 3
+      $time7 = strtotime($rowd['tgl_stop_3'] . " " . $rowd['stop_3']);
+      $time8 = strtotime($rowd['tgl_stop_r_3'] . " " . $rowd['stop_r_3']);
+      $diff_3  = $time8 - $time7;
+      $menit_lama_3 = floor($diff_3/60);
+
+      // Menit Jenis Kartu
+      if($rowd['jenis_kartu'] == "Proses 1 Roll"){
+        $menit_jenis_kartu = 15;
+      }else if($rowd['jenis_kartu'] == "Kain Test"){
+        $menit_jenis_kartu = 20;
+      }else if($rowd['jenis_kartu'] == "Development"){
+        $menit_jenis_kartu = 30;
+      }
+
+      // Menit Jumlah gerobak
+      $jumlah_gerobak = $rowd['jumlah_gerobak'];
+      $menit_gerobak = $jumlah_gerobak * 5;
+ 
+
+        $total_menit = $menit_proses + $menit_lama_1 + $menit_lama_2 + $menit_lama_3 + $menit_jenis_kartu + $menit_gerobak;
+
+      echo $total_menit. " Menit";
+
+      
+      ?></td>
+      <td><?php 
+          $efisiensi = ($total_menit / 420) * 100;
+          $format_efisiensi = number_format($efisiensi,2);
+
+          echo $format_efisiensi. " %";
+
+      
+      ?></td>
     </tr>
 
     
@@ -187,6 +243,8 @@ WHERE
 	 $totberat +=$rowd['qty'];
 	 $no++;} ?>
     <tr>
+       <td bgcolor="#99FF99">&nbsp;</td>
+       <td bgcolor="#99FF99">&nbsp;</td>
        <td bgcolor="#99FF99">&nbsp;</td>
        <td bgcolor="#99FF99">&nbsp;</td>
        <td bgcolor="#99FF99">&nbsp;</td>
@@ -269,8 +327,12 @@ WHERE
        <td bgcolor="#99FF99">&nbsp;</td>
        <td bgcolor="#99FF99">&nbsp;</td>
        <td bgcolor="#99FF99">&nbsp;</td>
+       <td bgcolor="#99FF99">&nbsp;</td>
+       <td bgcolor="#99FF99">&nbsp;</td>
     </tr>
     <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -317,31 +379,31 @@ WHERE
     <th colspan="3">&nbsp;</th>
     <th colspan="7">DIBUAT OLEH:</th>
     <th colspan="3">DIPERIKSA OLEH:</th>
-    <th colspan="27">DIKETAHUI OLEH:</th>
+    <th colspan="29">DIKETAHUI OLEH:</th>
   </tr>
   <tr>
     <td colspan="3">NAMA</td>
     <td colspan="7">&nbsp;</td>
     <td colspan="3">&nbsp;</td>
-    <td colspan="27">&nbsp;</td>
+    <td colspan="29">&nbsp;</td>
   </tr>
   <tr>
     <td colspan="3">JABATAN</td>
     <td colspan="7">&nbsp;</td>
     <td colspan="3">&nbsp;</td>
-    <td colspan="27">&nbsp;</td>
+    <td colspan="29">&nbsp;</td>
   </tr>
   <tr>
     <td colspan="3">TANGGAL</td>
     <td colspan="7">&nbsp;</td>
     <td colspan="3">&nbsp;</td>
-    <td colspan="27">&nbsp;</td>
+    <td colspan="29">&nbsp;</td>
   </tr>
   <tr>
     <td height="60" colspan="3" valign="top">TANDA TANGAN</td>
     <td colspan="7">&nbsp;</td>
     <td colspan="3">&nbsp;</td>
-    <td colspan="27">&nbsp;</td>
+    <td colspan="29">&nbsp;</td>
   </tr>
 </table>
 </body>
