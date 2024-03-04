@@ -208,11 +208,11 @@ WHERE
       $menit_lama_3 = floor($diff_3/60);
 
       // Menit Jenis Kartu
-      if($rowd['jenis_kartu'] == "Proses 1 Roll"){
+      if($rowd['jenis_kartu'] == "Proses 1 /sd 2 Roll"){
         $menit_jenis_kartu = 15;
       }else if($rowd['jenis_kartu'] == "Kain Test"){
         $menit_jenis_kartu = 20;
-      }else if($rowd['jenis_kartu'] == "Development"){
+      }else if($rowd['jenis_kartu'] == "Development Sample"){
         $menit_jenis_kartu = 30;
       }
 
