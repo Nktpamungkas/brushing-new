@@ -94,6 +94,11 @@
           <tr style="border:1px solid;">
             <th rowspan="2" style="border:1px solid;vertical-align:middle;">
               <div align="center"><strong>
+                  <font size="-2">AKSI</font>
+                </strong></div>
+            </th>
+            <th rowspan="2" style="border:1px solid;vertical-align:middle;">
+              <div align="center"><strong>
                   <font size="-2">NO MC</font>
                 </strong></div>
             </th>
@@ -185,11 +190,7 @@
             </th>
             
             
-            <th rowspan="2" style="border:1px solid;vertical-align:middle;">
-              <div align="center"><strong>
-                  <font size="-2">AKSI</font>
-                </strong></div>
-            </th>
+           
           </tr>
           <tr style="border:1px solid;">
             <th style="border:1px solid;">
@@ -246,6 +247,10 @@
           ?>
 
             <tr bgcolor="<?php echo $bgcolor; ?>" style="border:1px solid;">
+             
+              <td style="border:1px solid;"><input type="button" name="hapus" id="hapus" value="Hapus" onClick="confirmDelete('?p=hapus-report&id=<?php echo $rowd['idp']; ?>&tgl1=<?php echo $tglawal; ?>&tgl2=<?php echo $tglakhir; ?>&shift=<?php echo $shft; ?>&jns=Produksi Brushing&nama_mesin=<?php echo $rowd['nama_mesin']; ?>&no_mesin=<?php echo $rowd['no_mesin']; ?>');" />
+                <input type="button" name="ubah" id="ubah" value="Ubah" onclick="window.location.href='../data-brushing/index.php?typekk=NOW&id=<?php echo $rowd['idp']; ?>';" />
+              </td>
               <td style="border:1px solid;">
                 <div align="center">
                   <font size="-2"><?php echo $rowd['no_mesin']; ?></font>
@@ -376,10 +381,7 @@
                   <font size="-2"><?php echo $rowd['shift']; ?></font>
                 </div>
               </td>
-            
-              <td style="border:1px solid;"><input type="button" name="hapus" id="hapus" value="Hapus" onClick="confirmDelete('?p=hapus-report&id=<?php echo $rowd['idp']; ?>&tgl1=<?php echo $tglawal; ?>&tgl2=<?php echo $tglakhir; ?>&shift=<?php echo $shft; ?>&jns=Produksi Brushing&nama_mesin=<?php echo $rowd['nama_mesin']; ?>&no_mesin=<?php echo $rowd['no_mesin']; ?>');" />
-                <input type="button" name="ubah" id="ubah" value="Ubah" onclick="window.location.href='../data-brushing/index.php?typekk=NOW&id=<?php echo $rowd['idp']; ?>';" />
-              </td>
+           
             </tr>
           <?php
 
