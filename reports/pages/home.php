@@ -63,13 +63,31 @@ include("../koneksi.php");
       <tr valign="middle">
         <td width="127"><strong>Tanggal Awal</strong></td>
         <td width="3">:</td>
-        <td width="280"><input name="awal" type="text" id="awal" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.awal);return false;" size="14" required="required" /><a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.awal);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal" style="border:none" align="absmiddle" border="0" /></a></td>
+        <td width="280">
+		<input name="jam_awal" type="text" id="jam_awal" placeholder="23:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 23:00" onkeyup="
+            var time = this.value;
+            if (time.match(/^\d{2}$/) !== null) {
+              this.value = time + ':';
+            } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
+              this.value = time + '';
+            }" value="" size="5" maxlength="5" required/> 	
+		<input name="awal" type="text" id="awal" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.awal);return false;" size="14" required="required" /><a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.awal);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal" style="border:none" align="absmiddle" border="0" /></a>		 
+		  </td>
       </tr>
       <tr>
 
         <td><strong>Tanggal Akhir</strong></td>
         <td>:</td>
-        <td width="280"><input name="akhir" type="text" id="akhir" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.akhir);return false;" size="14" required="required" /><a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.akhir);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal" style="border:none" align="absmiddle" border="0" /></a></td>
+        <td width="280">
+		<input name="jam_akhir" type="text" id="jam_akhir" placeholder="23:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 23:00" onkeyup="
+            var time = this.value;
+            if (time.match(/^\d{2}$/) !== null) {
+              this.value = time + ':';
+            } else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
+              this.value = time + '';
+            }" value="" size="5" maxlength="5" required/>	
+		<input name="akhir" type="text" id="akhir" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.akhir);return false;" size="14" required="required" /><a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.akhir);return false;"><img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal" style="border:none" align="absmiddle" border="0" /></a>
+		</td>
       </tr>
       <tr>
         <td><strong>Mesin</strong></td>

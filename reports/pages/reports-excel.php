@@ -15,15 +15,22 @@ ini_set("error_reporting",1);
 
 	$tglawal  = $_GET['tglawal'];
 	$tglakhir = $_GET['tglakhir'];
+	$jamawal  = $_GET['jamawal'];
+	$jamakhir = $_GET['jamakhir'];
 	$shft     = $_GET['shift'];
 	$nmesin   = $_GET['mesin'];
 	$mc       = $_GET['no_mesin'];
   
-  if ($tglakhir != "" and $tglawal != ""){
-    $tgl=" DATE_FORMAT(a.`tgl_update`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
+//  if ($tglakhir != "" and $tglawal != ""){
+//    $tgl=" DATE_FORMAT(a.`tgl_update`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
+//  }else{
+//    $tgl=" ";
+//  }
+   if ($tglakhir != "" and $tglawal != "" and $jamakhir != "" and $jamawal != ""){
+    $tgl=" DATE_FORMAT(a.`tgl_buat`,'%Y-%m-%d %H:%i') BETWEEN '$tglawal $jamawal' AND '$tglakhir $jamakhir' ";
   }else{
     $tgl=" ";
-  }
+  }	
 	if ($shft=="ALL"){
     $shift=" ";
   }else{
@@ -42,7 +49,7 @@ ini_set("error_reporting",1);
     $nomesin=" ";
   }
 ?>
-<strong>Periode: <?php echo $tglawal; ?> s/d <?php echo $tglakhir; ?></strong><br>
+<strong>Periode: <?php echo $tglawal." ".$jamawal; ?> s/d <?php echo $tglakhir." ".$jamakhir; ?></strong><br>
 <strong>Shift: <?php echo $shft; ?> <br>
 Mesin: <?php echo $nmesin; ?> <br>
 No. Mesin: <?php echo $mc; ?></strong><br />

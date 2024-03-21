@@ -40,12 +40,16 @@
     if ($_POST['awal'] != "") {
       $tglawal = $_POST['awal'];
       $tglakhir = $_POST['akhir'];
+	  $jamawal = $_POST['jam_awal'];
+      $jamakhir = $_POST['jam_akhir'];
       $jns = $_POST['jns'];
       $mc = $_POST['no_mesin'];
       $nmesin = $_POST['nama_mesin'];
     } else {
       $tglawal = $_GET['tgl1'];
       $tglakhir = $_GET['tgl2'];
+	  $jamawal = $_GET['jam1'];
+      $jamakhir = $_GET['jam2'];	
       $jns = $_GET['jns'];
       $mc = $_GET['no_mesin'];
       $nmesin = $_GET['nama_mesin'];
@@ -55,8 +59,13 @@
     } else {
       $shft = $_GET['shift'];
     }
-    if ($tglakhir != "" and $tglawal != "") {
-      $tgl = " DATE_FORMAT(a.`tgl_update`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
+//    if ($tglakhir != "" and $tglawal != "") {
+//      $tgl = " DATE_FORMAT(a.`tgl_update`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
+//    } else {
+//      $tgl = " ";
+//    }
+	if ($tglakhir != "" and $tglawal != "" and $jamakhir != "" and $jamawal != "") {
+      $tgl = " DATE_FORMAT(a.`tgl_buat`,'%Y-%m-%d %H:%i') BETWEEN '$tglawal $jamawal' AND '$tglakhir $jamakhir' ";
     } else {
       $tgl = " ";
     }
@@ -80,13 +89,13 @@
 
     ?>
     <input type="button" name="button2" id="button2" value="Kembali" onclick="window.location.href='index.php'" class="art-button" />
-    <input type="button" name="button3" id="button3" value="Cetak" onclick="window.open('pages/reports-cetak.php?tglawal=<?php echo $tglawal; ?>&amp;tglakhir=<?php echo $tglakhir; ?>&amp;mesin=<?php echo $_POST['nama_mesin']; ?>&amp;no_mesin=<?php echo $_POST['no_mesin']; ?>&amp;shift=<?php echo $shft; ?>', '_blank')" class="art-button" />
-    <input type="button" name="button" id="button" value="Cetak Ke Excel" onClick="window.location.href='pages/reports-excel.php?tglawal=<?php echo $tglawal; ?>&amp;tglakhir=<?php echo $tglakhir; ?>&amp;mesin=<?php echo $_POST['nama_mesin']; ?>&amp;no_mesin=<?php echo $_POST['no_mesin']; ?>&amp;shift=<?php echo $shft; ?>'" class="art-button" />
+    <input type="button" name="button3" id="button3" value="Cetak" onclick="window.open('pages/reports-cetak.php?tglawal=<?php echo $tglawal; ?>&amp;jamawal=<?php echo $jamawal; ?>&amp;tglakhir=<?php echo $tglakhir; ?>&amp;jamakhir=<?php echo $jamakhir; ?>&amp;mesin=<?php echo $_POST['nama_mesin']; ?>&amp;no_mesin=<?php echo $_POST['no_mesin']; ?>&amp;shift=<?php echo $shft; ?>', '_blank')" class="art-button" />
+    <input type="button" name="button" id="button" value="Cetak Ke Excel" onClick="window.location.href='pages/reports-excel.php?tglawal=<?php echo $tglawal; ?>&amp;jamawal=<?php echo $jamawal; ?>&amp;tglakhir=<?php echo $tglakhir; ?>&amp;jamakhir=<?php echo $jamakhir; ?>&amp;mesin=<?php echo $_POST['nama_mesin']; ?>&amp;no_mesin=<?php echo $_POST['no_mesin']; ?>&amp;shift=<?php echo $shft; ?>'" class="art-button" />
     <br />
     <strong><br />
     </strong>
     <form id="form1" name="form1" method="post" action="">
-      <strong> Periode: <?php echo $tglawal; ?> s/d <?php echo $tglakhir; ?></strong><br />
+      <strong> Periode: <?php echo $tglawal." ".$jamawal; ?> s/d <?php echo $tglakhir." ".$jamakhir; ?></strong><br />
       <strong>Shift: <?php echo $shft; ?> <br />Mesin: <?php echo $nmesin; ?></strong><br />
       <strong>No Mesin: <?php echo $mc; ?></strong>
       <table width="100%" border="1" id="datatables" class="display">
@@ -435,23 +444,32 @@
     </form>
   <?php } else if ($_POST['jns'] == "Rincian Proses") {
 
-    if ($_POST['awal'] != "") {
+    if ($_POST['awal'] != "" and $_POST['jam_awal']) {
       $tglawal = $_POST['awal'];
+	  $jamawal = $_POST['jam_awal'];	
       $tglakhir = $_POST['akhir'];
+	  $jamakhir = $_POST['jam_akhir'];	
     } else {
       $tglawal = $_GET['tgl1'];
-      $tglakhir = $_GET['tgl2'];
+	  $jamawal = $_GET['jam1'];	
+      $tglakhir = $_GET['tgl2'];	  
+      $jamakhir = $_GET['jam2'];	
     }
     if ($_POST['shift'] != "") {
       $shft = $_POST['shift'];
     } else {
       $shft = $_GET['shift'];
     }
-    if ($tglakhir != "" and $tglawal != "") {
-      $tgl = " DATE_FORMAT(`tgl_update`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
+//    if ($tglakhir != "" and $tglawal != "") {
+//      $tgl = " DATE_FORMAT(`tgl_buat`,'%Y-%m-%d %H:%i') BETWEEN '$tglawal $jamawal' AND '$tglakhir $jamakhir' ";
+//    } else {
+//      $tgl = " ";
+//    }
+	if ($tglakhir != "" and $tglawal != "" and $jamakhir != "" and $jamawal != "") {
+      $tgl = " DATE_FORMAT(`tgl_buat`,'%Y-%m-%d %H:%i') BETWEEN '$tglawal $jamawal' AND '$tglakhir $jamakhir' ";
     } else {
       $tgl = " ";
-    }
+    }   
     if ($shft == "ALL") {
       $shift = " ";
     } else {
@@ -459,11 +477,11 @@
     }
   ?>
     <input type="button" name="button2" id="button2" value="Kembali" onclick="window.location.href='index.php'" class="art-button" />
-    <input type="button" name="button4" id="button4" value="Cetak" onclick="window.open('pages/rincian-cetak.php?tglawal=<?php echo $tglawal; ?>&amp;tglakhir=<?php echo $tglakhir; ?>&amp;shift=<?php echo $shft; ?>', '_blank')" class="art-button" />
-    <input type="button" name="button4" id="button5" value="Cetak Ke Excel" onclick="window.location.href='pages/rincian-excel.php?tglawal=<?php echo $tglawal; ?>&amp;tglakhir=<?php echo $tglakhir; ?>&amp;shift=<?php echo $shft; ?>'" class="art-button" />
+    <input type="button" name="button4" id="button4" value="Cetak" onclick="window.open('pages/rincian-cetak.php?tglawal=<?php echo $tglawal; ?>&amp;jamawal=<?php echo $jamawal; ?>&amp;tglakhir=<?php echo $tglakhir; ?>&amp;jamakhir=<?php echo $jamakhir; ?>&amp;shift=<?php echo $shft; ?>', '_blank')" class="art-button" />
+    <input type="button" name="button4" id="button5" value="Cetak Ke Excel" onclick="window.location.href='pages/rincian-excel.php?tglawal=<?php echo $tglawal; ?>&amp;jamawal=<?php echo $jamawal; ?>&amp;tglakhir=<?php echo $tglakhir; ?>&amp;jamakhir=<?php echo $jamakhir; ?>&amp;shift=<?php echo $shft; ?>'" class="art-button" />
     <br />
     <br />
-    <strong> Periode: <?php echo $tglawal; ?> s/d <?php echo $tglakhir; ?></strong><br />
+    <strong> Periode: <?php echo $tglawal." ".$jamawal; ?> s/d <?php echo $tglakhir." ".$jamakhir; ?></strong><br />
     <strong>Shift: <?php echo $shft; ?></strong>
     <table width="100%" border="0">
       <tr style="border:1px solid;">
