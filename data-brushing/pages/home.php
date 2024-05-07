@@ -5,7 +5,17 @@ include("../koneksi.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<?php
+// Tangkap nilai ketValue dari parameter GET jika ada
+$ketValue = isset($_GET['ketValue']) ? $_GET['ketValue'] : '';
 
+if(isset($_POST['submit'])) {
+    $no_mesin = $_POST['no_mesin'];
+    $query = "SELECT * FROM tbl_namamesin WHERE ket_nama_mesin = '$ketValue'";
+    $result = mysqli_query($con, $query);
+}
+
+?>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Home</title>
@@ -24,7 +34,24 @@ include("../koneksi.php");
 			document.form1.qty2.value = roundToTwo(yard).toFixed(2);
 
 		}
-	</script>	
+
+    function myFunction() {    
+    var selectKetNamaMesin = document.getElementById("nama_mesin");
+    var selectedKet = selectKetNamaMesin.options[selectKetNamaMesin.selectedIndex].getAttribute('data-ket');
+    
+    document.getElementById("ket_nama_mesin").value = selectedKet;
+    // Mengatur nilai dropdown "No. Mesin" berdasarkan nilai data-ket yang dipilih
+    var selectNoMesin = document.getElementById("no_mesin");
+    var options = selectNoMesin.options;
+    for (var i = 0; i < options.length; i++) {
+        var option = options[i];
+        if (option.getAttribute('data-ket') === selectedKet) {
+            option.selected = true;
+        }
+    }
+}
+</script>
+
 </head>
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <body>
@@ -676,18 +703,24 @@ include("../koneksi.php");
           <h4>Nama Mesin</h4>
         </td>
         <td>:</td>
-        <td colspan="3"><select name="nama_mesin" id="nama_mesin" onchange="myFunction();" required="required">
-            <option value="">Pilih</option>
-            <?php $qry1 = mysqli_query($con, "SELECT nama FROM tbl_mesin ORDER BY nama ASC");
-            while ($r = mysqli_fetch_array($qry1)) {
-            ?>
-              <option value="<?php echo $r['nama']; ?>" <?php if ($rw['nama_mesin'] == $r['nama']) {
-                                                          echo "SELECTED";
-                                                        } ?>><?php echo $r['nama']; ?></option>
-            <?php } ?>
-          </select>
-          <input type="button" name="btnmesin2" id="btnmesin2" value="..." onclick="window.open('pages/mesin.php','MyWindow','height=400,width=650');" />
+        <td colspan="3">
+            <select name="ket_nama_mesin" id="namamesin"onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+document.getElementById(`nokk`).value+'&demand='+document.getElementById(`demand`).value+'&mesin='+this.value" required>
+                <option value="">Pilih</option>
+                <?php 
+                $qry1 = mysqli_query($con, "SELECT nama, ket FROM tbl_mesin ORDER BY nama ASC");
+                while ($r = mysqli_fetch_array($qry1)) {
+                ?>
+                <option value="<?php echo $r['nama']; ?>" <?php if ($_GET['mesin'] == $r['nama']) {
+                                  echo "SELECTED";
+                                } ?>><?php echo $r['nama']; ?></option>
+                <!-- <option value="<?php echo $r['nama']; ?>" data-ket="<?php echo $r['ket']; ?>" <?php if ($rw['namamesin'] == $r['nama']) { echo "SELECTED"; } ?>><?php echo $r['nama']; ?></option> -->
+                <?php } ?>
+            </select>
+            <input type="button" name="btnmesin2" id="btnmesin2" value="..." onclick="window.open('pages/mesin.php','MyWindow','height=400,width=650');" />
         </td>
+        <script>
+            myFunction();
+        </script>
       </tr>
       <tr>
         <td scope="row">
@@ -708,17 +741,19 @@ include("../koneksi.php");
         </td>
         <td><strong>No. Mesin</strong></td>
         <td>:</td>
-        <td colspan="3"><select name="no_mesin" id="no_mesin" onchange="myFunction();" required="required">
-            <option value="">Pilih</option>
-            <?php $qry1 = mysqli_query($con, "SELECT no_mesin FROM tbl_no_mesin ORDER BY no_mesin ASC");
-            while ($r = mysqli_fetch_array($qry1)) {
-            ?>
-              <option value="<?php echo $r['no_mesin']; ?>" <?php if ($rw['no_mesin'] == $r['no_mesin']) {
-                                                              echo "SELECTED";
-                                                            } ?>><?php echo $r['no_mesin']; ?></option>
-            <?php } ?>
+        <td colspan="3">
+          <select name="no_mesin" id="no_mesin" required>
+              <option value="">Pilih</option>
+              <?php 
+              $qry1 = mysqli_query($con, "SELECT no_mesin, ket_nama_mesin FROM tbl_namamesin where nama_mesin = '$_GET[mesin]' ORDER BY  nama_mesin ASC");
+              while ($r = mysqli_fetch_array($qry1)) {
+              ?>
+                  <option value="<?php echo $r['no_mesin']; ?>" <?php if ($rw['no_mesin'] == $r['no_mesin']) { echo "SELECTED"; } ?>><?php echo $r['no_mesin']; ?></option>
+              <?php 
+              } 
+              ?>
           </select>
-          <input type="button" name="btnmesin" id="btnmesin" value="..." onclick="window.open('pages/data-mesin.php','MyWindow','height=400,width=650');" />
+              <input type="button" name="btnmesin" id="btnmesin" value="..." onclick="window.open('pages/data-mesin.php','MyWindow','height=400,width=650');" />
         </td>
       </tr>
       <tr>
