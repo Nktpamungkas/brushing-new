@@ -14,52 +14,52 @@ include ("../../koneksi.php");
 </head>
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 <style>
-.table {
-	border: 0.5px solid #000000;
-}
+	.table {
+		border: 0.5px solid #000000;
+	}
 
-.table-bordered>thead>tr>th,
-.table-bordered>tbody>tr>th,
-.table-bordered>tfoot>tr>th,
-.table-bordered>thead>tr>td,
-.table-bordered>tbody>tr>td,
-.table-bordered>tfoot>tr>td {
-	border: 0.5px solid #000000;
-	vertical-align: middle;
-}
+	.table-bordered>thead>tr>th,
+	.table-bordered>tbody>tr>th,
+	.table-bordered>tfoot>tr>th,
+	.table-bordered>thead>tr>td,
+	.table-bordered>tbody>tr>td,
+	.table-bordered>tfoot>tr>td {
+		border: 0.5px solid #000000;
+		vertical-align: middle;
+	}
 
-textarea.form-control,
-input.form-control {
-	border: 0px;
-}
+	textarea.form-control,
+	input.form-control {
+		border: 0px;
+	}
 
-select.input-xs,
-textarea.input-xs,
-input.input-xs {
-	height: 23px;
-	padding: 2px 5px;
-	font-size: 12px;
-	line-height: 1.5;
-	border-radius: 3px;
-	text-align: center;
-}
+	select.input-xs,
+	textarea.input-xs,
+	input.input-xs {
+		height: 23px;
+		padding: 2px 5px;
+		font-size: 12px;
+		line-height: 1.5;
+		border-radius: 3px;
+		text-align: center;
+	}
 </style>
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
-function getData_ITXVIEWKK() {
-	var _noprodorder = document.getElementById("NO_KARTU_KERJA").value;
+	function getData_ITXVIEWKK() {
+		var _noprodorder = document.getElementById("NO_KARTU_KERJA").value;
 
-	$.get("../api_ITXVIEWKK.php?noprod=" + _noprodorder, function(item) {
-		document.getElementById("LANGGANAN").value = item.PELANGGAN + '/' + item.BUYER;
-		document.getElementById("ORDER").value = item.PROJECTCODE;
-		document.getElementById("JENIS_KAIN").value = item.ITEMDESCRIPTION;
-		document.getElementById("L_PERMINTAAN").value = item.LEBAR;
-		document.getElementById("G_PERMINTAAN").value = item.GRAMASI;
-		document.getElementById("NO_HANGER").value = item.NO_HANGER;
-		document.getElementById("WARNA").value = item.WARNA;
-		document.getElementById("DEAMAND").value = item.DEAMAND;
-	});
-};
+		$.get("../api_ITXVIEWKK.php?noprod=" + _noprodorder, function (item) {
+			document.getElementById("LANGGANAN").value = item.PELANGGAN + '/' + item.BUYER;
+			document.getElementById("ORDER").value = item.PROJECTCODE;
+			document.getElementById("JENIS_KAIN").value = item.ITEMDESCRIPTION;
+			document.getElementById("L_PERMINTAAN").value = item.LEBAR;
+			document.getElementById("G_PERMINTAAN").value = item.GRAMASI;
+			document.getElementById("NO_HANGER").value = item.NO_HANGER;
+			document.getElementById("WARNA").value = item.WARNA;
+			document.getElementById("DEAMAND").value = item.DEAMAND;
+		});
+	};
 </script>
 
 <?php
@@ -178,16 +178,8 @@ if ($idkk != "") {
 								<div class="form-inline text-center">
 									<input type="text" class="form-control input-xs" name="NO_KARTU_KERJA"
 										id="NO_KARTU_KERJA" value="<?php echo $_POST['kk'] ?>" readonly>/</span>
-
-									<select style="width: 40%" name="DEAMAND" id="DEAMAND" required>
-										<option value="" disabled selected>Pilih Nomor Demand</option>
-										<?php 
-											$sql_ITXVIEWKK_demand  = db2_exec($conn_db2, "SELECT DEAMAND AS DEMAND FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE = '$_POST[kk]'");
-											while ($r_demand = db2_fetch_assoc($sql_ITXVIEWKK_demand)) :
-										?>
-											<option value="<?= $r_demand['DEMAND']; ?>" <?php if($r_demand['DEMAND'] == $_GET['demand']){ echo 'SELECTED'; } ?>><?= $r_demand['DEMAND']; ?></option>
-										<?php endwhile; ?>
-									</select>
+									<input type="text" class="form-control input-xs" name="DEAMAND" id="DEAMAND"
+										value="<?php echo $_POST['DEAMAND'] ?>" readonly>
 							</td>
 							<td data-no="10" colspan="7" style="text-align: center;">SPV/ASST/LDR</td>
 						</tr>
@@ -291,7 +283,7 @@ if ($idkk != "") {
 								style="text-align: center;font-size: 15px; font-weight: bold;">
 								QUALITY
 							</td>
-							<td data-no="10" colspan="6" class="bg-danger" style="text-align:center;">OK</td>
+							<td colspan="6" class="bg-danger" style="text-align:center;">OK</td>
 							<td data-no="10" class="bg-danger" style="text-align:center;"><input type="text"
 									class="form-control input-xs" name="OK" id="OK" placeholder="-OK-"
 									style="width: 100%"></td>
@@ -306,7 +298,9 @@ if ($idkk != "") {
 
 						<tr>
 							<td colspan="2" style="text-align: center;font-size: 15px; font-weight: bold;">GARUK</td>
-							<td class="bg-danger" colspan="1"></td>
+							<td class="bg-danger" colspan="1"><input type="text" class="form-control input-xs"
+									name="GARUK" id="GARUK" placeholder="-GARUK1-" style="width: 100%"></td>
+							</td>
 							<td colspan="14"></td>
 						</tr>
 
@@ -410,20 +404,49 @@ if ($idkk != "") {
 						</tr>
 						<tr class="baris">
 							<td data-no="1" colspan="1">2</td>
-							<td class="bg-danger" data-no="1"></td>
-							<td class="bg-danger" data-no="2"> </td>
-							<td class="bg-danger" data-no="3"> </td>
-							<td class="bg-danger" data-no="4"> </td>
-							<td class="bg-danger" data-no="5"> </td>
-							<td class="bg-danger" data-no="6"> </td>
-							<td class="bg-danger" data-no="7"> </td>
-							<td class="bg-danger" data-no="8"> </td>
-							<td class="bg-danger" data-no="9"> </td>
-							<td class="bg-danger" data-no="10"> </td>
-							<td class="bg-danger" data-no="11"> </td>
-							<td class="bg-danger" data-no="12"> </td>
-							<td class="bg-danger" data-no="13"> </td>
-							<td class="bg-danger" data-no="14"> </td>
+							<td class="bg-danger" data-no="15"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE15" id="COUNTER_PILE15" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="16"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE16" id="COUNTER_PILE16" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="17"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE17" id="COUNTER_PILE17" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="18"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE18" id="COUNTER_PILE18" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="19"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE19" id="COUNTER_PILE19" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="20"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE20" id="COUNTER_PILE20" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="21"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE21" id="COUNTER_PILE21" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="22"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE22" id="COUNTER_PILE22" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="23"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE23" id="COUNTER_PILE23" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="24"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE24" id="COUNTER_PILE24" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="25"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE25" id="COUNTER_PILE25" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="26"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE26" id="COUNTER_PILE26" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="27"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE27" id="COUNTER_PILE27" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="28"><input type="text" class="form-control input-xs"
+									name="COUNTER_PILE28" id="COUNTER_PILE28" placeholder="-COUNTER PILE-"
+									style="width: 100%"></td>
+
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">PILE</td>
@@ -459,20 +482,35 @@ if ($idkk != "") {
 						</tr>
 						<tr class="baris">
 							<td data-no="1" colspan="1">2</td>
-							<td class="bg-danger" data-no="1"></td>
-							<td class="bg-danger" data-no="2"> </td>
-							<td class="bg-danger" data-no="3"> </td>
-							<td class="bg-danger" data-no="4"> </td>
-							<td class="bg-danger" data-no="5"> </td>
-							<td class="bg-danger" data-no="6"> </td>
-							<td class="bg-danger" data-no="7"> </td>
-							<td class="bg-danger" data-no="8"> </td>
-							<td class="bg-danger" data-no="9"> </td>
-							<td class="bg-danger" data-no="10"> </td>
-							<td class="bg-danger" data-no="11"> </td>
-							<td class="bg-danger" data-no="12"> </td>
-							<td class="bg-danger" data-no="13"> </td>
-							<td class="bg-danger" data-no="14"> </td>
+							<td class="bg-danger" data-no="15"><input type="text" class="form-control input-xs"
+									name="PILE15" id="PILE15" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="16"><input type="text" class="form-control input-xs"
+									name="PILE16" id="PILE16" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="17"><input type="text" class="form-control input-xs"
+									name="PILE17" id="PILE17" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="18"><input type="text" class="form-control input-xs"
+									name="PILE18" id="PILE18" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="19"><input type="text" class="form-control input-xs"
+									name="PILE19" id="PILE19" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="20"><input type="text" class="form-control input-xs"
+									name="PILE20" id="PILE20" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="21"><input type="text" class="form-control input-xs"
+									name="PILE21" id="PILE21" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="22"><input type="text" class="form-control input-xs"
+									name="PILE22" id="PILE22" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="23"><input type="text" class="form-control input-xs"
+									name="PILE23" id="PILE23" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="24"><input type="text" class="form-control input-xs"
+									name="PILE24" id="PILE24" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="25"><input type="text" class="form-control input-xs"
+									name="PILE25" id="PILE25" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="26"><input type="text" class="form-control input-xs"
+									name="PILE26" id="PILE26" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="27"><input type="text" class="form-control input-xs"
+									name="PILE27" id="PILE27" placeholder="-PILE-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="28"><input type="text" class="form-control input-xs"
+									name="PILE28" id="PILE28" placeholder="-PILE-" style="width: 100%"></td>
+
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">DRUM</td>
@@ -508,20 +546,35 @@ if ($idkk != "") {
 						</tr>
 						<tr class="baris">
 							<td data-no="1" colspan="1">2</td>
-							<td class="bg-danger" data-no="1"></td>
-							<td class="bg-danger" data-no="2"> </td>
-							<td class="bg-danger" data-no="3"> </td>
-							<td class="bg-danger" data-no="4"> </td>
-							<td class="bg-danger" data-no="5"> </td>
-							<td class="bg-danger" data-no="6"> </td>
-							<td class="bg-danger" data-no="7"> </td>
-							<td class="bg-danger" data-no="8"> </td>
-							<td class="bg-danger" data-no="9"> </td>
-							<td class="bg-danger" data-no="10"> </td>
-							<td class="bg-danger" data-no="11"> </td>
-							<td class="bg-danger" data-no="12"> </td>
-							<td class="bg-danger" data-no="13"> </td>
-							<td class="bg-danger" data-no="14"> </td>
+							<td class="bg-danger" data-no="15"><input type="text" class="form-control input-xs"
+									name="DRUM_15" id="DRUM_15" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="16"><input type="text" class="form-control input-xs"
+									name="DRUM_16" id="DRUM_16" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="17"><input type="text" class="form-control input-xs"
+									name="DRUM_17" id="DRUM_17" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="18"><input type="text" class="form-control input-xs"
+									name="DRUM_18" id="DRUM_18" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="19"><input type="text" class="form-control input-xs"
+									name="DRUM_19" id="DRUM_19" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="20"><input type="text" class="form-control input-xs"
+									name="DRUM_20" id="DRUM_20" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="21"><input type="text" class="form-control input-xs"
+									name="DRUM_21" id="DRUM_21" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="22"><input type="text" class="form-control input-xs"
+									name="DRUM_22" id="DRUM_22" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="23"><input type="text" class="form-control input-xs"
+									name="DRUM_23" id="DRUM_23" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="24"><input type="text" class="form-control input-xs"
+									name="DRUM_24" id="DRUM_24" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="25"><input type="text" class="form-control input-xs"
+									name="DRUM_25" id="DRUM_25" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="26"><input type="text" class="form-control input-xs"
+									name="DRUM_26" id="DRUM_26" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="27"><input type="text" class="form-control input-xs"
+									name="DRUM_27" id="DRUM_27" placeholder="-DRUM-" style="width: 100%"></td>
+							<td class="bg-danger" data-no="28"><input type="text" class="form-control input-xs"
+									name="DRUM_28" id="DRUM_28" placeholder="-DRUM-" style="width: 100%"></td>
+
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">TENSION DEPAN</td>
@@ -571,21 +624,49 @@ if ($idkk != "") {
 						</tr>
 
 						<tr class="baris">
-							<td data-no="1" colspan="1">2</td>
-							<td class="bg-danger" data-no="1"></td>
-							<td class="bg-danger" data-no="2"> </td>
-							<td class="bg-danger" data-no="3"> </td>
-							<td class="bg-danger" data-no="4"> </td>
-							<td class="bg-danger" data-no="5"> </td>
-							<td class="bg-danger" data-no="6"> </td>
-							<td class="bg-danger" data-no="7"> </td>
-							<td class="bg-danger" data-no="8"> </td>
-							<td class="bg-danger" data-no="9"> </td>
-							<td class="bg-danger" data-no="10"> </td>
-							<td class="bg-danger" data-no="11"> </td>
-							<td class="bg-danger" data-no="12"> </td>
-							<td class="bg-danger" data-no="13"> </td>
-							<td class="bg-danger" data-no="14"> </td>
+							<td class="bg-danger" data-no="15"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN15" id="TENSIONDEPAN15" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="16"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN16" id="TENSIONDEPAN16" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="17"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN17" id="TENSIONDEPAN17" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="18"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN18" id="TENSIONDEPAN18" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="19"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN19" id="TENSIONDEPAN19" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="20"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN20" id="TENSIONDEPAN20" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="21"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN21" id="TENSIONDEPAN21" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="22"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN22" id="TENSIONDEPAN22" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="23"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN23" id="TENSIONDEPAN23" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="24"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN24" id="TENSIONDEPAN24" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="25"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN25" id="TENSIONDEPAN25" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="26"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN26" id="TENSIONDEPAN26" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="27"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN27" id="TENSIONDEPAN27" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="28"><input type="text" class="form-control input-xs"
+									name="TENSIONDEPAN28" id="TENSIONDEPAN28" placeholder="-TENSION DEPAN-"
+									style="width: 100%"></td>
+
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">TENSION BELAKANG</td>
@@ -639,21 +720,49 @@ if ($idkk != "") {
 							</td>
 						</tr>
 						<tr class="baris">
-							<td data-no="1" colspan="1">2</td>
-							<td class="bg-danger" data-no="1"></td>
-							<td class="bg-danger" data-no="2"> </td>
-							<td class="bg-danger" data-no="3"> </td>
-							<td class="bg-danger" data-no="4"> </td>
-							<td class="bg-danger" data-no="5"> </td>
-							<td class="bg-danger" data-no="6"> </td>
-							<td class="bg-danger" data-no="7"> </td>
-							<td class="bg-danger" data-no="8"> </td>
-							<td class="bg-danger" data-no="9"> </td>
-							<td class="bg-danger" data-no="10"> </td>
-							<td class="bg-danger" data-no="11"> </td>
-							<td class="bg-danger" data-no="12"> </td>
-							<td class="bg-danger" data-no="13"> </td>
-							<td class="bg-danger" data-no="14"> </td>
+							<td class="bg-danger" data-no="15"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG15" id="TENSIONBELAKANG15" placeholder="TENSIONBELAKANG15"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="16"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG16" id="TENSIONBELAKANG16" placeholder="TENSIONBELAKANG16"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="17"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG17" id="TENSIONBELAKANG17" placeholder="TENSIONBELAKANG17"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="18"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG18" id="TENSIONBELAKANG18" placeholder="TENSIONBELAKANG18"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="19"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG19" id="TENSIONBELAKANG19" placeholder="TENSIONBELAKANG19"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="20"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG20" id="TENSIONBELAKANG20" placeholder="TENSIONBELAKANG20"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="21"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG21" id="TENSIONBELAKANG21" placeholder="TENSIONBELAKANG21"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="22"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG22" id="TENSIONBELAKANG22" placeholder="TENSIONBELAKANG22"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="23"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG23" id="TENSIONBELAKANG23" placeholder="TENSIONBELAKANG23"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="24"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG24" id="TENSIONBELAKANG24" placeholder="TENSIONBELAKANG24"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="25"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG25" id="TENSIONBELAKANG25" placeholder="TENSIONBELAKANG25"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="26"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG26" id="TENSIONBELAKANG26" placeholder="TENSIONBELAKANG26"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="27"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG27" id="TENSIONBELAKANG27" placeholder="TENSIONBELAKANG27"
+									style="width: 100%"></td>
+							<td class="bg-danger" data-no="28"><input type="text" class="form-control input-xs"
+									name="TENSIONBELAKANG28" id="TENSIONBELAKANG28" placeholder="TENSIONBELAKANG28"
+									style="width: 100%"></td>
+
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">TENSION KELUAR</td>
@@ -719,20 +828,63 @@ if ($idkk != "") {
 
 						<tr class="baris">
 							<td data-no="1" colspan="1">2</td>
-							<td class="bg-danger" data-no="1"></td>
-							<td class="bg-danger" data-no="2"> </td>
-							<td class="bg-danger" data-no="3"> </td>
-							<td class="bg-danger" data-no="4"> </td>
-							<td class="bg-danger" data-no="5"> </td>
-							<td class="bg-danger" data-no="6"> </td>
-							<td class="bg-danger" data-no="7"> </td>
-							<td class="bg-danger" data-no="8"> </td>
-							<td class="bg-danger" data-no="9"> </td>
-							<td class="bg-danger" data-no="10"> </td>
-							<td class="bg-danger" data-no="11"> </td>
-							<td class="bg-danger" data-no="12"> </td>
-							<td class="bg-danger" data-no="13"> </td>
-							<td class="bg-danger" data-no="14"> </td>
+							<td class="bg-danger" data-no="15">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR15"
+									id="TENSIONKELUAR15" placeholder="TENSIONKELUAR15" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="16">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR16"
+									id="TENSIONKELUAR16" placeholder="TENSIONKELUAR16" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="17">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR17"
+									id="TENSIONKELUAR17" placeholder="TENSIONKELUAR17" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="18">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR18"
+									id="TENSIONKELUAR18" placeholder="TENSIONKELUAR18" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="19">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR19"
+									id="TENSIONKELUAR19" placeholder="TENSIONKELUAR19" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="20">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR20"
+									id="TENSIONKELUAR20" placeholder="TENSIONKELUAR20" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="21">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR21"
+									id="TENSIONKELUAR21" placeholder="TENSIONKELUAR21" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="22">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR22"
+									id="TENSIONKELUAR22" placeholder="TENSIONKELUAR22" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="23">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR23"
+									id="TENSIONKELUAR23" placeholder="TENSIONKELUAR23" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="24">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR24"
+									id="TENSIONKELUAR24" placeholder="TENSIONKELUAR24" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="25">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR25"
+									id="TENSIONKELUAR25" placeholder="TENSIONKELUAR25" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="26">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR26"
+									id="TENSIONKELUAR26" placeholder="TENSIONKELUAR26" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="27">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR27"
+									id="TENSIONKELUAR27" placeholder="TENSIONKELUAR27" style="width: 100%">
+							</td>
+							<td class="bg-danger" data-no="28">
+								<input type="text" class="form-control input-xs" name="TENSIONKELUAR28"
+									id="TENSIONKELUAR28" placeholder="TENSIONKELUAR28" style="width: 100%">
+							</td>
+
 						</tr>
 						<tr>
 							<td colspan="2" style="text-align: center;font-size: 15px; font-weight: bold;" data-no="1">

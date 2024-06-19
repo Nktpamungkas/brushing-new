@@ -361,6 +361,7 @@ if ($_POST['save'] == 'simpen') {
         `OK` = '$_POST[OK]',
         `NOT_OK` = '$_POST[NOT_OK]',
         `DEAMAND` = '$_POST[DEAMAND]',
+        `GARUK1` = '$_POST[GARUK1]',
         `WETSUEDING` = '$_POST[WETSUEDING]'
         
 

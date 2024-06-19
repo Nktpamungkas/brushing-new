@@ -83,7 +83,7 @@ $data = mysqli_fetch_array($sql);
 
 	<tr>
 		<td colspan="2" style="text-align: center;font-size: 15px; font-weight: bold;">GARUK</td>
-		<td class="bg-danger" colspan="1"></td>
+		<td colspan="1" style="text-align:center" data-no="2" class="bg-danger" data-name="GARUK">
 		<td colspan="14"></td>
 	</tr>
 
@@ -125,20 +125,20 @@ $data = mysqli_fetch_array($sql);
 	</tr>
 	<tr class="baris">
 		<td data-no="1" colspan="1">2</td>
-		<td class="bg-danger" data-no="1"></td>
-		<td class="bg-danger" data-no="2"> </td>
-		<td class="bg-danger" data-no="3"> </td>
-		<td class="bg-danger" data-no="4"> </td>
-		<td class="bg-danger" data-no="5"> </td>
-		<td class="bg-danger" data-no="6"> </td>
-		<td class="bg-danger" data-no="7"> </td>
-		<td class="bg-danger" data-no="8"> </td>
-		<td class="bg-danger" data-no="9"> </td>
-		<td class="bg-danger" data-no="10"> </td>
-		<td class="bg-danger" data-no="11"> </td>
-		<td class="bg-danger" data-no="12"> </td>
-		<td class="bg-danger" data-no="13"> </td>
-		<td class="bg-danger" data-no="14"> </td>
+		<td class="bg-danger" data-no="1" data-name="COUNTER_PILE1"><?php echo $data['COUNTER_PILE1']; ?> </td>
+		<td class="bg-danger" data-no="2" data-name="COUNTER_PILE2"><?php echo $data['COUNTER_PILE2']; ?> </td>
+		<td class="bg-danger" data-no="3" data-name="COUNTER_PILE3"><?php echo $data['COUNTER_PILE3']; ?> </td>
+		<td class="bg-danger" data-no="4" data-name="COUNTER_PILE4"><?php echo $data['COUNTER_PILE4']; ?> </td>
+		<td class="bg-danger" data-no="5" data-name="COUNTER_PILE5"><?php echo $data['COUNTER_PILE5']; ?> </td>
+		<td class="bg-danger" data-no="6" data-name="COUNTER_PILE6"><?php echo $data['COUNTER_PILE6']; ?> </td>
+		<td class="bg-danger" data-no="7" data-name="COUNTER_PILE7"><?php echo $data['COUNTER_PILE7']; ?> </td>
+		<td class="bg-danger" data-no="8" data-name="COUNTER_PILE8"><?php echo $data['COUNTER_PILE8']; ?> </td>
+		<td class="bg-danger" data-no="9" data-name="COUNTER_PILE9"><?php echo $data['COUNTER_PILE9']; ?> </td>
+		<td class="bg-danger" data-no="10" data-name="COUNTER_PILE10"><?php echo $data['COUNTER_PILE10']; ?> </td>
+		<td class="bg-danger" data-no="11" data-name="COUNTER_PILE11"><?php echo $data['COUNTER_PILE11']; ?> </td>
+		<td class="bg-danger" data-no="12" data-name="COUNTER_PILE12"><?php echo $data['COUNTER_PILE12']; ?> </td>
+		<td class="bg-danger" data-no="13" data-name="COUNTER_PILE13"><?php echo $data['COUNTER_PILE13']; ?> </td>
+		<td class="bg-danger" data-no="14" data-name="COUNTER_PILE14"><?php echo $data['COUNTER_PILE14']; ?> </td>
 	</tr>
 	<tr class="baris">
 		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">PILE</td>
@@ -230,20 +230,21 @@ $data = mysqli_fetch_array($sql);
 	</tr>
 	<tr class="baris">
 		<td data-no="1" colspan="1">2</td>
-		<td class="bg-danger" data-no="1"></td>
-		<td class="bg-danger" data-no="2"> </td>
-		<td class="bg-danger" data-no="3"> </td>
-		<td class="bg-danger" data-no="4"> </td>
-		<td class="bg-danger" data-no="5"> </td>
-		<td class="bg-danger" data-no="6"> </td>
-		<td class="bg-danger" data-no="7"> </td>
-		<td class="bg-danger" data-no="8"> </td>
-		<td class="bg-danger" data-no="9"> </td>
-		<td class="bg-danger" data-no="10"> </td>
-		<td class="bg-danger" data-no="11"> </td>
-		<td class="bg-danger" data-no="12"> </td>
-		<td class="bg-danger" data-no="13"> </td>
-		<td class="bg-danger" data-no="14"> </td>
+		<td class="bg-danger" data-no="1" data-name="TENSIONDEPAN15"><?php echo $data['TENSIONDEPAN15']; ?> </td>
+		<td class="bg-danger" data-no="2" data-name="TENSIONDEPAN16"><?php echo $data['TENSIONDEPAN16']; ?> </td>
+		<td class="bg-danger" data-no="3" data-name="TENSIONDEPAN17"><?php echo $data['TENSIONDEPAN17']; ?> </td>
+		<td class="bg-danger" data-no="4" data-name="TENSIONDEPAN18"><?php echo $data['TENSIONDEPAN18']; ?> </td>
+		<td class="bg-danger" data-no="5" data-name="TENSIONDEPAN19"><?php echo $data['TENSIONDEPAN19']; ?> </td>
+		<td class="bg-danger" data-no="6" data-name="TENSIONDEPAN20"><?php echo $data['TENSIONDEPAN20']; ?> </td>
+		<td class="bg-danger" data-no="7" data-name="TENSIONDEPAN21"><?php echo $data['TENSIONDEPAN21']; ?> </td>
+		<td class="bg-danger" data-no="8" data-name="TENSIONDEPAN22"><?php echo $data['TENSIONDEPAN22']; ?> </td>
+		<td class="bg-danger" data-no="9" data-name="TENSIONDEPAN23"><?php echo $data['TENSIONDEPAN23']; ?> </td>
+		<td class="bg-danger" data-no="10" data-name="TENSIONDEPAN24"><?php echo $data['TENSIONDEPAN24']; ?> </td>
+		<td class="bg-danger" data-no="11" data-name="TENSIONDEPAN25"><?php echo $data['TENSIONDEPAN25']; ?> </td>
+		<td class="bg-danger" data-no="12" data-name="TENSIONDEPAN26"><?php echo $data['TENSIONDEPAN26']; ?> </td>
+		<td class="bg-danger" data-no="13" data-name="TENSIONDEPAN27"><?php echo $data['TENSIONDEPAN27']; ?> </td>
+		<td class="bg-danger" data-no="14" data-name="TENSIONDEPAN28"><?php echo $data['TENSIONDEPAN28']; ?> </td>
+
 	</tr>
 	<tr class="baris">
 		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">TENSION BELAKANG</td>
@@ -265,20 +266,21 @@ $data = mysqli_fetch_array($sql);
 	</tr>
 	<tr class="baris">
 		<td data-no="1" colspan="1">2</td>
-		<td class="bg-danger" data-no="1"></td>
-		<td class="bg-danger" data-no="2"> </td>
-		<td class="bg-danger" data-no="3"> </td>
-		<td class="bg-danger" data-no="4"> </td>
-		<td class="bg-danger" data-no="5"> </td>
-		<td class="bg-danger" data-no="6"> </td>
-		<td class="bg-danger" data-no="7"> </td>
-		<td class="bg-danger" data-no="8"> </td>
-		<td class="bg-danger" data-no="9"> </td>
-		<td class="bg-danger" data-no="10"> </td>
-		<td class="bg-danger" data-no="11"> </td>
-		<td class="bg-danger" data-no="12"> </td>
-		<td class="bg-danger" data-no="13"> </td>
-		<td class="bg-danger" data-no="14"> </td>
+		<td class="bg-danger" data-no="15" data-name="TENSIONBELAKANG15"><?php echo $data['TENSIONBELAKANG15']; ?> </td>
+		<td class="bg-danger" data-no="16" data-name="TENSIONBELAKANG16"><?php echo $data['TENSIONBELAKANG16']; ?> </td>
+		<td class="bg-danger" data-no="17" data-name="TENSIONBELAKANG17"><?php echo $data['TENSIONBELAKANG17']; ?> </td>
+		<td class="bg-danger" data-no="18" data-name="TENSIONBELAKANG18"><?php echo $data['TENSIONBELAKANG18']; ?> </td>
+		<td class="bg-danger" data-no="19" data-name="TENSIONBELAKANG19"><?php echo $data['TENSIONBELAKANG19']; ?> </td>
+		<td class="bg-danger" data-no="20" data-name="TENSIONBELAKANG20"><?php echo $data['TENSIONBELAKANG20']; ?> </td>
+		<td class="bg-danger" data-no="21" data-name="TENSIONBELAKANG21"><?php echo $data['TENSIONBELAKANG21']; ?> </td>
+		<td class="bg-danger" data-no="22" data-name="TENSIONBELAKANG22"><?php echo $data['TENSIONBELAKANG22']; ?> </td>
+		<td class="bg-danger" data-no="23" data-name="TENSIONBELAKANG23"><?php echo $data['TENSIONBELAKANG23']; ?> </td>
+		<td class="bg-danger" data-no="24" data-name="TENSIONBELAKANG24"><?php echo $data['TENSIONBELAKANG24']; ?> </td>
+		<td class="bg-danger" data-no="25" data-name="TENSIONBELAKANG25"><?php echo $data['TENSIONBELAKANG25']; ?> </td>
+		<td class="bg-danger" data-no="26" data-name="TENSIONBELAKANG26"><?php echo $data['TENSIONBELAKANG26']; ?> </td>
+		<td class="bg-danger" data-no="27" data-name="TENSIONBELAKANG27"><?php echo $data['TENSIONBELAKANG27']; ?> </td>
+		<td class="bg-danger" data-no="28" data-name="TENSIONBELAKANG28"><?php echo $data['TENSIONBELAKANG28']; ?> </td>
+
 	</tr>
 	<tr class="baris">
 		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">TENSION KELUAR</td>
@@ -301,20 +303,21 @@ $data = mysqli_fetch_array($sql);
 
 	<tr class="baris">
 		<td data-no="1" colspan="1">2</td>
-		<td class="bg-danger" data-no="1"></td>
-		<td class="bg-danger" data-no="2"> </td>
-		<td class="bg-danger" data-no="3"> </td>
-		<td class="bg-danger" data-no="4"> </td>
-		<td class="bg-danger" data-no="5"> </td>
-		<td class="bg-danger" data-no="6"> </td>
-		<td class="bg-danger" data-no="7"> </td>
-		<td class="bg-danger" data-no="8"> </td>
-		<td class="bg-danger" data-no="9"> </td>
-		<td class="bg-danger" data-no="10"> </td>
-		<td class="bg-danger" data-no="11"> </td>
-		<td class="bg-danger" data-no="12"> </td>
-		<td class="bg-danger" data-no="13"> </td>
-		<td class="bg-danger" data-no="14"> </td>
+		<td class="bg-danger" data-no="1" data-name="TENSIONDEPAN15"><?php echo $data['TENSIONDEPAN15']; ?> </td>
+		<td class="bg-danger" data-no="2" data-name="TENSIONKELUAR16"><?php echo $data['TENSIONKELUAR16']; ?> </td>
+		<td class="bg-danger" data-no="3" data-name="TENSIONKELUAR17"><?php echo $data['TENSIONKELUAR17']; ?> </td>
+		<td class="bg-danger" data-no="4" data-name="TENSIONKELUAR18"><?php echo $data['TENSIONKELUAR18']; ?> </td>
+		<td class="bg-danger" data-no="5" data-name="TENSIONKELUAR19"><?php echo $data['TENSIONKELUAR19']; ?> </td>
+		<td class="bg-danger" data-no="6" data-name="TENSIONKELUAR20"><?php echo $data['TENSIONKELUAR20']; ?> </td>
+		<td class="bg-danger" data-no="7" data-name="TENSIONKELUAR21"><?php echo $data['TENSIONKELUAR21']; ?> </td>
+		<td class="bg-danger" data-no="8" data-name="TENSIONKELUAR22"><?php echo $data['TENSIONKELUAR22']; ?> </td>
+		<td class="bg-danger" data-no="9" data-name="TENSIONKELUAR23"><?php echo $data['TENSIONKELUAR23']; ?> </td>
+		<td class="bg-danger" data-no="10" data-name="TENSIONKELUAR24"><?php echo $data['TENSIONKELUAR24']; ?> </td>
+		<td class="bg-danger" data-no="11" data-name="TENSIONKELUAR25"><?php echo $data['TENSIONKELUAR25']; ?> </td>
+		<td class="bg-danger" data-no="12" data-name="TENSIONKELUAR26"><?php echo $data['TENSIONKELUAR26']; ?> </td>
+		<td class="bg-danger" data-no="13" data-name="TENSIONKELUAR27"><?php echo $data['TENSIONKELUAR27']; ?> </td>
+		<td class="bg-danger" data-no="14" data-name="TENSIONKELUAR28"><?php echo $data['TENSIONKELUAR28']; ?> </td>
+
 	</tr>
 	<tr>
 		<td colspan="2" style="text-align: center;font-size: 15px; font-weight: bold;" data-no="1">POTONG BULU
@@ -663,40 +666,40 @@ $data = mysqli_fetch_array($sql);
 </table>
 <script src="../bootstrap/xeditable/js/bootstrap-editable.min.js"></script>
 <script>
-$(document).ready(function() {
-	$('#splb').editable({
-		container: 'body',
-		selector: 'td.bg-danger',
-		pk: `<?php echo $data['ID'] ?>`,
-		url: 'update.php',
-		title: `EDIT SPLB`,
-		// validate: function(value) {
-		//     if ($.trim(value) == '') {
-		//         return 'This field is required';
-		//     }
-		// },
-		success: function(response, newValue) {
-			if (response.kode == '404') {
-				alert('Error Hubung DIT !')
+	$(document).ready(function () {
+		$('#splb').editable({
+			container: 'body',
+			selector: 'td.bg-danger',
+			pk: `<?php echo $data['ID'] ?>`,
+			url: 'update.php',
+			title: `EDIT SPLB`,
+			// validate: function(value) {
+			//     if ($.trim(value) == '') {
+			//         return 'This field is required';
+			//     }
+			// },
+			success: function (response, newValue) {
+				if (response.kode == '404') {
+					alert('Error Hubung DIT !')
+				}
 			}
-		}
-	});
-	$('#splb').editable({
-		container: 'body',
-		selector: 'td a.bg-danger',
-		pk: `<?php echo $data['ID'] ?>`,
-		url: 'update.php',
-		title: `EDIT SPLB`,
-		// validate: function(value) {
-		//     if ($.trim(value) == '') {
-		//         return 'This field is required';
-		//     }
-		// },
-		success: function(response, newValue) {
-			if (response.kode == '404') {
-				alert('Error Hubung DIT !')
+		});
+		$('#splb').editable({
+			container: 'body',
+			selector: 'td a.bg-danger',
+			pk: `<?php echo $data['ID'] ?>`,
+			url: 'update.php',
+			title: `EDIT SPLB`,
+			// validate: function(value) {
+			//     if ($.trim(value) == '') {
+			//         return 'This field is required';
+			//     }
+			// },
+			success: function (response, newValue) {
+				if (response.kode == '404') {
+					alert('Error Hubung DIT !')
+				}
 			}
-		}
-	});
-})
+		});
+	})
 </script>

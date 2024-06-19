@@ -1,38 +1,44 @@
 <?php
-// Pastikan koneksi ke database sudah diatur
-include ("../koneksi.php");
+// Langkah 1: Pastikan koneksi ke database sudah diatur
+include ("koneksi.php");
 
-// Cek apakah form telah disubmit
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['simpen'])) {
-	// Inisialisasi variabel untuk menampung kolom dan nilai
+// Langkah 2: Cek apakah form telah disubmit
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+	// Langkah 3: Siapkan array untuk menampung kolom dan nilainya
 	$columns = [];
 	$values = [];
 
-	// Loop untuk mengumpulkan setiap field dan nilainya dari $_POST
+	// Langkah 4: Iterasi melalui setiap item POST
 	foreach ($_POST as $key => $value) {
-		// Escape nilai untuk mencegah SQL Injection
-		$escaped_value = mysqli_real_escape_string($con, $value);
-		// Hindari field 'simpen' karena ini adalah tombol submit
+		// Cek apakah ini bukan tombol submit
 		if ($key != 'simpen') {
-			// Tambahkan kolom dan nilai ke dalam array
-			$columns[] = "`$key`";
+			// Escape value to prevent SQL injection
+			$escaped_value = mysqli_real_escape_string($con, $value);
+
+			// Menambahkan nama kolom ke array tanpa escape
+			$columns[] = "`$key`";  // Nama kolom tidak perlu di-escape
+
+			// Menambahkan nilai ke array dengan escape
 			$values[] = "'$escaped_value'";
 		}
 	}
 
-	// Buat string untuk kolom dan nilai
-	$columnsString = implode(", ", $columns);
-	$valuesString = implode(", ", $values);
+	// Langkah 5: Susun query INSERT jika ada kolom dan nilai yang valid
+	if (count($columns) > 0 && count($values) > 0) {
+		$columns_list = implode(", ", $columns);
+		$values_list = implode(", ", $values);
+		$sql = "INSERT INTO tbl_splb ($columns_list) VALUES ($values_list)";
 
-	// Lakukan query INSERT
-	$sql = "INSERT INTO tbl_splb ($columnsString) VALUES ($valuesString)";
-
-	if (mysqli_query($con, $sql)) {
-		echo "Data berhasil disimpan";
+		// Langkah 6: Eksekusi query
+		if (mysqli_query($con, $sql)) {
+			echo "Data berhasil disimpan";
+		} else {
+			// Menangani dan menampilkan error lebih detail
+			echo "Error: " . mysqli_error($con);
+		}
 	} else {
-		echo "Error: " . mysqli_error($con);
+		echo "Tidak ada data valid yang dimasukkan.";
 	}
-} else {
-	echo "Form submission tidak valid";
 }
 ?>
