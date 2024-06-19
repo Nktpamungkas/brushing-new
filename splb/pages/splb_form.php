@@ -182,7 +182,7 @@ if ($idkk != "") {
 									<select style="width: 40%" name="DEAMAND" id="DEAMAND" required>
 										<option value="" disabled selected>Pilih Nomor Demand</option>
 										<?php 
-											$sql_ITXVIEWKK_demand  = db2_exec($conn_db2, "SELECT DEAMAND AS DEMAND FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE = '$_POST[DEAMAND]'");
+											$sql_ITXVIEWKK_demand  = db2_exec($conn_db2, "SELECT DEAMAND AS DEMAND FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE = '$_POST[kk]'");
 											while ($r_demand = db2_fetch_assoc($sql_ITXVIEWKK_demand)) :
 										?>
 											<option value="<?= $r_demand['DEMAND']; ?>" <?php if($r_demand['DEMAND'] == $_GET['demand']){ echo 'SELECTED'; } ?>><?= $r_demand['DEMAND']; ?></option>
