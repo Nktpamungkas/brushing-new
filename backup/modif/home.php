@@ -166,11 +166,7 @@ include ("../koneksi.php");
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th colspan="16" style="text-align:center">FW-14-BRS-12/00</th>
-						</tr>
-						<tr>
-							<th colspan="16" style="background-color: #4CAF50;text-align:center">SETTING PERBEDAAN LOT
-								BRUSHING</th>
+							<th colspan="16" style="background-color: #4CAF50;">SETTING PERBEDAAN LOT BRUSHING</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -187,7 +183,7 @@ include ("../koneksi.php");
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1">ORDER</td>
 							<td class="bg-warning" data-no="2" colspan="8"></td>
-							<td data-no="10" colspan="7" rowspan="6"></textarea></td>
+							<td data-no="10" colspan="7" rowspan="7"></textarea></td>
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1">JENIS KAIN</td>
@@ -212,19 +208,16 @@ include ("../koneksi.php");
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1">NO. HANGER</td>
 							<td class="bg-warning" data-no="2" colspan="8"></td>
-							<td class="bg-warning" data-no="2" colspan="7" style="text-align:center;"></td>
 						</tr>
 						<tr class="baris">
 							<td data-no="1" colspan="9" rowspan="2"
 								style="text-align: center;font-size: 15px; font-weight: bold;">QUALITY
 							</td>
-							<td data-no="10" colspan="6" class="bg-danger" style="text-align:center;">OK</td>
-							<td class="bg-danger"></td>
+							<td data-no="10" colspan="7" class="bg-danger" style="text-align:center;">OK</td>
 
 						</tr>
 						<tr>
-							<td data-no="10" colspan="6" class="bg-danger" style="text-align:center;">NOT OK</td>
-							<td class="bg-danger"></td>
+							<td data-no="10" colspan="7" class="bg-danger" style="text-align:center;">NOT OK</td>
 						</tr>
 
 						<tr>
@@ -234,21 +227,22 @@ include ("../koneksi.php");
 						</tr>
 
 						<tr class="baris">
-							<td colspan="2"> BAGIAN KAIN</td>
-							<td class="bg-danger" data-no="1"></td>
-							<td class="bg-danger" data-no="2"> </td>
-							<td class="bg-danger" data-no="3"> </td>
-							<td class="bg-danger" data-no="4"> </td>
-							<td class="bg-danger" data-no="5"> </td>
-							<td class="bg-danger" data-no="6"> </td>
-							<td class="bg-danger" data-no="7"> </td>
-							<td class="bg-danger" data-no="8"> </td>
-							<td class="bg-danger" data-no="9"> </td>
-							<td class="bg-danger" data-no="10"></td>
-							<td class="bg-danger" data-no="11"></td>
-							<td class="bg-danger" data-no="12"></td>
-							<td class="bg-danger" data-no="13"></td>
-							<td class="bg-danger" data-no="14"></td>
+							<td colspan="1"> BAGIAN KAIN</td>
+							<td class="bg-danger" data-no="1" style="width: 10px;"></td>
+							<td class="bg-danger" data-no="2" style="width: 15px;"> </td>
+							<td class="bg-danger" data-no="3" style="width: 15px;"> </td>
+							<td class="bg-danger" data-no="4" style="width: 15px;"> </td>
+							<td class="bg-danger" data-no="5" style="width: 15px;"> </td>
+							<td class="bg-danger" data-no="6" style="width: 15px;"> </td>
+							<td class="bg-danger" data-no="7" style="width: 15px;"> </td>
+							<td class="bg-danger" data-no="8" style="width: 15px;"> </td>
+							<td class="bg-danger" data-no="9" style="width: 15px;"> </td>
+							<td class="bg-danger" data-no="10" style="width: 15px;"></td>
+							<td class="bg-danger" data-no="11" style="width: 15px;"></td>
+							<td class="bg-danger" data-no="12" style="width: 15px;"></td>
+							<td class="bg-danger" data-no="13" style="width: 15px;"></td>
+							<td class="bg-danger" data-no="14" style="width: 15px;"></td>
+							<td class="bg-danger" data-no="15" style="width: 15px;"></td>
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">COUNTER PILE</td>
@@ -475,7 +469,7 @@ include ("../koneksi.php");
 							<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>
 							<td style="width: 100px; text-align: center;" data-no="1" colspan="2">B</td>
 							<td style="width: 100px;text-align: center;" data-no="1" colspan="2">F</td>
-							<td colspan="4">BAGIAN KAIN</td>
+							<td colspan="4"> % PILE BRUSH</td>
 							<td style="width: 100px;text-align: center;" data-no="1" colspan="3">B</td>
 							<td style="width: 100px;text-align: center;" data-no="1" colspan="3">F</td>
 						</tr>
@@ -483,7 +477,7 @@ include ("../koneksi.php");
 							<td style="width: 180px;" data-no="1" colspan="2">SPEED M/MNT</td>
 							<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2"></td>
 							<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2"></td>
-							<td colspan="4"> % PILE BRUSH</td>
+							<td colspan="4"> BAGIAN KAIN</td>
 							<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3"></td>
 							<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3"></td>
 						</tr>
@@ -500,7 +494,7 @@ include ("../koneksi.php");
 								SISIR</td>
 							<td style="width: 100px;text-align: center;" data-no="1" colspan="2">B</td>
 							<td style="width: 100px;text-align: center;" data-no="1" colspan="2">F</td>
-							<td colspan="4">SIKAT BELAKANG</td>
+							<td colspan="4">% COUNTERPILE BRUSH</td>
 							<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3"></td>
 							<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3"></td>
 						</tr>
@@ -554,14 +548,15 @@ include ("../koneksi.php");
 
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="2">STEAM</td>
-							<td data-no="2" class="bg-danger" colspan="4"></td>
+							<td data-no="2" colspan="4"></td>
 							<td data-no="3" colspan="10" style="font-size: 15px; font-weight: bold;text-align:center;">
 								POLISHING</td>
 
 						</tr>
 						<tr class="baris">
-							<td style="width: 180px;" data-no="1" colspan="2">OVEN</td>
-							<td style="width: 100px;" class="bg-danger" data-no="1" colspan="4"></td>
+							<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>
+							<td style="width: 100px;" data-no="1" colspan="4"></td>
+
 							<td colspan="4" style="text-align: left;">BAGIAN KAIN</td>
 							<td style="width: 100px;text-align: center;" data-no="1" colspan="3">B</td>
 							<td style="width: 100px;text-align: center;" data-no="1" colspan="3">F</td>

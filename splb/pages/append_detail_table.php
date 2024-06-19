@@ -1,465 +1,702 @@
 <?php
 ini_set("error_reporting", 1);
 session_start();
-include("../../koneksi.php");
-$sql = mysqli_query($con,"SELECT * FROM tbl_splb where NO_KARTU_KERJA = '$_GET[kk]'");
+include ("../../koneksi.php");
+$sql = mysqli_query($con, "SELECT * FROM tbl_splb where NO_KARTU_KERJA = '$_GET[kk]'");
 $data = mysqli_fetch_array($sql);
 ?>
 <link rel="stylesheet" href="../bootstrap/xeditable/css/bootstrap-editable.css">
 <table class="table table-bordered" id="splb">
-    <thead>
-        <tr>
-            <th colspan="15" style="background-color: #4CAF50;">SETTING PERBEDAAN LOT BRUSHING</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">No. KK</td>
-            <td class="bg-warning" data-no="2" colspan="8"><?php echo $_GET['kk'] ?></td>
-            <td data-no="10" colspan="6" style="text-align: center;">SPV/ASST/LDR</td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">LANGGANAN</td>
-            <td class="bg-warning" data-no="2" colspan="8"><?php echo $data['LANGGANAN'] ?></td>
-            <td data-no="10" colspan="6" class="bg-warning"><?php echo $data['TANGGAL_01'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">ORDER</td>
-            <td class="bg-warning" data-no="2" colspan="8"><?php echo $data['ORDER'] ?></td>
-            <td data-no="10" colspan="6" rowspan="7"><?php echo $data['NOTE'] ?></textarea></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">JENIS KAIN</td>
-            <td class="bg-warning" data-no="2" colspan="8"><?php echo $data['JENIS_KAIN'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">WARNA</td>
-            <td class="bg-warning" data-no="2" colspan="8"><?php echo $data['WARNA'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">L X G PERMINTAAN</td>
-            <td class="bg-warning" data-no="2" colspan="8"><?php echo $data['L_PERMINTAAN'] ?> X <?php echo $data['G_PERMINTAAN'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">L X G AKTUAL</td>
-            <td class="bg-warning" data-no="2" colspan="8">
-                <a href="javascript:void(0)" class="bg-danger" data-name="L_AKTUAL"><?php echo $data['L_AKTUAL'] ?></a>
-                X
-                <a href="javascript:void(0)" class="bg-danger" data-name="G_AKTUAL"><?php echo $data['G_AKTUAL'] ?></a>
-            </td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">LOT</td>
-            <td class="bg-warning" data-no="2" colspan="8"><?php echo $data['LOT'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">NO. HANGER</td>
-            <td class="bg-warning" data-no="2" colspan="8"><?php echo $data['NO_HANGER'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td data-no="1" colspan="9">RAISING</td>
-            <td data-no="10" colspan="6" class="bg-danger" data-name="NAMA_TTD"><?php echo $data['NAMA_TTD'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">NO. MESIN</td>
-            <td style="text-align: center;" data-no="2">1</td>
-            <td style="text-align: center;" data-no="3">2</td>
-            <td style="text-align: center;" data-no="4">3</td>
-            <td style="text-align: center;" data-no="5">4</td>
-            <td style="text-align: center;" data-no="6">5</td>
-            <td style="text-align: center;" data-no="7">6</td>
-            <td style="text-align: center;" data-no="8">7</td>
-            <td style="text-align: center;" data-no="9">8</td>
-            <td style="text-align: center;" data-no="10">9</td>
-            <td style="text-align: center;" data-no="11">10</td>
-            <td style="text-align: center;" data-no="12">11</td>
-            <td style="text-align: center;" data-no="13">12</td>
-            <td style="text-align: center;" data-no="14">13</td>
-            <td style="text-align: center;" data-no="15">14</td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">BAG. KAIN</td>
-            <td class="bg-danger" data-no="2" data-name="BAG_KAIN_01"><?php echo $data['BAG_KAIN_01'] ?></td>
-            <td class="bg-danger" data-no="3" data-name="BAG_KAIN_02"><?php echo $data['BAG_KAIN_02'] ?></td>
-            <td class="bg-danger" data-no="4" data-name="BAG_KAIN_03"><?php echo $data['BAG_KAIN_03'] ?></td>
-            <td class="bg-danger" data-no="5" data-name="BAG_KAIN_04"><?php echo $data['BAG_KAIN_04'] ?></td>
-            <td class="bg-danger" data-no="6" data-name="BAG_KAIN_05"><?php echo $data['BAG_KAIN_05'] ?></td>
-            <td class="bg-danger" data-no="7" data-name="BAG_KAIN_06"><?php echo $data['BAG_KAIN_06'] ?></td>
-            <td class="bg-danger" data-no="8" data-name="BAG_KAIN_07"><?php echo $data['BAG_KAIN_07'] ?></td>
-            <td class="bg-danger" data-no="9" data-name="BAG_KAIN_08"><?php echo $data['BAG_KAIN_08'] ?></td>
-            <td class="bg-danger" data-no="10" data-name="BAG_KAIN_09"><?php echo $data['BAG_KAIN_09'] ?></td>
-            <td class="bg-danger" data-no="11" data-name="BAG_KAIN_10"><?php echo $data['BAG_KAIN_10'] ?></td>
-            <td class="bg-danger" data-no="12" data-name="BAG_KAIN_11"><?php echo $data['BAG_KAIN_11'] ?></td>
-            <td class="bg-danger" data-no="13" data-name="BAG_KAIN_12"><?php echo $data['BAG_KAIN_12'] ?></td>
-            <td class="bg-danger" data-no="14" data-name="BAG_KAIN_13"><?php echo $data['BAG_KAIN_13'] ?></td>
-            <td class="bg-danger" data-no="15" data-name="BAG_KAIN_14"><?php echo $data['BAG_KAIN_14'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">JAR GARUK/S-D EFFECT</td>
-            <td class="bg-danger" data-no="2" data-name="JAR_GARUK_01"><?php echo $data['JAR_GARUK_01'] ?></td>
-            <td class="bg-danger" data-no="3" data-name="JAR_GARUK_02"><?php echo $data['JAR_GARUK_02'] ?></td>
-            <td class="bg-danger" data-no="4" data-name="JAR_GARUK_03"><?php echo $data['JAR_GARUK_03'] ?></td>
-            <td class="bg-danger" data-no="5" data-name="JAR_GARUK_04"><?php echo $data['JAR_GARUK_04'] ?></td>
-            <td class="bg-danger" data-no="6" data-name="JAR_GARUK_05"><?php echo $data['JAR_GARUK_05'] ?></td>
-            <td class="bg-danger" data-no="7" data-name="JAR_GARUK_06"><?php echo $data['JAR_GARUK_06'] ?></td>
-            <td class="bg-danger" data-no="8" data-name="JAR_GARUK_07"><?php echo $data['JAR_GARUK_07'] ?></td>
-            <td class="bg-danger" data-no="9" data-name="JAR_GARUK_08"><?php echo $data['JAR_GARUK_08'] ?></td>
-            <td class="bg-danger" data-no="10" data-name="JAR_GARUK_09"><?php echo $data['JAR_GARUK_09'] ?></td>
-            <td class="bg-danger" data-no="11" data-name="JAR_GARUK_10"><?php echo $data['JAR_GARUK_10'] ?></td>
-            <td class="bg-danger" data-no="12" data-name="JAR_GARUK_11"><?php echo $data['JAR_GARUK_11'] ?></td>
-            <td class="bg-danger" data-no="13" data-name="JAR_GARUK_12"><?php echo $data['JAR_GARUK_12'] ?></td>
-            <td class="bg-danger" data-no="14" data-name="JAR_GARUK_13"><?php echo $data['JAR_GARUK_13'] ?></td>
-            <td class="bg-danger" data-no="15" data-name="JAR_GARUK_14"><?php echo $data['JAR_GARUK_14'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">DRUM</td>
-            <td class="bg-danger" data-no="2" data-name="DRUM_01"><?php echo $data['DRUM_01'] ?></td>
-            <td class="bg-danger" data-no="3" data-name="DRUM_02"><?php echo $data['DRUM_02'] ?></td>
-            <td class="bg-danger" data-no="4" data-name="DRUM_03"><?php echo $data['DRUM_03'] ?></td>
-            <td class="bg-danger" data-no="5" data-name="DRUM_04"><?php echo $data['DRUM_04'] ?></td>
-            <td class="bg-danger" data-no="6" data-name="DRUM_05"><?php echo $data['DRUM_05'] ?></td>
-            <td class="bg-danger" data-no="7" data-name="DRUM_06"><?php echo $data['DRUM_06'] ?></td>
-            <td class="bg-danger" data-no="8" data-name="DRUM_07"><?php echo $data['DRUM_07'] ?></td>
-            <td class="bg-danger" data-no="9" data-name="DRUM_08"><?php echo $data['DRUM_08'] ?></td>
-            <td class="bg-danger" data-no="10" data-name="DRUM_09"><?php echo $data['DRUM_09'] ?></td>
-            <td class="bg-danger" data-no="11" data-name="DRUM_10"><?php echo $data['DRUM_10'] ?></td>
-            <td class="bg-danger" data-no="12" data-name="DRUM_11"><?php echo $data['DRUM_11'] ?></td>
-            <td class="bg-danger" data-no="13" data-name="DRUM_12"><?php echo $data['DRUM_12'] ?></td>
-            <td class="bg-danger" data-no="14" data-name="DRUM_13"><?php echo $data['DRUM_13'] ?></td>
-            <td class="bg-danger" data-no="15" data-name="DRUM_14"><?php echo $data['DRUM_14'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">JAR SISIR/I-D EFFECT</td>
-            <td class="bg-danger" data-no="2" data-name="JAR_SISIR_01"><?php echo $data['JAR_SISIR_01'] ?></td>
-            <td class="bg-danger" data-no="3" data-name="JAR_SISIR_02"><?php echo $data['JAR_SISIR_02'] ?></td>
-            <td class="bg-danger" data-no="4" data-name="JAR_SISIR_03"><?php echo $data['JAR_SISIR_03'] ?></td>
-            <td class="bg-danger" data-no="5" data-name="JAR_SISIR_04"><?php echo $data['JAR_SISIR_04'] ?></td>
-            <td class="bg-danger" data-no="6" data-name="JAR_SISIR_05"><?php echo $data['JAR_SISIR_05'] ?></td>
-            <td class="bg-danger" data-no="7" data-name="JAR_SISIR_06"><?php echo $data['JAR_SISIR_06'] ?></td>
-            <td class="bg-danger" data-no="8" data-name="JAR_SISIR_07"><?php echo $data['JAR_SISIR_07'] ?></td>
-            <td class="bg-danger" data-no="9" data-name="JAR_SISIR_08"><?php echo $data['JAR_SISIR_08'] ?></td>
-            <td class="bg-danger" data-no="10" data-name="JAR_SISIR_09"><?php echo $data['JAR_SISIR_09'] ?></td>
-            <td class="bg-danger" data-no="13" data-name="JAR_SISIR_10"><?php echo $data['JAR_SISIR_10'] ?></td>
-            <td class="bg-danger" data-no="11" data-name="JAR_SISIR_11"><?php echo $data['JAR_SISIR_11'] ?></td>
-            <td class="bg-danger" data-no="12" data-name="JAR_SISIR_12"><?php echo $data['JAR_SISIR_12'] ?></td>
-            <td class="bg-danger" data-no="14" data-name="JAR_SISIR_13"><?php echo $data['JAR_SISIR_13'] ?></td>
-            <td class="bg-danger" data-no="15" data-name="JAR_SISIR_14"><?php echo $data['JAR_SISIR_14'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SPEED M/MNT</td>
-            <td class="bg-danger" data-no="2" data-name="SPEED01"><?php echo $data['SPEED01'] ?></td>
-            <td class="bg-danger" data-no="3" data-name="SPEED02"><?php echo $data['SPEED02'] ?></td>
-            <td class="bg-danger" data-no="4" data-name="SPEED03"><?php echo $data['SPEED03'] ?></td>
-            <td class="bg-danger" data-no="5" data-name="SPEED04"><?php echo $data['SPEED04'] ?></td>
-            <td class="bg-danger" data-no="6" data-name="SPEED05"><?php echo $data['SPEED05'] ?></td>
-            <td class="bg-danger" data-no="7" data-name="SPEED06"><?php echo $data['SPEED06'] ?></td>
-            <td class="bg-danger" data-no="8" data-name="SPEED07"><?php echo $data['SPEED07'] ?></td>
-            <td class="bg-danger" data-no="9" data-name="SPEED08"><?php echo $data['SPEED08'] ?></td>
-            <td class="bg-danger" data-no="10" data-name="SPEED09"><?php echo $data['SPEED09'] ?></td>
-            <td class="bg-danger" data-no="11" data-name="SPEED10"><?php echo $data['SPEED10'] ?></td>
-            <td class="bg-danger" data-no="12" data-name="SPEED11"><?php echo $data['SPEED11'] ?></td>
-            <td class="bg-danger" data-no="13" data-name="SPEED12"><?php echo $data['SPEED12'] ?></td>
-            <td class="bg-danger" data-no="14" data-name="SPEED13"><?php echo $data['SPEED13'] ?></td>
-            <td class="bg-danger" data-no="15" data-name="SPEED14"><?php echo $data['SPEED14'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">TENSION 1</td>
-            <td class="bg-danger" data-no="2" data-name="TENSION1_01"><?php echo $data['TENSION1_01'] ?></td>
-            <td class="bg-danger" data-no="3" data-name="TENSION1_02"><?php echo $data['TENSION1_02'] ?></td>
-            <td class="bg-danger" data-no="4" data-name="TENSION1_03"><?php echo $data['TENSION1_03'] ?></td>
-            <td class="bg-danger" data-no="5" data-name="TENSION1_04"><?php echo $data['TENSION1_04'] ?></td>
-            <td class="bg-danger" data-no="6" data-name="TENSION1_05"><?php echo $data['TENSION1_05'] ?></td>
-            <td class="bg-danger" data-no="7" data-name="TENSION1_06"><?php echo $data['TENSION1_06'] ?></td>
-            <td class="bg-danger" data-no="8" data-name="TENSION1_07"><?php echo $data['TENSION1_07'] ?></td>
-            <td class="bg-danger" data-no="9" data-name="TENSION1_08"><?php echo $data['TENSION1_08'] ?></td>
-            <td class="bg-danger" data-no="10" data-name="TENSION1_09"><?php echo $data['TENSION1_09'] ?></td>
-            <td class="bg-danger" data-no="11" data-name="TENSION1_10"><?php echo $data['TENSION1_10'] ?></td>
-            <td class="bg-danger" data-no="12" data-name="TENSION1_11"><?php echo $data['TENSION1_11'] ?></td>
-            <td class="bg-danger" data-no="13" data-name="TENSION1_12"><?php echo $data['TENSION1_12'] ?></td>
-            <td class="bg-danger" data-no="14" data-name="TENSION1_13"><?php echo $data['TENSION1_13'] ?></td>
-            <td class="bg-danger" data-no="15" data-name="TENSION1_14"><?php echo $data['TENSION1_14'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">TENSION 2</td>
-            <td class="bg-danger" data-no="2" data-name="TENSION2_01"><?php echo $data['TENSION2_01'] ?></td>
-            <td class="bg-danger" data-no="3" data-name="TENSION2_02"><?php echo $data['TENSION2_02'] ?></td>
-            <td class="bg-danger" data-no="4" data-name="TENSION2_03"><?php echo $data['TENSION2_03'] ?></td>
-            <td class="bg-danger" data-no="5" data-name="TENSION2_04"><?php echo $data['TENSION2_04'] ?></td>
-            <td class="bg-danger" data-no="6" data-name="TENSION2_05"><?php echo $data['TENSION2_05'] ?></td>
-            <td class="bg-danger" data-no="7" data-name="TENSION2_06"><?php echo $data['TENSION2_06'] ?></td>
-            <td class="bg-danger" data-no="8" data-name="TENSION2_07"><?php echo $data['TENSION2_07'] ?></td>
-            <td class="bg-danger" data-no="9" data-name="TENSION2_08"><?php echo $data['TENSION2_08'] ?></td>
-            <td class="bg-danger" data-no="10" data-name="TENSION2_09"><?php echo $data['TENSION2_09'] ?></td>
-            <td class="bg-danger" data-no="11" data-name="TENSION2_10"><?php echo $data['TENSION2_10'] ?></td>
-            <td class="bg-danger" data-no="12" data-name="TENSION2_11"><?php echo $data['TENSION2_11'] ?></td>
-            <td class="bg-danger" data-no="13" data-name="TENSION2_12"><?php echo $data['TENSION2_12'] ?></td>
-            <td class="bg-danger" data-no="14" data-name="TENSION2_13"><?php echo $data['TENSION2_13'] ?></td>
-            <td class="bg-danger" data-no="15" data-name="TENSION2_14"><?php echo $data['TENSION2_14'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">TENSION 3</td>
-            <td class="bg-danger" data-no="2" data-name="TENSION3_01"><?php echo $data['TENSION3_01'] ?></td>
-            <td class="bg-danger" data-no="3" data-name="TENSION3_02"><?php echo $data['TENSION3_02'] ?></td>
-            <td class="bg-danger" data-no="4" data-name="TENSION3_03"><?php echo $data['TENSION3_03'] ?></td>
-            <td class="bg-danger" data-no="5" data-name="TENSION3_04"><?php echo $data['TENSION3_04'] ?></td>
-            <td class="bg-danger" data-no="6" data-name="TENSION3_05"><?php echo $data['TENSION3_05'] ?></td>
-            <td class="bg-danger" data-no="7" data-name="TENSION3_06"><?php echo $data['TENSION3_06'] ?></td>
-            <td class="bg-danger" data-no="8" data-name="TENSION3_07"><?php echo $data['TENSION3_07'] ?></td>
-            <td class="bg-danger" data-no="9" data-name="TENSION3_08"><?php echo $data['TENSION3_08'] ?></td>
-            <td class="bg-danger" data-no="10" data-name="TENSION3_09"><?php echo $data['TENSION3_09'] ?></td>
-            <td class="bg-danger" data-no="11" data-name="TENSION3_10"><?php echo $data['TENSION3_10'] ?></td>
-            <td class="bg-danger" data-no="12" data-name="TENSION3_11"><?php echo $data['TENSION3_11'] ?></td>
-            <td class="bg-danger" data-no="13" data-name="TENSION3_12"><?php echo $data['TENSION3_12'] ?></td>
-            <td class="bg-danger" data-no="14" data-name="TENSION3_13"><?php echo $data['TENSION3_13'] ?></td>
-            <td class="bg-danger" data-no="15" data-name="TENSION3_14"><?php echo $data['TENSION3_14'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SHEARING</td>
-            <td style="text-align: center;" data-no="2" colspan="2" class="bg-danger" data-name="SHEARING_1"><?php echo $data['SHEARING_1'] ?></td>
-            <td style="text-align: center;" data-no="4" colspan="2" class="bg-danger" data-name="SHEARING_2"><?php echo $data['SHEARING_2'] ?></td>
-            <td style="text-align: center;" data-no="6" colspan="3">TUMBLE DRY</td>
-            <td style="text-align: center;" data-no="9" colspan="3">COMBING 01</td>
-            <td style="text-align: center;" data-no="12" colspan="2">B</td>
-            <td style="text-align: center;" data-no="14" colspan="2">F</td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">BAGIAN</td>
-            <td style="text-align: center;" data-no="2" colspan="2">B</td>
-            <td style="text-align: center;" data-no="4" colspan="2">F</td>
-            <td class="bg-danger" data-name="TUMBLEDRY" style="text-align: center;" data-no="6" colspan="3"><?php echo $data['TUMBLEDRY'] ?></td>
-            <td style="text-align: center;" data-no="9" colspan="3">SPEED KAIN M/MNT</td>
-            <td class="bg-danger" data-name="SPEED_KAIN_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['SPEED_KAIN_B'] ?></td>
-            <td class="bg-danger" data-name="SPEED_KAIN_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['SPEED_KAIN_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SPEED M/MNT</td>
-            <td class="bg-danger" data-name="SPEED_M_MNT_B" style="text-align: center;" data-no="2" colspan="2"><?php echo $data['SPEED_M_MNT_B'] ?></td>
-            <td class="bg-danger" data-name="SPEED_M_MNT_F" style="text-align: center;" data-no="4" colspan="2"><?php echo $data['SPEED_M_MNT_F'] ?></td>
-            <td style="text-align: center;" data-no="6" colspan="3">AIRO</td>
-            <td style="text-align: center;" data-no="9" colspan="3">SPEED JARUM</td>
-            <td class="bg-danger" data-name="SPEED_JARUM_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['SPEED_JARUM_B'] ?></td>
-            <td class="bg-danger" data-name="SPEED_JARUM_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['SPEED_JARUM_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">JARAK PISAU</td>
-            <td class="bg-danger" data-name="JARAK_PISAU_B" style="text-align: center;" data-no="2" colspan="2"><?php echo $data['JARAK_PISAU_B'] ?></td>
-            <td class="bg-danger" data-name="JARAK_PISAU_F" style="text-align: center;" data-no="4" colspan="2"><?php echo $data['JARAK_PISAU_F'] ?></td>
-            <td class="bg-danger" data-name="AIRO" style="text-align: center;" data-no="6" colspan="3"><?php echo $data['AIRO'] ?></td>
-            <td style="text-align: center;" data-no="9" colspan="3">SPEED DRUM</td>
-            <td class="bg-danger" data-name="SPEED_DRM_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['SPEED_DRM_B'] ?></td>
-            <td class="bg-danger" data-name="SPEED_DRM_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['SPEED_DRM_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td data-no="1" colspan="2">SUEDING 01/02</td>
-            <td data-no="3" colspan="5">BACK DRAG ROLL</td>
-            <td class="bg-danger" data-name="BLACK_DRAGROLL" data-no="4"><?php echo $data['BLACK_DRAGROLL'] ?></td>
-            <td style="text-align: center;" data-no="9" colspan="3">SPEED TARIKAN KAIN</td>
-            <td class="bg-danger" data-name="SPEED_TARIKAN_KAIN_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['SPEED_TARIKAN_KAIN_B'] ?></td>
-            <td class="bg-danger" data-name="SPEED_TARIKAN_KAIN_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['SPEED_TARIKAN_KAIN_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">% PILE BRUSH</td>
-            <td class="bg-danger" data-name="PILE_BRUSH" style="text-align: center;" data-no="2"><?php echo $data['PILE_BRUSH'] ?></td>
-            <td data-no="3" colspan="5">PLAITER TENSION</td>
-            <td class="bg-danger" data-name="PLAITER_TENSION" data-no="4"><?php echo $data['PLAITER_TENSION'] ?></td>
-            <td style="text-align: center; font-weight: bold;" data-no="9" colspan="3">COMBING 02</td>
-            <td style="text-align: center;" data-no="12" colspan="2">B</td>
-            <td style="text-align: center;" data-no="14" colspan="2">F</td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">% COUNTERPILE BRUSH</td>
-            <td class="bg-danger" data-name="COUNTERPILE_BRUSH" style="text-align: center;" data-no="2"><?php echo $data['COUNTERPILE_BRUSH'] ?></td>
-            <td data-no="3" colspan="5">% REDUCED SUEDING</td>
-            <td class="bg-danger" data-name="REDUCED_SUEDING" data-no="4"><?php echo $data['REDUCED_SUEDING'] ?></td>
-            <td style="text-align: center;" data-no="9" colspan="3">JAR GARUK</td>
-            <td class="bg-danger" data-name="JAR_GARUK_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['JAR_GARUK_B'] ?></td>
-            <td class="bg-danger" data-name="JAR_GARUK_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['JAR_GARUK_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">% DELIVERY BRUSH</td>
-            <td class="bg-danger" data-name="DELIVERY_BRUSH" style="text-align: center;" data-no="2"><?php echo $data['DELIVERY_BRUSH'] ?></td>
-            <td data-no="3" colspan="5">SPEED KAIN</td>
-            <td class="bg-danger" data-name="SPEED_KAIN" data-no="4"><?php echo $data['SPEED_KAIN'] ?></td>
-            <td style="text-align: center;" data-no="9" colspan="3">DRUM</td>
-            <td class="bg-danger" data-name="DRUM_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['DRUM_B'] ?></td>
-            <td class="bg-danger" data-name="DRUM_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['DRUM_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">TAKER IN TENSION</td>
-            <td class="bg-danger" data-name="TAKER_IN_TENSION" style="text-align: center;" data-no="2"><?php echo $data['TAKER_IN_TENSION'] ?></td>
-            <td data-no="3" colspan="5">SPEED DRUM</td>
-            <td class="bg-danger" data-name="SPEED_DRUM" data-no="4"><?php echo $data['SPEED_DRUM'] ?></td>
-            <td style="text-align: center;" data-no="9" colspan="3">JAR SISIR</td>
-            <td class="bg-danger" data-name="JAR_SISIR_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['JAR_SISIR_B'] ?></td>
-            <td class="bg-danger" data-name="JAR_SISIR_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['JAR_SISIR_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">FRONT DRUM TENSION</td>
-            <td class="bg-danger" data-name="FRONT_DRUM_TENSION" style="text-align: center;" data-no="2"><?php echo $data['FRONT_DRUM_TENSION'] ?></td>
-            <td data-no="3" colspan="5">SPEED TOTATION</td>
-            <td class="bg-danger" data-name="SPEED_TOTATION" data-no="4"><?php echo $data['SPEED_TOTATION'] ?></td>
-            <td style="text-align: center;" data-no="9" colspan="3">SPEED M/MNT</td>
-            <td class="bg-danger" data-name="SPEED_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['SPEED_B'] ?></td>
-            <td class="bg-danger" data-name="SPEED_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['SPEED_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">REAR DRUM TENSION</td>
-            <td class="bg-danger" data-name="REAR_DRUM_TENSION" style="text-align: center;" data-no="2"><?php echo $data['REAR_DRUM_TENSION'] ?></td>
-            <td data-no="3" colspan="5">LOAD CELLS CONTROL</td>
-            <td class="bg-danger" data-name="LOAD_CELLS_CTRL" data-no="4"><?php echo $data['LOAD_CELLS_CTRL'] ?></td>
-            <td style="text-align: center;" data-no="9" colspan="3">TENSION</td>
-            <td class="bg-danger" data-name="TENSION_B" style="text-align: center;" data-no="12" colspan="2"><?php echo $data['TENSION_B'] ?></td>
-            <td class="bg-danger" data-name="TENSION_F" style="text-align: center;" data-no="14" colspan="2"><?php echo $data['TENSION_F'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">POLISHING</td>
-            <td data-no="2" colspan="6"></td>
-            <td style="text-align: center;" data-no="9" colspan="2">SPEED M/MNT</td>
-            <td class="bg-danger" data-name="SPEED_POLISHING" data-no="11"><?php echo $data['SPEED_POLISHING'] ?></td>
-            <td data-no="12" colspan="5"></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SUHU ROLLER °C</td>
-            <td data-no="2">F</td>
-            <td class="bg-danger" data-name="SUHU_ROLLER_F" data-no="3" colspan="2"><?php echo $data['SUHU_ROLLER_F'] ?></td>
-            <td data-no="5">B</td>
-            <td class="bg-danger" data-name="SUHU_ROLLER_B" data-no="6" colspan="2"><?php echo $data['SUHU_ROLLER_B'] ?></td>
-            <td data-no="8" colspan="2">GAP</td>
-            <td data-no="10">1</td>
-            <td class="bg-danger" data-name="GAP_01" data-no="11" colspan="2"><?php echo $data['GAP_01'] ?></td>
-            <td data-no="13">2</td>
-            <td class="bg-danger" data-name="GAP_02" data-no="14" colspan="2"><?php echo $data['GAP_02'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SPEED ROLLER</td>
-            <td data-no="2">F</td>
-            <td class="bg-danger" data-name="SPEED_RLR_F" data-no="3" colspan="2"><?php echo $data['SPEED_RLR_F'] ?></td>
-            <td data-no="5">B</td>
-            <td class="bg-danger" data-name="SPEED_RLR_B" data-no="6" colspan="2"><?php echo $data['SPEED_RLR_B'] ?></td>
-            <td data-no="8" colspan="2">TENSION</td>
-            <td data-no="10">1</td>
-            <td class="bg-danger" data-name="TENSION_01" data-no="11" colspan="2" <?php echo $data['TENSION_01'] ?>></td>
-            <td data-no="13">2</td>
-            <td class="bg-danger" data-name="TENSION_02" data-no="14" colspan="2"><?php echo $data['TENSION_02'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SUEDING 03</td>
-            <td data-no="2" colspan="3">SPEED KAIN M/MNT</td>
-            <td class="bg-danger" data-name="SUEDING_03_SPEED" data-no="5" colspan="2"><?php echo $data['SUEDING_03_SPEED'] ?></td>
-            <td data-no="7" colspan="3" style="text-align: center;">TEK REGULATOR</td>
-            <td class="bg-danger" data-name="TEK_REGULATOR" data-no="8" colspan="2"><?php echo $data['TEK_REGULATOR'] ?></td>
-            <td data-no="10" colspan="2">&nbsp;</td>
-            <td data-no="12" colspan="2" rowspan="2" style="text-align: center; vertical-align: middle;">QUALITY</td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">TEKANAN KAIN</td>
-            <td data-no="2">1</td>
-            <td class="bg-danger" data-name="TEKANAN_KAIN_01" data-no="3"><?php echo $data['TEKANAN_KAIN_01'] ?></td>
-            <td data-no="4">2</td>
-            <td class="bg-danger" data-name="TEKANAN_KAIN_02" data-no="5"><?php echo $data['TEKANAN_KAIN_02'] ?></td>
-            <td data-no="6">3</td>
-            <td class="bg-danger" data-name="TEKANAN_KAIN_03" data-no="7"><?php echo $data['TEKANAN_KAIN_03'] ?></td>
-            <td data-no="8">4</td>
-            <td class="bg-danger" data-name="TEKANAN_KAIN_04" data-no="9"><?php echo $data['TEKANAN_KAIN_04'] ?></td>
-            <td data-no="10">5</td>
-            <td class="bg-danger" data-name="TEKANAN_KAIN_05" data-no="11"><?php echo $data['TEKANAN_KAIN_05'] ?></td>
-            <td data-no="12">6</td>
-            <td class="bg-danger" data-name="TEKANAN_KAIN_06" data-no="13"><?php echo $data['TEKANAN_KAIN_06'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SPEED SIKAT</td>
-            <td data-no="2">1</td>
-            <td class="bg-danger" data-name="SPEED_SIKAT_01" data-no="3"><?php echo $data['SPEED_SIKAT_01'] ?></td>
-            <td data-no="4">2</td>
-            <td class="bg-danger" data-name="SPEED_SIKAT_02" data-no="5"><?php echo $data['SPEED_SIKAT_02'] ?></td>
-            <td data-no="6">3</td>
-            <td class="bg-danger" data-name="SPEED_SIKAT_03" data-no="7"><?php echo $data['SPEED_SIKAT_03'] ?></td>
-            <td data-no="8">4</td>
-            <td class="bg-danger" data-name="SPEED_SIKAT_04" data-no="9"><?php echo $data['SPEED_SIKAT_04'] ?></td>
-            <td data-no="10">5</td>
-            <td class="bg-danger" data-name="SPEED_SIKAT_05" data-no="11"><?php echo $data['SPEED_SIKAT_05'] ?></td>
-            <td data-no="12">6</td>
-            <td class="bg-danger" data-name="SPEED_SIKAT_06" data-no="13"><?php echo $data['SPEED_SIKAT_06'] ?></td>
-            <td class="bg-danger" data-name="QUALITY" data-no="14" colspan="2" rowspan="4" style="text-align: center; vertical-align: middle;"><?php echo $data['QUALITY'] ?></td>
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SUEDING 04</td>
-            <td data-no="2" colspan="3">SPEED KAIN M/MNT</td>
-            <td data-no="5" colspan="2" data-name="SUEDING_04_SPEED" class="bg-danger"><?php echo $data['SUEDING_04_SPEED'] ?></td>
-            <td data-no="7" colspan="3">TEK REAGULATOR</td>
-            <td data-no="9" colspan="2" data-name="TANGGAL_02" class="bg-danger"><?php echo $data['TANGGAL_02'] ?></td>
-            <td data-no="12" colspan="2">&nbsp;</td>
+	<thead>
+		<tr>
+			<th colspan="16" style="text-align:center">FW-14-BRS-12/00</th>
+		</tr>
+		<tr>
+			<th colspan="16" style="background-color: #4CAF50;">SETTING PERBEDAAN LOT BRUSHING</th>
+		</tr>
+	</thead>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">No. KK & DEMAND</td>
+		<td class="bg-warning" data-no="2" colspan="8">
+			<?php echo $_GET['kk'] ?>&nbsp;/&nbsp;<?php echo $data['DEAMAND'] ?>
+		</td>
+		<td data-no="10" colspan="7" style="text-align: center;">SPV/ASST/LDR</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">LANGGANAN</td>
+		<td class="bg-warning" data-no="2" colspan="8"><?php echo $data['LANGGANAN'] ?></td>
+		<td style="text-align:center;" data-no="10" colspan="7" class="bg-warning"><?php echo $data['TANGGAL_01'] ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">ORDER</td>
+		<td class="bg-warning" data-no="2" colspan="8"><?php echo $data['ORDER'] ?></td>
+		<td data-no="10" colspan="7" rowspan="6"><?php echo $data['NOTE'] ?></textarea></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">JENIS KAIN</td>
+		<td class="bg-warning" data-no="2" colspan="8"><?php echo $data['JENIS_KAIN'] ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">WARNA</td>
+		<td class="bg-warning" data-no="2" colspan="8"><?php echo $data['WARNA'] ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">L X G PERMINTAAN</td>
+		<td class="bg-warning" data-no="2" colspan="8"><?php echo $data['L_PERMINTAAN'] ?> X
+			<?php echo $data['G_PERMINTAAN'] ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">L X G AKTUAL</td>
+		<td class="bg-warning" data-no="2" colspan="8">
+			<a href="javascript:void(0)" class="bg-danger" data-name="L_AKTUAL"><?php echo $data['L_AKTUAL'] ?></a>
+			X
+			<a href="javascript:void(0)" class="bg-danger" data-name="G_AKTUAL"><?php echo $data['G_AKTUAL'] ?></a>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">LOT</td>
+		<td class="bg-warning" data-no="2" colspan="8"><?php echo $data['LOT'] ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1">NO. HANGER</td>
+		<td class="bg-warning" data-no="2" colspan="8"><?php echo $data['NO_HANGER'] ?></td>
+		<td class="bg-warning" data-no="2" colspan="7" style="text-align:center;"><?php echo $data['NAMA_TTD'] ?></td>
 
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">TEKANAN KAIN</td>
-            <td data-no="2">1</td>
-            <td class="bg-danger" data-name="TEKANAN04_01" data-no="3"><?php echo $data['TEKANAN04_01'] ?></td>
-            <td data-no="4">2</td>
-            <td class="bg-danger" data-name="TEKANAN04_02" data-no="5"><?php echo $data['TEKANAN04_02'] ?></td>
-            <td data-no="6">3</td>
-            <td class="bg-danger" data-name="TEKANAN04_03" data-no="7"><?php echo $data['TEKANAN04_03'] ?></td>
-            <td data-no="8">4</td>
-            <td class="bg-danger" data-name="TEKANAN04_04" data-no="9"><?php echo $data['TEKANAN04_04'] ?></td>
-            <td data-no="10">5</td>
-            <td class="bg-danger" data-name="TEKANAN04_05" data-no="11"><?php echo $data['TEKANAN04_05'] ?></td>
-            <td data-no="12">6</td>
-            <td class="bg-danger" data-name="TEKANAN04_06" data-no="13"><?php echo $data['TEKANAN04_06'] ?></td>
+	</tr>
+	<tr class="baris">
+		<td data-no="1" colspan="9" rowspan="2" style="text-align: center;font-size: 15px; font-weight: bold;">QUALITY
+		</td>
+		<td data-no="1" colspan="6" style="text-align:center;">OK</td>
+		<td colspan="1" style="text-align: center;" class="bg-danger" data-no="2" data-name="OK">
+			<?php echo $data['OK'] ?>
+		</td>
 
-        </tr>
-        <tr class="baris">
-            <td style="width: 180px;" data-no="1">SPEED SIKAT</td>
-            <td data-no="2">1</td>
-            <td class="bg-danger" data-name="SIKAT04_01" data-no="3"><?php echo $data['SIKAT04_01'] ?></td>
-            <td data-no="4">2</td>
-            <td class="bg-danger" data-name="SIKAT04_02" data-no="5"><?php echo $data['SIKAT04_02'] ?></td>
-            <td data-no="6">3</td>
-            <td class="bg-danger" data-name="SIKAT04_03" data-no="7"><?php echo $data['SIKAT04_03'] ?></td>
-            <td data-no="8">4</td>
-            <td class="bg-danger" data-name="SIKAT04_04" data-no="9"><?php echo $data['SIKAT04_04'] ?></td>
-            <td data-no="10">5</td>
-            <td class="bg-danger" data-name="SIKAT04_05" data-no="11"><?php echo $data['SIKAT04_05'] ?></td>
-            <td data-no="12">6</td>
-            <td class="bg-danger" data-name="SIKAT04_06" data-no="13"><?php echo $data['SIKAT04_06'] ?></td>
-        </tr>
-    </tbody>
+	</tr>
+	<tr>
+		<td data-no="1" colspan="6" style="text-align:center;">NOT OK</td>
+		<td colspan="1" style="text-align:center" data-no="2" class="bg-danger" data-name="NOT_OK">
+			<?php echo $data['NOT_OK'] ?>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="2" style="text-align: center;font-size: 15px; font-weight: bold;">GARUK</td>
+		<td class="bg-danger" colspan="1"></td>
+		<td colspan="14"></td>
+	</tr>
+
+	<tr class="baris">
+		<td colspan="2"> BAGIAN KAIN</td>
+		<td class="bg-danger" data-no="2" data-name="BAG_KAIN_01"><?php echo $data['BAG_KAIN_01'] ?></td>
+		<td class="bg-danger" data-no="3" data-name="BAG_KAIN_02"><?php echo $data['BAG_KAIN_02'] ?></td>
+		<td class="bg-danger" data-no="4" data-name="BAG_KAIN_03"><?php echo $data['BAG_KAIN_03'] ?></td>
+		<td class="bg-danger" data-no="5" data-name="BAG_KAIN_04"><?php echo $data['BAG_KAIN_04'] ?></td>
+		<td class="bg-danger" data-no="6" data-name="BAG_KAIN_05"><?php echo $data['BAG_KAIN_05'] ?></td>
+		<td class="bg-danger" data-no="7" data-name="BAG_KAIN_06"><?php echo $data['BAG_KAIN_06'] ?></td>
+		<td class="bg-danger" data-no="8" data-name="BAG_KAIN_07"><?php echo $data['BAG_KAIN_07'] ?></td>
+		<td class="bg-danger" data-no="9" data-name="BAG_KAIN_08"><?php echo $data['BAG_KAIN_08'] ?></td>
+		<td class="bg-danger" data-no="10" data-name="BAG_KAIN_09"><?php echo $data['BAG_KAIN_09'] ?></td>
+		<td class="bg-danger" data-no="11" data-name="BAG_KAIN_10"><?php echo $data['BAG_KAIN_10'] ?></td>
+		<td class="bg-danger" data-no="12" data-name="BAG_KAIN_11"><?php echo $data['BAG_KAIN_11'] ?></td>
+		<td class="bg-danger" data-no="13" data-name="BAG_KAIN_12"><?php echo $data['BAG_KAIN_12'] ?></td>
+		<td class="bg-danger" data-no="14" data-name="BAG_KAIN_13"><?php echo $data['BAG_KAIN_13'] ?></td>
+		<td class="bg-danger" data-no="15" data-name="BAG_KAIN_14"><?php echo $data['BAG_KAIN_14'] ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">COUNTER PILE</td>
+		<td data-no="1" colspan="1">1</td>
+		<td class="bg-danger" data-no="1" data-name="COUNTER_PILE1"><?php echo $data['COUNTER_PILE1']; ?> </td>
+		<td class="bg-danger" data-no="2" data-name="COUNTER_PILE2"><?php echo $data['COUNTER_PILE2']; ?> </td>
+		<td class="bg-danger" data-no="3" data-name="COUNTER_PILE3"><?php echo $data['COUNTER_PILE3']; ?> </td>
+		<td class="bg-danger" data-no="4" data-name="COUNTER_PILE4"><?php echo $data['COUNTER_PILE4']; ?> </td>
+		<td class="bg-danger" data-no="5" data-name="COUNTER_PILE5"><?php echo $data['COUNTER_PILE5']; ?> </td>
+		<td class="bg-danger" data-no="6" data-name="COUNTER_PILE6"><?php echo $data['COUNTER_PILE6']; ?> </td>
+		<td class="bg-danger" data-no="7" data-name="COUNTER_PILE7"><?php echo $data['COUNTER_PILE7']; ?> </td>
+		<td class="bg-danger" data-no="8" data-name="COUNTER_PILE8"><?php echo $data['COUNTER_PILE8']; ?> </td>
+		<td class="bg-danger" data-no="9" data-name="COUNTER_PILE9"><?php echo $data['COUNTER_PILE9']; ?> </td>
+		<td class="bg-danger" data-no="10" data-name="COUNTER_PILE10"><?php echo $data['COUNTER_PILE10']; ?> </td>
+		<td class="bg-danger" data-no="11" data-name="COUNTER_PILE11"><?php echo $data['COUNTER_PILE11']; ?> </td>
+		<td class="bg-danger" data-no="12" data-name="COUNTER_PILE12"><?php echo $data['COUNTER_PILE12']; ?> </td>
+		<td class="bg-danger" data-no="13" data-name="COUNTER_PILE13"><?php echo $data['COUNTER_PILE13']; ?> </td>
+		<td class="bg-danger" data-no="14" data-name="COUNTER_PILE14"><?php echo $data['COUNTER_PILE14']; ?> </td>
+	</tr>
+	</tr>
+	<tr class="baris">
+		<td data-no="1" colspan="1">2</td>
+		<td class="bg-danger" data-no="1"></td>
+		<td class="bg-danger" data-no="2"> </td>
+		<td class="bg-danger" data-no="3"> </td>
+		<td class="bg-danger" data-no="4"> </td>
+		<td class="bg-danger" data-no="5"> </td>
+		<td class="bg-danger" data-no="6"> </td>
+		<td class="bg-danger" data-no="7"> </td>
+		<td class="bg-danger" data-no="8"> </td>
+		<td class="bg-danger" data-no="9"> </td>
+		<td class="bg-danger" data-no="10"> </td>
+		<td class="bg-danger" data-no="11"> </td>
+		<td class="bg-danger" data-no="12"> </td>
+		<td class="bg-danger" data-no="13"> </td>
+		<td class="bg-danger" data-no="14"> </td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">PILE</td>
+		<td data-no="1" colspan="1">1</td>
+		<td class="bg-danger" data-no="1" data-name="PILE1"><?php echo $data['PILE1']; ?> </td>
+		<td class="bg-danger" data-no="2" data-name="PILE2"><?php echo $data['PILE2']; ?> </td>
+		<td class="bg-danger" data-no="3" data-name="PILE3"><?php echo $data['PILE3']; ?> </td>
+		<td class="bg-danger" data-no="4" data-name="PILE4"><?php echo $data['PILE4']; ?> </td>
+		<td class="bg-danger" data-no="5" data-name="PILE5"><?php echo $data['PILE5']; ?> </td>
+		<td class="bg-danger" data-no="6" data-name="PILE6"><?php echo $data['PILE6']; ?> </td>
+		<td class="bg-danger" data-no="7" data-name="PILE7"><?php echo $data['PILE7']; ?> </td>
+		<td class="bg-danger" data-no="8" data-name="PILE8"><?php echo $data['PILE8']; ?> </td>
+		<td class="bg-danger" data-no="9" data-name="PILE9"><?php echo $data['PILE9']; ?> </td>
+		<td class="bg-danger" data-no="10" data-name="PILE10"><?php echo $data['PILE10']; ?> </td>
+		<td class="bg-danger" data-no="11" data-name="PILE11"><?php echo $data['PILE11']; ?> </td>
+		<td class="bg-danger" data-no="12" data-name="PILE12"><?php echo $data['PILE12']; ?> </td>
+		<td class="bg-danger" data-no="13" data-name="PILE13"><?php echo $data['PILE13']; ?> </td>
+		<td class="bg-danger" data-no="14" data-name="PILE14"><?php echo $data['PILE14']; ?> </td>
+	</tr>
+	<tr class="baris">
+		<td data-no="1" colspan="1">2</td>
+		<td class="bg-danger" data-no="1"></td>
+		<td class="bg-danger" data-no="2"> </td>
+		<td class="bg-danger" data-no="3"> </td>
+		<td class="bg-danger" data-no="4"> </td>
+		<td class="bg-danger" data-no="5"> </td>
+		<td class="bg-danger" data-no="6"> </td>
+		<td class="bg-danger" data-no="7"> </td>
+		<td class="bg-danger" data-no="8"> </td>
+		<td class="bg-danger" data-no="9"> </td>
+		<td class="bg-danger" data-no="10"> </td>
+		<td class="bg-danger" data-no="11"> </td>
+		<td class="bg-danger" data-no="12"> </td>
+		<td class="bg-danger" data-no="13"> </td>
+		<td class="bg-danger" data-no="14"> </td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">DRUM</td>
+		<td data-no="1" colspan="1">1</td>
+		<td class="bg-danger" data-no="2" data-name="DRUM_01"><?php echo $data['DRUM_01'] ?></td>
+		<td class="bg-danger" data-no="3" data-name="DRUM_02"><?php echo $data['DRUM_02'] ?></td>
+		<td class="bg-danger" data-no="4" data-name="DRUM_03"><?php echo $data['DRUM_03'] ?></td>
+		<td class="bg-danger" data-no="5" data-name="DRUM_04"><?php echo $data['DRUM_04'] ?></td>
+		<td class="bg-danger" data-no="6" data-name="DRUM_05"><?php echo $data['DRUM_05'] ?></td>
+		<td class="bg-danger" data-no="7" data-name="DRUM_06"><?php echo $data['DRUM_06'] ?></td>
+		<td class="bg-danger" data-no="8" data-name="DRUM_07"><?php echo $data['DRUM_07'] ?></td>
+		<td class="bg-danger" data-no="9" data-name="DRUM_08"><?php echo $data['DRUM_08'] ?></td>
+		<td class="bg-danger" data-no="10" data-name="DRUM_09"><?php echo $data['DRUM_09'] ?></td>
+		<td class="bg-danger" data-no="11" data-name="DRUM_10"><?php echo $data['DRUM_10'] ?></td>
+		<td class="bg-danger" data-no="12" data-name="DRUM_11"><?php echo $data['DRUM_11'] ?></td>
+		<td class="bg-danger" data-no="13" data-name="DRUM_12"><?php echo $data['DRUM_12'] ?></td>
+		<td class="bg-danger" data-no="14" data-name="DRUM_13"><?php echo $data['DRUM_13'] ?></td>
+		<td class="bg-danger" data-no="15" data-name="DRUM_14"><?php echo $data['DRUM_14'] ?></td>
+	</tr>
+	<tr class="baris">
+		<td data-no="1" colspan="1">2</td>
+		<td class="bg-danger" data-no="1"></td>
+		<td class="bg-danger" data-no="2"> </td>
+		<td class="bg-danger" data-no="3"> </td>
+		<td class="bg-danger" data-no="4"> </td>
+		<td class="bg-danger" data-no="5"> </td>
+		<td class="bg-danger" data-no="6"> </td>
+		<td class="bg-danger" data-no="7"> </td>
+		<td class="bg-danger" data-no="8"> </td>
+		<td class="bg-danger" data-no="9"> </td>
+		<td class="bg-danger" data-no="10"> </td>
+		<td class="bg-danger" data-no="11"> </td>
+		<td class="bg-danger" data-no="12"> </td>
+		<td class="bg-danger" data-no="13"> </td>
+		<td class="bg-danger" data-no="14"> </td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">TENSION DEPAN</td>
+		<td data-no="1" colspan="1">1</td>
+		<td class="bg-danger" data-no="1" data-name="TENSIONDEPAN1"><?php echo $data['TENSIONDEPAN1']; ?> </td>
+		<td class="bg-danger" data-no="2" data-name="TENSIONDEPAN2"><?php echo $data['TENSIONDEPAN2']; ?> </td>
+		<td class="bg-danger" data-no="3" data-name="TENSIONDEPAN3"><?php echo $data['TENSIONDEPAN3']; ?> </td>
+		<td class="bg-danger" data-no="4" data-name="TENSIONDEPAN4"><?php echo $data['TENSIONDEPAN4']; ?> </td>
+		<td class="bg-danger" data-no="5" data-name="TENSIONDEPAN5"><?php echo $data['TENSIONDEPAN5']; ?> </td>
+		<td class="bg-danger" data-no="6" data-name="TENSIONDEPAN6"><?php echo $data['TENSIONDEPAN6']; ?> </td>
+		<td class="bg-danger" data-no="7" data-name="TENSIONDEPAN7"><?php echo $data['TENSIONDEPAN7']; ?> </td>
+		<td class="bg-danger" data-no="8" data-name="TENSIONDEPAN8"><?php echo $data['TENSIONDEPAN8']; ?> </td>
+		<td class="bg-danger" data-no="9" data-name="TENSIONDEPAN9"><?php echo $data['TENSIONDEPAN9']; ?> </td>
+		<td class="bg-danger" data-no="10" data-name="TENSIONDEPAN10"><?php echo $data['TENSIONDEPAN10']; ?> </td>
+		<td class="bg-danger" data-no="11" data-name="TENSIONDEPAN11"><?php echo $data['TENSIONDEPAN11']; ?> </td>
+		<td class="bg-danger" data-no="12" data-name="TENSIONDEPAN12"><?php echo $data['TENSIONDEPAN12']; ?> </td>
+		<td class="bg-danger" data-no="13" data-name="TENSIONDEPAN13"><?php echo $data['TENSIONDEPAN13']; ?> </td>
+		<td class="bg-danger" data-no="14" data-name="TENSIONDEPAN14"><?php echo $data['TENSIONDEPAN14']; ?> </td>
+	</tr>
+	<tr class="baris">
+		<td data-no="1" colspan="1">2</td>
+		<td class="bg-danger" data-no="1"></td>
+		<td class="bg-danger" data-no="2"> </td>
+		<td class="bg-danger" data-no="3"> </td>
+		<td class="bg-danger" data-no="4"> </td>
+		<td class="bg-danger" data-no="5"> </td>
+		<td class="bg-danger" data-no="6"> </td>
+		<td class="bg-danger" data-no="7"> </td>
+		<td class="bg-danger" data-no="8"> </td>
+		<td class="bg-danger" data-no="9"> </td>
+		<td class="bg-danger" data-no="10"> </td>
+		<td class="bg-danger" data-no="11"> </td>
+		<td class="bg-danger" data-no="12"> </td>
+		<td class="bg-danger" data-no="13"> </td>
+		<td class="bg-danger" data-no="14"> </td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">TENSION BELAKANG</td>
+		<td data-no="1" colspan="1">1</td>
+		<td class="bg-danger" data-no="1" data-name="TENSIONBELAKANG1"><?php echo $data['TENSIONBELAKANG1']; ?> </td>
+		<td class="bg-danger" data-no="2" data-name="TENSIONBELAKANG2"><?php echo $data['TENSIONBELAKANG2']; ?> </td>
+		<td class="bg-danger" data-no="3" data-name="TENSIONBELAKANG3"><?php echo $data['TENSIONBELAKANG3']; ?> </td>
+		<td class="bg-danger" data-no="4" data-name="TENSIONBELAKANG4"><?php echo $data['TENSIONBELAKANG4']; ?> </td>
+		<td class="bg-danger" data-no="5" data-name="TENSIONBELAKANG5"><?php echo $data['TENSIONBELAKANG5']; ?> </td>
+		<td class="bg-danger" data-no="6" data-name="TENSIONBELAKANG6"><?php echo $data['TENSIONBELAKANG6']; ?> </td>
+		<td class="bg-danger" data-no="7" data-name="TENSIONBELAKANG7"><?php echo $data['TENSIONBELAKANG7']; ?> </td>
+		<td class="bg-danger" data-no="8" data-name="TENSIONBELAKANG8"><?php echo $data['TENSIONBELAKANG8']; ?> </td>
+		<td class="bg-danger" data-no="9" data-name="TENSIONBELAKANG9"><?php echo $data['TENSIONBELAKANG9']; ?> </td>
+		<td class="bg-danger" data-no="10" data-name="TENSIONBELAKANG10"><?php echo $data['TENSIONBELAKANG10']; ?> </td>
+		<td class="bg-danger" data-no="11" data-name="TENSIONBELAKANG11"><?php echo $data['TENSIONBELAKANG11']; ?> </td>
+		<td class="bg-danger" data-no="12" data-name="TENSIONBELAKANG12"><?php echo $data['TENSIONBELAKANG12']; ?> </td>
+		<td class="bg-danger" data-no="13" data-name="TENSIONBELAKANG13"><?php echo $data['TENSIONBELAKANG13']; ?> </td>
+		<td class="bg-danger" data-no="14" data-name="TENSIONBELAKANG14"><?php echo $data['TENSIONBELAKANG14']; ?> </td>
+	</tr>
+	<tr class="baris">
+		<td data-no="1" colspan="1">2</td>
+		<td class="bg-danger" data-no="1"></td>
+		<td class="bg-danger" data-no="2"> </td>
+		<td class="bg-danger" data-no="3"> </td>
+		<td class="bg-danger" data-no="4"> </td>
+		<td class="bg-danger" data-no="5"> </td>
+		<td class="bg-danger" data-no="6"> </td>
+		<td class="bg-danger" data-no="7"> </td>
+		<td class="bg-danger" data-no="8"> </td>
+		<td class="bg-danger" data-no="9"> </td>
+		<td class="bg-danger" data-no="10"> </td>
+		<td class="bg-danger" data-no="11"> </td>
+		<td class="bg-danger" data-no="12"> </td>
+		<td class="bg-danger" data-no="13"> </td>
+		<td class="bg-danger" data-no="14"> </td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="1" rowspan="2">TENSION KELUAR</td>
+		<td data-no="1" colspan="1">1</td>
+		<td class="bg-danger" data-no="1" data-name="TENSIONKELUAR1"><?php echo $data['TENSIONKELUAR1']; ?> </td>
+		<td class="bg-danger" data-no="2" data-name="TENSIONKELUAR2"><?php echo $data['TENSIONKELUAR2']; ?> </td>
+		<td class="bg-danger" data-no="3" data-name="TENSIONKELUAR3"><?php echo $data['TENSIONKELUAR3']; ?> </td>
+		<td class="bg-danger" data-no="4" data-name="TENSIONKELUAR4"><?php echo $data['TENSIONKELUAR4']; ?> </td>
+		<td class="bg-danger" data-no="5" data-name="TENSIONKELUAR5"><?php echo $data['TENSIONKELUAR5']; ?> </td>
+		<td class="bg-danger" data-no="6" data-name="TENSIONKELUAR6"><?php echo $data['TENSIONKELUAR6']; ?> </td>
+		<td class="bg-danger" data-no="7" data-name="TENSIONKELUAR7"><?php echo $data['TENSIONKELUAR7']; ?> </td>
+		<td class="bg-danger" data-no="8" data-name="TENSIONKELUAR8"><?php echo $data['TENSIONKELUAR8']; ?> </td>
+		<td class="bg-danger" data-no="9" data-name="TENSIONKELUAR9"><?php echo $data['TENSIONKELUAR9']; ?> </td>
+		<td class="bg-danger" data-no="10" data-name="TENSIONKELUAR10"><?php echo $data['TENSIONKELUAR10']; ?> </td>
+		<td class="bg-danger" data-no="11" data-name="TENSIONKELUAR11"><?php echo $data['TENSIONKELUAR11']; ?> </td>
+		<td class="bg-danger" data-no="12" data-name="TENSIONKELUAR12"><?php echo $data['TENSIONKELUAR12']; ?> </td>
+		<td class="bg-danger" data-no="13" data-name="TENSIONKELUAR13"><?php echo $data['TENSIONKELUAR13']; ?> </td>
+		<td class="bg-danger" data-no="14" data-name="TENSIONKELUAR14"><?php echo $data['TENSIONKELUAR14']; ?> </td>
+	</tr>
+
+	<tr class="baris">
+		<td data-no="1" colspan="1">2</td>
+		<td class="bg-danger" data-no="1"></td>
+		<td class="bg-danger" data-no="2"> </td>
+		<td class="bg-danger" data-no="3"> </td>
+		<td class="bg-danger" data-no="4"> </td>
+		<td class="bg-danger" data-no="5"> </td>
+		<td class="bg-danger" data-no="6"> </td>
+		<td class="bg-danger" data-no="7"> </td>
+		<td class="bg-danger" data-no="8"> </td>
+		<td class="bg-danger" data-no="9"> </td>
+		<td class="bg-danger" data-no="10"> </td>
+		<td class="bg-danger" data-no="11"> </td>
+		<td class="bg-danger" data-no="12"> </td>
+		<td class="bg-danger" data-no="13"> </td>
+		<td class="bg-danger" data-no="14"> </td>
+	</tr>
+	<tr>
+		<td colspan="2" style="text-align: center;font-size: 15px; font-weight: bold;" data-no="1">POTONG BULU
+		</td>
+		<td class="bg-danger" colspan="2" data-no="2" data-name="POTONGBULU1"><?php echo $data['POTONGBULU1']; ?>
+		</td>
+		<td class="bg-danger" colspan="2" data-no="3" data-name="POTONGBULU2"><?php echo $data['POTONGBULU2']; ?>
+		</td>
+		<td colspan="4" style="text-align: center;font-size: 15px; font-weight: bold;">PEACHSKIN
+		</td>
+		<td colspan="3"></td>
+		<td colspan="3"></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>
+		<td style="width: 100px; text-align: center;" data-no="1" colspan="2">B</td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="2">F</td>
+		<td colspan="4"> BAGIAN KAIN </td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="3">B</td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="3">F</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SPEED M/MNT</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDM/MNT_B">
+			<?php echo $data['SPEEDM/MNT_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDM/MNT_F">
+			<?php echo $data['SPEEDM/MNT_F']; ?>
+		</td>
+		<td colspan="4">% PILE BRUSH</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="%PILEBRUSH_B">
+			<?php echo $data['%PILEBRUSH_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="%PILEBRUSH_F">
+			<?php echo $data['%PILEBRUSH_B']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">JARAK PISAU</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="JARAKPISAU_B"></td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="JARAKPISAU_F"></td>
+		<td colspan="4">% COUNTERPILE BRUSH</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="%COUNTERPILEBRUSH_B">
+			<?php echo $data['%COUNTERPILEBRUSH_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="%COUNTERPILEBRUSH_F">
+			<?php echo $data['%COUNTERPILEBRUSH_F']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="font-size: 15px; font-weight: bold;" data-no="1" colspan="2">
+			SISIR</td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="2">B</td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="2">F</td>
+		<td colspan="4">SIKAT BELAKANG</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="SIKATBELAKANG_B">
+			<?php echo $data['SIKATBELAKANG_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="SIKATBELAKANG_F">
+			<?php echo $data['SIKATBELAKANG_F']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SPEED MESIN</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDMESIN_B">
+			<?php echo $data['SPEEDMESIN_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDMESIN_F">
+			<?php echo $data['SPEEDMESIN_F']; ?>
+		</td>
+		<td colspan="4">TENSION MASUK</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="TENSIONMASUK_B">
+			<?php echo $data['TENSIONMASUK_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="TENSIONMASUK_F">
+			<?php echo $data['TENSIONMASUK_F']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SPEED JARUM</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDJARUM_B">
+			<?php echo $data['SPEEDJARUM_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDJARUM_F">
+			<?php echo $data['SPEEDJARUM_F']; ?>
+		</td>
+		<td colspan="4">TENSION TENGAH</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="TENSIONTENGAH_B">
+			<?php echo $data['TENSIONTENGAH_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="TENSIONTENGAH_F">
+			<?php echo $data['TENSIONTENGAH_F']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SPEED DRUM</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDDRUM_B">
+			<?php echo $data['SPEEDDRUM_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDDRUM_F">
+			<?php echo $data['SPEEDDRUM_F']; ?>
+		</td>
+		<td colspan="4">SPEED KAIN</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="SPEEDMESIN_F">
+			<?php echo $data['TENSIONMASUK_F']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="SPEEDMESIN_F">
+			<?php echo $data['TENSIONMASUK_F']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SPEED TARIKAN KAIN</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDTARIKANKAIN_B">
+			<?php echo $data['SPEEDTARIKANKAIN_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="2" data-name="SPEEDTARIKANKAIN_F">
+			<?php echo $data['SPEEDTARIKANKAIN_F']; ?>
+		</td>
+		<td colspan="4">SPEED DRUM</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="PEACHSKINSPEEDDRUM_B">
+			<?php echo $data['PEACHSKINSPEEDDRUM_B']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="PEACHSKINSPEEDDRUM_F">
+			<?php echo $data['PEACHSKINSPEEDDRUM_F']; ?>
+		</td>
+	</tr>
+
+	<tr class="baris">
+		<td style="font-size: 15px; font-weight: bold;" data-no="1" colspan="2">ANTI PILLING</td>
+		<td class="bg-danger" data-no="1" colspan="4" rowspan="2" data-name="MISTPRAY"> <?php echo $data['MISTPRAY']; ?>
+		</td>
+		<td data-no="1" colspan="3" rowspan="2">TENSION BELAKANG</td>
+		<td data-no="1" colspan="1" style="width: 10px;">1</td>
+		<td class="bg-danger" data-no="1" colspan="3" data-name="PEACHSKINSPEEDDRUM_B">
+			<?php echo $data['PEACHSKINSPEEDDRUM_B']; ?>
+		</td>
+		<td class="bg-danger" data-no="1" colspan="3" data-name="PEACHSKINSPEEDDRUM_F">
+			<?php echo $data['PEACHSKINSPEEDDRUM_F']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">MIST PRAY</td>
+		<td data-no="1" colspan="1" style="width: 10px;">2</td>
+		<td class="bg-danger" data-no="1" colspan="3" data-name="TENSIONBELAKANG2_B">
+			<?php echo $data['TENSIONBELAKANG2_B']; ?>
+		</td>
+		<td class="bg-danger" data-no="1" colspan="3" data-name="TENSIONBELAKANG2_F">
+			<?php echo $data['TENSIONBELAKANG2_F']; ?>
+		</td>
+	</tr>
+
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">STEAM</td>
+		<td class="bg-danger" data-no="2" colspan="4" data-name="STEAM"><?php echo $data['STEAM']; ?></td>
+		<td data-no="3" colspan="10" style="font-size: 15px; font-weight: bold;text-align:center;">
+			POLISHING</td>
+
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">OVEN</td>
+		<td style="width: 100px;" class="bg-danger" data-no="1" colspan="4" data-name="OVEN">
+			<?php echo $data['OVEN']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">BAGIAN KAIN</td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="3">B</td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="3">F</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">PENDINGIN</td>
+		<td colspan="4" class="bg-danger" data-name="PENDINGIN">
+			<?php echo $data['PENDINGIN']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">SUHU FRONT ROLLER</td>
+		<td colspan="3" class="bg-danger" data-name="SUHUFRONTROLLER_B">
+			<?php echo $data['SUHUFRONTROLLER_B']; ?>
+		</td>
+		<td colspan="3" class="bg-danger" data-name="SUHUFRONTROLLER_F">
+			<?php echo $data['SUHUFRONTROLLER_F']; ?>
+		</td>
+
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SUHU</td>
+		<td colspan="4" class="bg-danger" data-name="SUHU">
+			<?php echo $data['SUHU']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">SUHU BACK ROLLER</td>
+		<td colspan="3" class="bg-danger" data-name="SUHUBACKROLLER_B"><?php echo $data['SUHUBACKROLLER_B']; ?></td>
+		<td colspan="3" class="bg-danger" data-name="SUHUBACKROLLER_F"><?php echo $data['SUHUBACKROLLER_F']; ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="font-size: 15px; font-weight: bold;" data-no="1" colspan="2">WET SUEDING</td>
+		<td colspan="4" class="bg-danger" data-name="WETSUEDING"><?php echo $data['WETSUEDING']; ?></td>
+		<td colspan="4" style="text-align: left;">SPEED BACK ROLLER</td>
+		<td colspan="3" class="bg-danger" data-name="SPEEDBACKROLLER_B"><?php echo $data['SPEEDBACKROLLER_B']; ?></td>
+		<td colspan="3" class="bg-danger" data-name="SPEEDBACKROLLER_F"><?php echo $data['SPEEDBACKROLLER_F']; ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="2">B</td>
+		<td style="width: 100px;text-align: center;" data-no="1" colspan="2">F</td>
+		<td colspan="4" style="text-align: left;">GAP 1</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="GAP_01">
+			<?php echo $data['GAP_01']; ?>
+		</td>
+		<td class="bg-danger" style="width: 100px;" data-no="1" colspan="3" data-name="GAP_02">
+			<?php echo $data['GAP_02']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SUEDE ROLLER 1</td>
+		<td style="width: 100px;" data-no="1" colspan="2" class="bg-danger" data-name="SUEDEROLLER1_B">
+			<?php echo $data['SUEDEROLLER1_B']; ?>
+		</td>
+		<td style="width: 100px;" data-no="1" colspan="2" class="bg-danger" data-name="SUEDEROLLER1_F">
+			<?php echo $data['SUEDEROLLER1_F']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">GAP 2</td>
+		<td colspan="3" class="bg-danger" data-name="GAP_03"><?php echo $data['GAP_03']; ?></td>
+		<td colspan="3" class="bg-danger" data-name="GAP_04"><?php echo $data['GAP_04']; ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SUEDE ROLLER 2</td>
+		<td style="width: 100px;" data-no="1" colspan="2" class="bg-danger" data-name="SUEDEROLLER2_B">
+			<?php echo $data['SUEDEROLLER2_B']; ?>
+		</td>
+		<td style="width: 100px;" data-no="1" colspan="2" class="bg-danger" data-name="SUEDEROLLER2_F">
+			<?php echo $data['SUEDEROLLER2_F']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">TENSION 1</td>
+		<td colspan="3" class="bg-danger" data-name="TENSION1_B"><?php echo $data['TENSION1_B']; ?></td>
+		<td colspan="3" class="bg-danger" data-name="TENSION1_F"><?php echo $data['TENSION1_F']; ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SUEDE ROLLER 3</td>
+		<td style="width: 100px;" data-no="1" colspan="2" class="bg-danger" data-name="SUEDEROLLER3_B">
+			<?php echo $data['SUEDEROLLER3_B']; ?>
+		</td>
+		<td style="width: 100px;" data-no="1" colspan="2" class="bg-danger" data-name="SUEDEROLLER3_F">
+			<?php echo $data['SUEDEROLLER3_F']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">TENSION 2</td>
+		<td colspan="3" class="bg-danger" data-name="TENSION2_B"><?php echo $data['TENSION2_B']; ?></td>
+		<td colspan="3" class="bg-danger" data-name="TENSION2_F"><?php echo $data['TENSION2_F']; ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SUEDE ROLLER 4</td>
+		<td style="width: 100px;" class="bg-danger" data-no="1" colspan="2" data-name="SUEDEROLLER4_B">
+			<?php echo $data['SUEDEROLLER4_B']; ?>
+		</td>
+		<td style="width: 100px;" class="bg-danger" data-no="1" colspan="2" data-name="SUEDEROLLER4_F">
+			<?php echo $data['SUEDEROLLER4_F']; ?>
+		</td>
+		<td colspan="10" rowspan="2" style="font-size: 15px; font-weight: bold;text-align: center;">
+			AIRO</td>
+	</tr>
+
+	<tr class="baris">
+		<td colspan="2" style="width: 180px;">SUEDE ROLLER 1 (S/B)</td>
+		<td style="width: 100px;" class="bg-danger" data-no="1" colspan="2" data-name="SUEDEROLLER1(S/B)_B">
+			<?php echo $data['SUEDEROLLER1(S/B)_B']; ?>
+		</td>
+		<td style="width: 100px;" class="bg-danger" data-no="1" colspan="2" data-name="SUEDEROLLER1(S/B)_F">
+			<?php echo $data['SUEDEROLLER1(S/B)_F']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SUEDE ROLLER 2 (S/B)</td>
+		<td colspan="2" class="bg-danger" data-name="SUEDEROLLER2(S/B)_B">
+			<?php echo $data['SUEDEROLLER2(S/B)_B']; ?>
+		</td>
+		<td colspan="2" class="bg-danger" data-name="SUEDEROLLER2(S/B)_F">
+			<?php echo $data['SUEDEROLLER2(S/B)_F']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">NO MESIN</td>
+		<td colspan="6" class="bg-danger" data-name="NOMESIN">
+			<?php echo $data['NOMESIN']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SUEDE ROLLER 3 (S/B)</td>
+		<td colspan="2" class="bg-danger" data-name="SUEDEROLLER3(S/B)_B">
+			<?php echo $data['SUEDEROLLER3(S/B)_B']; ?>
+		</td>
+		<td colspan="2" class="bg-danger" data-name="SUEDEROLLER3(S/B)_F">
+			<?php echo $data['SUEDEROLLER3(S/B)_F']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">SPEED ROLL</td>
+		<td colspan="6" class="bg-danger" data-name="SPEEDROLL">
+			<?php echo $data['SPEEDROLL']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">SUEDE ROLLER 4 (S/B)</td>
+		<td colspan="2" class="bg-danger" data-name="SUEDEROLLER4(S/B)_B">
+			<?php echo $data['SUEDEROLLER4(S/B)_B']; ?>
+		</td>
+		<td colspan="2" class="bg-danger" data-name="SUEDEROLLER4(S/B)_F">
+			<?php echo $data['SUEDEROLLER4(S/B)_F']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">VENTILATOR</td>
+		<td colspan="6" class="bg-danger" data-name="VENTILATOR">
+			<?php echo $data['VENTILATOR']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">TENSION POTENSIONER (N)</td>
+		<td colspan="2" class="bg-danger" data-name="TENSIONPOTENSIONER(N)_B">
+			<?php echo $data['TENSIONPOTENSIONER(N)_B']; ?>
+		</td>
+		<td colspan="2" class="bg-danger" data-name="TENSIONPOTENSIONER(N)_F">
+			<?php echo $data['TENSIONPOTENSIONER(N)_F']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">SUHU OVEN</td>
+		<td colspan="6" class="bg-danger" data-name="SUHUOVEN"><?php echo $data['SUHUOVEN']; ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">TENSION FEEDING ROLLER (N)</td>
+		<td colspan="2" class="bg-danger" data-name="TENSIONFEEDINGROLLER(N)_B">
+			<?php echo $data['TENSIONFEEDINGROLLER(N)_B']; ?>
+		</td>
+		<td colspan="2" class="bg-danger" data-name="TENSIONFEEDINGROLLER(N)_F">
+			<?php echo $data['TENSIONFEEDINGROLLER(N)_F']; ?>
+		</td>
+		<td colspan="4" style="text-align: left;">WAKTU OVEN</td>
+		<td colspan="6" class="bg-danger" data-name="WAKTUOVEN">
+			<?php echo $data['WAKTUOVEN']; ?>
+		</td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">PENETRATOR 01 (%)</td>
+		<td colspan="2" class="bg-danger" data-name="PENETRATOR01(%)_B"> <?php echo $data['PENETRATOR01(%)_B']; ?></td>
+		<td colspan="2" class="bg-danger" data-name="PENETRATOR01(%)_F"> <?php echo $data['PENETRATOR01(%)_F']; ?></td>
+		<td colspan="4" style="text-align: left;">PENDINGIN</td>
+		<td colspan="6" class="bg-danger" data-name="AIROPENDINGIN"> <?php echo $data['AIROPENDINGIN']; ?></td>
+	</tr>
+	<tr class="baris">
+		<td style="width: 180px;" data-no="1" colspan="2">PENETRATOR 02 (%)</td>
+		<td colspan="2" class="bg-danger" data-name="PENETRATOR02(%)_B"> <?php echo $data['PENETRATOR02(%)_B']; ?></td>
+		<td colspan="2" class="bg-danger" data-name="PENETRATOR02(%)_F"> <?php echo $data['PENETRATOR02(%)_F']; ?></td>
+		<td colspan="4" style="text-align: left;">WAKTU PENDINGIN</td>
+		<td colspan="6" class="bg-danger" data-name="WAKTUPENDINGIN"> <?php echo $data['WAKTUPENDINGIN']; ?></td>
+	</tr>
+
+	</tbody>
 </table>
 <script src="../bootstrap/xeditable/js/bootstrap-editable.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#splb').editable({
-            container: 'body',
-            selector: 'td.bg-danger',
-            pk: `<?php echo $data['ID'] ?>`,
-            url: 'update.php',
-            title: `EDIT SPLB`,
-            // validate: function(value) {
-            //     if ($.trim(value) == '') {
-            //         return 'This field is required';
-            //     }
-            // },
-            success: function(response, newValue) {
-                if (response.kode == '404') {
-                    alert('Error Hubung DIT !')
-                }
-            }
-        });
-        $('#splb').editable({
-            container: 'body',
-            selector: 'td a.bg-danger',
-            pk: `<?php echo $data['ID'] ?>`,
-            url: 'update.php',
-            title: `EDIT SPLB`,
-            // validate: function(value) {
-            //     if ($.trim(value) == '') {
-            //         return 'This field is required';
-            //     }
-            // },
-            success: function(response, newValue) {
-                if (response.kode == '404') {
-                    alert('Error Hubung DIT !')
-                }
-            }
-        });
-    })
+$(document).ready(function() {
+	$('#splb').editable({
+		container: 'body',
+		selector: 'td.bg-danger',
+		pk: `<?php echo $data['ID'] ?>`,
+		url: 'update.php',
+		title: `EDIT SPLB`,
+		// validate: function(value) {
+		//     if ($.trim(value) == '') {
+		//         return 'This field is required';
+		//     }
+		// },
+		success: function(response, newValue) {
+			if (response.kode == '404') {
+				alert('Error Hubung DIT !')
+			}
+		}
+	});
+	$('#splb').editable({
+		container: 'body',
+		selector: 'td a.bg-danger',
+		pk: `<?php echo $data['ID'] ?>`,
+		url: 'update.php',
+		title: `EDIT SPLB`,
+		// validate: function(value) {
+		//     if ($.trim(value) == '') {
+		//         return 'This field is required';
+		//     }
+		// },
+		success: function(response, newValue) {
+			if (response.kode == '404') {
+				alert('Error Hubung DIT !')
+			}
+		}
+	});
+})
 </script>
