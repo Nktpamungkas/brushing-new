@@ -178,8 +178,16 @@ if ($idkk != "") {
 								<div class="form-inline text-center">
 									<input type="text" class="form-control input-xs" name="NO_KARTU_KERJA"
 										id="NO_KARTU_KERJA" value="<?php echo $_POST['kk'] ?>" readonly>/</span>
-									<input type="text" class="form-control input-xs" name="DEAMAND" id="DEAMAND"
-										value="<?php echo $_POST['DEAMAND'] ?>" readonly>
+
+									<select style="width: 40%" name="DEAMAND" id="DEAMAND" required>
+										<option value="" disabled selected>Pilih Nomor Demand</option>
+										<?php 
+											$sql_ITXVIEWKK_demand  = db2_exec($conn_db2, "SELECT DEAMAND AS DEMAND FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE = '$_POST[DEAMAND]'");
+											while ($r_demand = db2_fetch_assoc($sql_ITXVIEWKK_demand)) :
+										?>
+											<option value="<?= $r_demand['DEMAND']; ?>" <?php if($r_demand['DEMAND'] == $_GET['demand']){ echo 'SELECTED'; } ?>><?= $r_demand['DEMAND']; ?></option>
+										<?php endwhile; ?>
+									</select>
 							</td>
 							<td data-no="10" colspan="7" style="text-align: center;">SPV/ASST/LDR</td>
 						</tr>
