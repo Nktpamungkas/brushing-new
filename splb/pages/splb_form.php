@@ -173,13 +173,15 @@ if ($idkk != "") {
 					</thead>
 					<tbody>
 						<tr class="baris">
-							<td style="width: 180px;" data-no="1">No. KK</td>
+							<td style="width: 180px;" data-no="1">No. KK &
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								DEMAND</td>
 							<td class="bg-warning" data-no="2" colspan="8">
 								<div class="form-inline text-center">
 									<input type="text" class="form-control input-xs" name="NO_KARTU_KERJA"
 										id="NO_KARTU_KERJA" value="<?php echo $_POST['kk'] ?>" readonly>/</span>
 									<input type="text" class="form-control input-xs" name="DEAMAND" id="DEAMAND"
-										value="<?php echo $_POST['DEAMAND'] ?>" readonly>
+										value="<?php echo $_POST['DEAMAND'] ?>" style="width: 100%" readonly>
 							</td>
 							<td data-no="10" colspan="7" style="text-align: center;">SPV/ASST/LDR</td>
 						</tr>
@@ -624,6 +626,7 @@ if ($idkk != "") {
 						</tr>
 
 						<tr class="baris">
+							<td data-no="1" colspan="1">2</td>
 							<td class="bg-danger" data-no="15"><input type="text" class="form-control input-xs"
 									name="TENSIONDEPAN15" id="TENSIONDEPAN15" placeholder="-TENSION DEPAN-"
 									style="width: 100%"></td>
@@ -720,6 +723,7 @@ if ($idkk != "") {
 							</td>
 						</tr>
 						<tr class="baris">
+							<td data-no="1" colspan="1">2</td>
 							<td class="bg-danger" data-no="15"><input type="text" class="form-control input-xs"
 									name="TENSIONBELAKANG15" id="TENSIONBELAKANG15" placeholder="TENSIONBELAKANG15"
 									style="width: 100%"></td>
@@ -1054,9 +1058,9 @@ if ($idkk != "") {
 						</tr>
 						<tr class="baris">
 							<td style="font-size: 15px; font-weight: bold;" data-no="1" colspan="2">ANTI PILLING</td>
-							<td class="bg-danger" data-no="1" colspan="4" rowspan="2">
-								<input type="text" class="form-control input-xs" name="MISTPRAY" id="MISTPRAY"
-									placeholder="MISTPRAY" style="width: 100%">
+							<td class="bg-danger" data-no="1" colspan="4">
+								<input type="text" class="form-control input-xs" name="ANTIPILLING" id="ANTIPILLING"
+									placeholder="ANTIPILLING" style="width: 100%">
 							</td>
 							<td data-no="1" colspan="2" rowspan="2">TENSION BELAKANG</td>
 							<td data-no="1" colspan="2" style="text-align:center;">1</td>
@@ -1071,7 +1075,10 @@ if ($idkk != "") {
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="2">MIST PRAY</td>
-							<td data-no="1" colspan="2" style="text-align:center;">2</td>
+							<td class="bg-danger" data-no="1" colspan="4"><input type="text"
+									class="form-control input-xs" name="MISTPRAY" id="MISTPRAY" placeholder="MISTPRAY"
+									style="width: 100%"></td>
+							<td data-no="1" colspan="2" style="text-align:center; width: 10px;">2</td>
 							<td class="bg-danger" data-no="1" colspan="3">
 								<input type="text" class="form-control input-xs" name="TENSIONBELAKANG2_B"
 									id="TENSIONBELAKANG2_B" placeholder="TENSIONBELAKANG2_B" style="width: 100%">
