@@ -607,8 +607,8 @@ $data = mysqli_fetch_array($sql);
 
 	<tr class="baris">
 		<td data-no="1" colspan="1">2</td>
-		<td class="bg-danger" data-no="1" data-name="TENSIONDEPAN15" style="text-align: center;">
-			<?php echo $data['TENSIONDEPAN15']; ?>
+		<td class="bg-danger" data-no="1" data-name="TENSIONKELUAR15" style="text-align: center;">
+			<?php echo $data['TENSIONKELUAR15']; ?>
 		</td>
 		<td class="bg-danger" data-no="2" data-name="TENSIONKELUAR16" style="text-align: center;">
 			<?php echo $data['TENSIONKELUAR16']; ?>
@@ -1063,40 +1063,40 @@ $data = mysqli_fetch_array($sql);
 </table>
 <script src="../bootstrap/xeditable/js/bootstrap-editable.min.js"></script>
 <script>
-	$(document).ready(function () {
-		$('#splb').editable({
-			container: 'body',
-			selector: 'td.bg-danger',
-			pk: `<?php echo $data['ID'] ?>`,
-			url: 'update.php',
-			title: `EDIT SPLB`,
-			// validate: function(value) {
-			//     if ($.trim(value) == '') {
-			//         return 'This field is required';
-			//     }
-			// },
-			success: function (response, newValue) {
-				if (response.kode == '404') {
-					alert('Error Hubung DIT !')
-				}
+$(document).ready(function() {
+	$('#splb').editable({
+		container: 'body',
+		selector: 'td.bg-danger',
+		pk: `<?php echo $data['ID'] ?>`,
+		url: 'update.php',
+		title: `EDIT SPLB`,
+		// validate: function(value) {
+		//     if ($.trim(value) == '') {
+		//         return 'This field is required';
+		//     }
+		// },
+		success: function(response, newValue) {
+			if (response.kode == '404') {
+				alert('Error Hubung DIT !')
 			}
-		});
-		$('#splb').editable({
-			container: 'body',
-			selector: 'td a.bg-danger',
-			pk: `<?php echo $data['ID'] ?>`,
-			url: 'update.php',
-			title: `EDIT SPLB`,
-			// validate: function(value) {
-			//     if ($.trim(value) == '') {
-			//         return 'This field is required';
-			//     }
-			// },
-			success: function (response, newValue) {
-				if (response.kode == '404') {
-					alert('Error Hubung DIT !')
-				}
+		}
+	});
+	$('#splb').editable({
+		container: 'body',
+		selector: 'td a.bg-danger',
+		pk: `<?php echo $data['ID'] ?>`,
+		url: 'update.php',
+		title: `EDIT SPLB`,
+		// validate: function(value) {
+		//     if ($.trim(value) == '') {
+		//         return 'This field is required';
+		//     }
+		// },
+		success: function(response, newValue) {
+			if (response.kode == '404') {
+				alert('Error Hubung DIT !')
 			}
-		});
-	})
+		}
+	});
+})
 </script>
