@@ -1063,40 +1063,40 @@ $data = mysqli_fetch_array($sql);
 </table>
 <script src="../bootstrap/xeditable/js/bootstrap-editable.min.js"></script>
 <script>
-	$(document).ready(function () {
-		$('#splb').editable({
-			container: 'body',
-			selector: 'td.bg-danger',
-			pk: `<?php echo $data['ID'] ?>`,
-			url: 'update.php',
-			title: `EDIT SPLB`,
-			// validate: function(value) {
-			//     if ($.trim(value) == '') {
-			//         return 'This field is required';
-			//     }
-			// },
-			success: function (response, newValue) {
-				if (response.kode == '404') {
-					alert('Error Hubung DIT !')
-				}
+$(document).ready(function() {
+	$('#splb').editable({
+		container: 'body',
+		selector: 'td.bg-danger',
+		pk: `<?php echo $data['ID'] ?>`,
+		url: 'update.php',
+		title: `EDIT SPLB`,
+		// validate: function(value) {
+		//     if ($.trim(value) == '') {
+		//         return 'This field is required';
+		//     }
+		// },
+		success: function(response, newValue) {
+			if (response.kode == '404') {
+				alert('Error Hubung DIT !')
 			}
-		});
-		$('#splb').editable({
-			container: 'body',
-			selector: 'td a.bg-danger',
-			pk: `<?php echo $data['ID'] ?>`,
-			url: 'update.php',
-			title: `EDIT SPLB`,
-			// validate: function(value) {
-			//     if ($.trim(value) == '') {
-			//         return 'This field is required';
-			//     }
-			// },
-			success: function (response, newValue) {
-				if (response.kode == '404') {
-					alert('Error Hubung DIT !')
-				}
+		}
+	});
+	$('#splb').editable({
+		container: 'body',
+		selector: 'td a.bg-danger',
+		pk: `<?php echo $data['ID'] ?>`,
+		url: 'update.php',
+		title: `EDIT SPLB`,
+		// validate: function(value) {
+		//     if ($.trim(value) == '') {
+		//         return 'This field is required';
+		//     }
+		// },
+		success: function(response, newValue) {
+			if (response.kode == '404') {
+				alert('Error Hubung DIT !')
 			}
-		});
-	})
+		}
+	});
+})
 </script>
