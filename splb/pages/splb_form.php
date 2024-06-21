@@ -14,52 +14,52 @@ include ("../../koneksi.php");
 </head>
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
 <style>
-	.table {
-		border: 0.5px solid #000000;
-	}
+.table {
+	border: 0.5px solid #000000;
+}
 
-	.table-bordered>thead>tr>th,
-	.table-bordered>tbody>tr>th,
-	.table-bordered>tfoot>tr>th,
-	.table-bordered>thead>tr>td,
-	.table-bordered>tbody>tr>td,
-	.table-bordered>tfoot>tr>td {
-		border: 0.5px solid #000000;
-		vertical-align: middle;
-	}
+.table-bordered>thead>tr>th,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>tbody>tr>td,
+.table-bordered>tfoot>tr>td {
+	border: 0.5px solid #000000;
+	vertical-align: middle;
+}
 
-	textarea.form-control,
-	input.form-control {
-		border: 0px;
-	}
+textarea.form-control,
+input.form-control {
+	border: 0px;
+}
 
-	select.input-xs,
-	textarea.input-xs,
-	input.input-xs {
-		height: 23px;
-		padding: 2px 5px;
-		font-size: 12px;
-		line-height: 1.5;
-		border-radius: 3px;
-		text-align: center;
-	}
+select.input-xs,
+textarea.input-xs,
+input.input-xs {
+	height: 23px;
+	padding: 2px 5px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+	text-align: center;
+}
 </style>
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
-	function getData_ITXVIEWKK() {
-		var _noprodorder = document.getElementById("NO_KARTU_KERJA").value;
+function getData_ITXVIEWKK() {
+	var _noprodorder = document.getElementById("NO_KARTU_KERJA").value;
 
-		$.get("../api_ITXVIEWKK.php?noprod=" + _noprodorder, function (item) {
-			document.getElementById("LANGGANAN").value = item.PELANGGAN + '/' + item.BUYER;
-			document.getElementById("ORDER").value = item.PROJECTCODE;
-			document.getElementById("JENIS_KAIN").value = item.ITEMDESCRIPTION;
-			document.getElementById("L_PERMINTAAN").value = item.LEBAR;
-			document.getElementById("G_PERMINTAAN").value = item.GRAMASI;
-			document.getElementById("NO_HANGER").value = item.NO_HANGER;
-			document.getElementById("WARNA").value = item.WARNA;
-			document.getElementById("DEAMAND").value = item.DEAMAND;
-		});
-	};
+	$.get("../api_ITXVIEWKK.php?noprod=" + _noprodorder, function(item) {
+		document.getElementById("LANGGANAN").value = item.PELANGGAN + '/' + item.BUYER;
+		document.getElementById("ORDER").value = item.PROJECTCODE;
+		document.getElementById("JENIS_KAIN").value = item.ITEMDESCRIPTION;
+		document.getElementById("L_PERMINTAAN").value = item.LEBAR;
+		document.getElementById("G_PERMINTAAN").value = item.GRAMASI;
+		document.getElementById("NO_HANGER").value = item.NO_HANGER;
+		document.getElementById("WARNA").value = item.WARNA;
+		document.getElementById("DEAMAND").value = item.DEAMAND;
+	});
+};
 </script>
 
 <?php
@@ -275,7 +275,8 @@ if ($idkk != "") {
 									} else {
 										echo $rw['no_item'];
 									} ?>" style="width: 100%;"></td>
-							<td class="bg-warning" data-no="2" colspan="7" style="text-align:center;">
+							<td class="bg-warning" data-no="2" colspan="7" style="text-align:center;"><input type="text"
+									class="form-control input-xs" name="NAMA_TTD" id="NAMA_TTD">
 								<?php echo $data['NAMA_TTD'] ?>
 							</td>
 
@@ -904,8 +905,14 @@ if ($idkk != "") {
 							</td>
 							<td colspan="4" style="text-align: center;font-size: 15px; font-weight: bold;">PEACHSKIN
 							</td>
-							<td colspan="3"></td>
-							<td colspan="3"></td>
+							<td colspan="3" class="bg-danger" style="text-align: center" name="PEACHSKIN_B"
+								id="PEACHSKIN_B"><input type="text" class="form-control input-xs" name="PEACHSKIN_B"
+									id="PEACHSKIN_B" placeholder="PEACHSKIN_B" style="width: 100%">
+							</td>
+							<td colspan="3" class="bg-danger" style="text-align: center" name="PEACHSKIN_F"
+								id="PEACHSKIN_F"><input type="text" class="form-control input-xs" name="PEACHSKIN_F"
+									id="PEACHSKIN_F" placeholder="PEACHSKIN_F" style="width: 100%">
+							</td>
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>

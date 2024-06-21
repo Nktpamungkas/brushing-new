@@ -469,8 +469,10 @@ table>thead>tr>th {
 							<td class="bg-danger" colspan="2"></td>
 							<td colspan="4" style="text-align: center;font-size: 15px; font-weight: bold;">PEACHSKIN
 							</td>
-							<td colspan="3"></td>
-							<td colspan="3"></td>
+							<td colspan="3" class="bg-danger" style="text-align: center">
+								<?php echo $data['PEACHSKIN_B']; ?></td>
+							<td colspan="3" class="bg-danger" style="text-align: center">
+								<?php echo $data['PEACHSKIN_F']; ?></td>
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>
