@@ -275,7 +275,8 @@ if ($idkk != "") {
 									} else {
 										echo $rw['no_item'];
 									} ?>" style="width: 100%;"></td>
-							<td class="bg-warning" data-no="2" colspan="7" style="text-align:center;">
+							<td class="bg-warning" data-no="2" colspan="7" style="text-align:center;"><input type="text"
+									class="form-control input-xs" name="NAMA_TTD" id="NAMA_TTD">
 								<?php echo $data['NAMA_TTD'] ?>
 							</td>
 
@@ -904,8 +905,14 @@ if ($idkk != "") {
 							</td>
 							<td colspan="4" style="text-align: center;font-size: 15px; font-weight: bold;">PEACHSKIN
 							</td>
-							<td colspan="3"></td>
-							<td colspan="3"></td>
+							<td colspan="3" class="bg-danger" style="text-align: center" name="PEACHSKIN_B"
+								id="PEACHSKIN_B"><input type="text" class="form-control input-xs" name="PEACHSKIN_B"
+									id="PEACHSKIN_B" placeholder="PEACHSKIN_B" style="width: 100%">
+							</td>
+							<td colspan="3" class="bg-danger" style="text-align: center" name="PEACHSKIN_F"
+								id="PEACHSKIN_F"><input type="text" class="form-control input-xs" name="PEACHSKIN_F"
+									id="PEACHSKIN_F" placeholder="PEACHSKIN_F" style="width: 100%">
+							</td>
 						</tr>
 						<tr class="baris">
 							<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>

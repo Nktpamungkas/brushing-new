@@ -662,8 +662,8 @@ $data = mysqli_fetch_array($sql);
 		</td>
 		<td colspan="4" style="text-align: center;font-size: 15px; font-weight: bold;">PEACHSKIN
 		</td>
-		<td colspan="3"></td>
-		<td colspan="3"></td>
+		<td colspan="3" class="bg-danger" style="text-align: center"><?php echo $data['PEACHSKIN_B']; ?></td>
+		<td colspan="3" class="bg-danger" style="text-align: center"><?php echo $data['PEACHSKIN_F']; ?></td>
 	</tr>
 	<tr class="baris">
 		<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>
@@ -831,7 +831,7 @@ $data = mysqli_fetch_array($sql);
 
 	</tr>
 	<tr class="baris">
-		<td style="width: 180px;text-align:center" data-no="1" colspan="2">OVEN</td>
+		<td style="width: 180px;" data-no="1" colspan="2">OVEN</td>
 		<td style="width: 100px;text-align:center" class="bg-danger" data-no="1" colspan="4" data-name="OVEN">
 			<?php echo $data['OVEN']; ?>
 		</td>
@@ -1063,40 +1063,40 @@ $data = mysqli_fetch_array($sql);
 </table>
 <script src="../bootstrap/xeditable/js/bootstrap-editable.min.js"></script>
 <script>
-$(document).ready(function() {
-	$('#splb').editable({
-		container: 'body',
-		selector: 'td.bg-danger',
-		pk: `<?php echo $data['ID'] ?>`,
-		url: 'update.php',
-		title: `EDIT SPLB`,
-		// validate: function(value) {
-		//     if ($.trim(value) == '') {
-		//         return 'This field is required';
-		//     }
-		// },
-		success: function(response, newValue) {
-			if (response.kode == '404') {
-				alert('Error Hubung DIT !')
+	$(document).ready(function () {
+		$('#splb').editable({
+			container: 'body',
+			selector: 'td.bg-danger',
+			pk: `<?php echo $data['ID'] ?>`,
+			url: 'update.php',
+			title: `EDIT SPLB`,
+			// validate: function(value) {
+			//     if ($.trim(value) == '') {
+			//         return 'This field is required';
+			//     }
+			// },
+			success: function (response, newValue) {
+				if (response.kode == '404') {
+					alert('Error Hubung DIT !')
+				}
 			}
-		}
-	});
-	$('#splb').editable({
-		container: 'body',
-		selector: 'td a.bg-danger',
-		pk: `<?php echo $data['ID'] ?>`,
-		url: 'update.php',
-		title: `EDIT SPLB`,
-		// validate: function(value) {
-		//     if ($.trim(value) == '') {
-		//         return 'This field is required';
-		//     }
-		// },
-		success: function(response, newValue) {
-			if (response.kode == '404') {
-				alert('Error Hubung DIT !')
+		});
+		$('#splb').editable({
+			container: 'body',
+			selector: 'td a.bg-danger',
+			pk: `<?php echo $data['ID'] ?>`,
+			url: 'update.php',
+			title: `EDIT SPLB`,
+			// validate: function(value) {
+			//     if ($.trim(value) == '') {
+			//         return 'This field is required';
+			//     }
+			// },
+			success: function (response, newValue) {
+				if (response.kode == '404') {
+					alert('Error Hubung DIT !')
+				}
 			}
-		}
-	});
-})
+		});
+	})
 </script>
