@@ -62,7 +62,9 @@ $data = mysqli_fetch_array($sql);
 	<tr class="baris">
 		<td style="width: 180px;" data-no="1">NO. HANGER</td>
 		<td class="bg-warning" data-no="2" colspan="8"><?php echo $data['NO_HANGER'] ?></td>
-		<td class="bg-warning" data-no="2" colspan="7" style="text-align:center;"><?php echo $data['NAMA_TTD'] ?></td>
+		<td class="bg-danger" data-name="NAMA_TTD" data-no="2" colspan="7" style="text-align:center;">
+			<?php echo $data['NAMA_TTD'] ?>
+		</td>
 
 	</tr>
 	<tr class="baris">
