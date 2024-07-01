@@ -107,7 +107,6 @@ include("koneksi.php");
                     <li><a href="keluar/">Keluar</a>
                     <li><a href="splb/">SPLB</a></li>
                     <li><a href="reports/">Reports</a></li>
-                    <li><a href="data-brushing2/">Data Brushing (test DIT)</a></li>
                     </li>
                 </ul>
             </div>

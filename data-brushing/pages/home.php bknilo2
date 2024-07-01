@@ -358,15 +358,21 @@ include("../koneksi.php");
                                                 `stop_l`='$mulai',
                                                 `stop_2`='$mulai2',
                                                 `stop_3`='$mulai3',
+
+
                                                 `stop_r`='$selesai',
                                                 `stop_r_2`='$selesai2',
                                                 `stop_r_3`='$selesai3',
+
                                                 `tgl_stop_l`='$tgl_stop_m',
                                                 `tgl_stop_2`='$tgl_stop_m2',
                                                 `tgl_stop_3`='$tgl_stop_m3',
+
+
                                                 `tgl_stop_r`='$tgl_stop_s',
                                                 `tgl_stop_r_2`='$tgl_stop_s2',
                                                 `tgl_stop_r_3`='$tgl_stop_s3',
+
                                                 `kd_stop`='$kd',
                                                 `kd_stop2`='$kd2',
                                                 `kd_stop3`='$kd3',
@@ -413,8 +419,7 @@ include("../koneksi.php");
             <option value="NOW" <?php if ($_GET['typekk'] == "NOW") {
                                   echo "SELECTED";
                                 } ?>>KK NOW</option> -->
-          </select=>
-          
+            </select=>
         </td>
       </tr>
       <tr>
@@ -651,24 +656,12 @@ include("../koneksi.php");
           <h4>Jenis Kartu </h4>
         </td>
         <td>:</td>
-        <td>
-          <select name="jenis_kartu" id="jenis_kartu">
+        <td><select name="jenis_kartu" id="jenis_kartu">
             <option value="">Pilih</option>
-            <option value="Salesman Sample">Salesman Sample</option>
-            <option value="Ganti Kain Internal">Ganti Kain Internal</option>
-            <option value="Ganti Kain Eksternal">Ganti Kain Eksternal</option>
-            <option value="Development Sample">Development Sample</option>
-            <option value="Retur">Retur</option>
-            <option value="Biasa">Biasa</option>
-            <option value="Mini Bulk">Mini Bulk</option>
-            <option value="First Lot">First Lot</option>
+            <option value="Proses 1 Roll">Proses 1 Roll</option>
             <option value="Kain Test">Kain Test</option>
-            <option value="Proses 1 /sd 2 Roll">Proses 1 /sd 2 Roll</option>
-          
-
-            <!-- tambahan -->
-            
-          
+            <option value="Development">Development</option>
+           
           </select>
          
         </td>
