@@ -14,57 +14,77 @@ include("../../koneksi.php");
 <body>
   <?php
   if (isset($_POST['btnHapus'])) {
-    $hapusSql = "DELETE FROM tbl_no_mesin WHERE id='$_POST[id]'";
+    $hapusSql = "DELETE FROM tbl_proses WHERE id='$_POST[id]'";
     mysqli_query($con,$hapusSql) or die("Gagal hapus" . mysqli_error());
 
     // Refresh form
-    echo "<meta http-equiv='refresh' content='0; url=data-mesin.php?status=Data Sudah DiHapus'>";
+    echo "<meta http-equiv='refresh' content='0; url=data-proses.php?status=Data Sudah DiHapus'>";
   }
   if (isset($_POST['btnSimpan'])) {
-    $no_mesin = $_POST['no_mesin'];
+    $proses = $_POST['proses'];
+    $jns = $_POST['jns'];
     $ket = str_replace("'", "", $_POST['ket']);
-    $simpanSql = "INSERT INTO tbl_no_mesin SET 
-	`no_mesin`='$no_mesin',
+    $simpanSql = "INSERT INTO tbl_proses SET 
+	`proses`='$proses',
+	`jns`='$jns',
 	`ket`='$ket'";
     mysqli_query($con,$simpanSql) or die("Gagal Simpan" . mysqli_error());
 
     // Refresh form
-    echo "<meta http-equiv='refresh' content='0; url=data-mesin.php?status=Data Sudah DiSimpan'>";
+    echo "<meta http-equiv='refresh' content='0; url=data-proses.php?status=Data Sudah DiSimpan'>";
   }
   if (isset($_POST['btnUbah'])) {
-    $no_mesin = $_POST['no_mesin'];
+    $proses = $_POST['proses'];
     $ket = str_replace("'", "", $_POST['ket']);
-    $simpanSql = "UPDATE tbl_no_mesin SET 
-	`no_mesin`='$no_mesin',
+    $simpanSql = "UPDATE tbl_proses SET 
+	`proses`='$proses',
 	`ket`='$ket'
 	WHERE `id`='$_POST[id]'";
     mysqli_query($con,$simpanSql) or die("Gagal Ubah" . mysqli_error());
 
     // Refresh form
-    echo "<meta http-equiv='refresh' content='0; url=data-mesin.php?status=Data Sudah DiUbah'>";
+    echo "<meta http-equiv='refresh' content='0; url=data-proses.php?status=Data Sudah DiUbah'>";
   }
   ?>
   <form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
     <table width="100%" border="0">
       <tr>
-        <th colspan="3" scope="row">Input Data No Mesin</th>
+        <th colspan="3" scope="row">Input Data Proses</th>
       </tr>
       <tr>
         <td colspan="3" align="center" scope="row">
           <font color="#FF0000"><?php echo $_GET['status']; ?></font>
         </td>
       </tr>
-      <?php $qtampil = mysqli_query($con,"SELECT * FROM tbl_no_mesin WHERE no_mesin='$_GET[no_mesin]' LIMIT 1");
+      <?php $qtampil = mysqli_query($con,"SELECT * FROM tbl_proses WHERE proses='$_GET[proses]' AND jns='$_GET[jns]' LIMIT 1");
       $rt = mysqli_fetch_array($qtampil);
       $rc = mysqli_num_rows($qtampil);
       ?>
       <tr>
-        <td width="21%" scope="row">No Mesin</td>
+        <td width="21%" scope="row">Proses</td>
         <td width="1%">:</td>
-        <td width="78%"><label for="no_mesin"></label>
-          <input type="text" name="no_mesin" id="no_mesin" onchange="window.location='data-mesin.php?no_mesin='+this.value" value="<?php echo $_GET['no_mesin']; ?>" required="required" />
+        <td width="78%"><label for="proses"></label>
+          <input type="text" name="proses" id="proses" onchange="window.location='data-proses.php?proses='+this.value" value="<?php echo $_GET['proses']; ?>" required="required" />
           <input type="hidden" name="id" value="<?php echo $rt['id']; ?>" />
         </td>
+      </tr>
+      <tr>
+        <td valign="top" scope="row">Jenis Proses</td>
+        <td valign="top">:</td>
+        <td><select name="jns" id="jns" onchange="window.location='data-proses.php?proses=<?php echo $_GET['proses']; ?>&jns='+this.value" required="required">
+            <option value="" <?php if ($_GET['jns'] == "") {
+                                echo "SELECTED";
+                              } ?>>Pilih</option>
+            <option value="Normal" <?php if ($_GET['jns'] == "Normal") {
+                                      echo "SELECTED";
+                                    } ?>>Normal</option>
+            <option value="Bantu" <?php if ($_GET['jns'] == "Bantu") {
+                                    echo "SELECTED";
+                                  } ?>>Bantu</option>
+            <option value="Khusus" <?php if ($_GET['jns'] == "Khusus") {
+                                      echo "SELECTED";
+                                    } ?>>Khusus</option>
+          </select></td>
       </tr>
       <tr>
         <td valign="top" scope="row">Keterangan</td>
@@ -81,27 +101,30 @@ include("../../koneksi.php");
         </th>
       </tr>
     </table>
-    <h3>Data Detail No Mesin</h3>
+    <h3>Data Detail Proses</h3>
     <table width="100%" border="0">
       <tr bgcolor="#0099CC">
         <th scope="row">No</th>
-        <th bgcolor="#0099CC">No Mesin</th>
+        <th bgcolor="#0099CC">No Proses</th>
+        <th>Jenis</th>
         <th>Keterangan</th>
       </tr>
       <?php
-      $qry = mysqli_query($con,"SELECT * FROM tbl_no_mesin ORDER BY no_mesin ASC");
+      $qry = mysqli_query($con,"SELECT * FROM tbl_proses ORDER BY id ASC");
       $no = 1;
       while ($r = mysqli_fetch_array($qry)) {
         $bgcolor = ($c++ & 1) ? '#33CCFF' : '#FFCC99'; ?>
         <tr bgcolor="<?php echo $bgcolor; ?>">
           <td align="center" scope="row"><?php echo $no; ?></td>
-          <td align="center"><?php echo $r['no_mesin']; ?></td>
+          <td align="center"><?php echo $r['proses']; ?></td>
+          <td align="center"><?php echo $r['jns']; ?></td>
           <td><?php echo $r['ket']; ?></td>
         </tr>
       <?php $no++;
       } ?>
       <tr bgcolor="#0099CC">
         <td scope="row">&nbsp;</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
