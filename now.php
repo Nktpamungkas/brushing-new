@@ -1,12 +1,12 @@
 <?php
-    date_default_timezone_set('Asia/Jakarta');
-    if ($_GET['demand'] != "") {
-        $nomordemand = $_GET['demand'];
-        $anddemand = "AND DEAMAND = '$nomordemand'";
-    }else{
-        $anddemand = "";
-    }
-    $sql_ITXVIEWKK  = db2_exec($conn_db2, "SELECT
+date_default_timezone_set('Asia/Jakarta');
+if ($_GET['demand'] != "") {
+    $nomordemand = $_GET['demand'];
+    $anddemand = "AND DEAMAND = '$nomordemand'";
+} else {
+    $anddemand = "";
+}
+$sql_ITXVIEWKK = db2_exec($conn_db2, "SELECT
                                             TRIM(PRODUCTIONORDERCODE) AS PRODUCTIONORDERCODE,
                                             TRIM(DEAMAND) AS DEMAND,
                                             ORIGDLVSALORDERLINEORDERLINE,
@@ -17,7 +17,7 @@
                                             TRIM(SUBCODE09) AS SUBCODE09, TRIM(SUBCODE10) AS SUBCODE10, 
                                             TRIM(ITEMTYPEAFICODE) AS ITEMTYPEAFICODE,
                                             TRIM(DSUBCODE05) AS NO_WARNA,
-                                            TRIM(DSUBCODE02) || '-' || TRIM(DSUBCODE03)  AS NO_HANGER,
+                                            TRIM(SUBCODE02) || '-' || TRIM(SUBCODE03)  AS NO_HANGER,
                                             TRIM(ITEMDESCRIPTION) AS ITEMDESCRIPTION,
                                             DELIVERYDATE, 
                                             KARTUKERJA,
@@ -26,54 +26,54 @@
                                             ITXVIEWKK 
                                         WHERE 
                                             PRODUCTIONORDERCODE = '$idkk' $anddemand");
-    $dt_ITXVIEWKK	= db2_fetch_assoc($sql_ITXVIEWKK);
+$dt_ITXVIEWKK = db2_fetch_assoc($sql_ITXVIEWKK);
 
-    if($dt_ITXVIEWKK['KARTUKERJA'] == "KK TAS"){
-        $sql_pelanggan_buyer 	= db2_exec($conn_db2, "SELECT * FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
-        $dt_pelanggan_buyer		= db2_fetch_assoc($sql_pelanggan_buyer);
+if ($dt_ITXVIEWKK['KARTUKERJA'] == "KK TAS") {
+    $sql_pelanggan_buyer = db2_exec($conn_db2, "SELECT * FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
+    $dt_pelanggan_buyer = db2_fetch_assoc($sql_pelanggan_buyer);
 
-        $sql_ITXVIEWKK  = db2_exec($conn_db2, "SELECT *, JENIS_KAIN AS ITEMDESCRIPTION FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
-        $dt_ITXVIEWKK	= db2_fetch_assoc($sql_ITXVIEWKK);
+    $sql_ITXVIEWKK = db2_exec($conn_db2, "SELECT *, JENIS_KAIN AS ITEMDESCRIPTION FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
+    $dt_ITXVIEWKK = db2_fetch_assoc($sql_ITXVIEWKK);
 
-        $sql_warna		= db2_exec($conn_db2, "SELECT * FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
-        $dt_warna		= db2_fetch_assoc($sql_warna);
+    $sql_warna = db2_exec($conn_db2, "SELECT * FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
+    $dt_warna = db2_fetch_assoc($sql_warna);
 
-        $sql_lebargramasi	= db2_exec($conn_db2, "SELECT * FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
-        $dt_lg				= db2_fetch_assoc($sql_lebargramasi);
+    $sql_lebargramasi = db2_exec($conn_db2, "SELECT * FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
+    $dt_lg = db2_fetch_assoc($sql_lebargramasi);
 
-        $sql_qtyorder   = db2_exec($conn_db2, "SELECT QTY AS QTY_ORDER, QTY2 AS QTY_ORDER_YARD FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
-        $dt_qtyorder    = db2_fetch_assoc($sql_qtyorder);
-    }else{
-        $sql_pelanggan_buyer 	= db2_exec($conn_db2, "SELECT TRIM(LANGGANAN) AS PELANGGAN, TRIM(BUYER) AS BUYER FROM ITXVIEW_PELANGGAN 
+    $sql_qtyorder = db2_exec($conn_db2, "SELECT QTY AS QTY_ORDER, QTY2 AS QTY_ORDER_YARD FROM ITXVIEW_KK_TAS WHERE NO_PROD_ORDER = '$idkk' AND NO_DEMAND = '$nomordemand'");
+    $dt_qtyorder = db2_fetch_assoc($sql_qtyorder);
+} else {
+    $sql_pelanggan_buyer = db2_exec($conn_db2, "SELECT TRIM(LANGGANAN) AS PELANGGAN, TRIM(BUYER) AS BUYER FROM ITXVIEW_PELANGGAN 
                                             WHERE ORDPRNCUSTOMERSUPPLIERCODE = '$dt_ITXVIEWKK[ORDPRNCUSTOMERSUPPLIERCODE]' AND CODE = '$dt_ITXVIEWKK[PROJECTCODE]'");
-        $dt_pelanggan_buyer		= db2_fetch_assoc($sql_pelanggan_buyer);
+    $dt_pelanggan_buyer = db2_fetch_assoc($sql_pelanggan_buyer);
 
-        $sql_demand		= db2_exec($conn_db2, "SELECT LISTAGG(TRIM(DEAMAND), ', ') AS DEMAND,
+    $sql_demand = db2_exec($conn_db2, "SELECT LISTAGG(TRIM(DEAMAND), ', ') AS DEMAND,
                                                 LISTAGG(''''|| TRIM(ORIGDLVSALORDERLINEORDERLINE) ||'''', ', ')  AS ORIGDLVSALORDERLINEORDERLINE
                                         FROM ITXVIEWKK 
                                         WHERE PRODUCTIONORDERCODE = '$nokk'");
-        $dt_demand		= db2_fetch_assoc($sql_demand);
+    $dt_demand = db2_fetch_assoc($sql_demand);
 
-        if (!empty($dt_demand['ORIGDLVSALORDERLINEORDERLINE'])) {
-            $orderline	= $dt_demand['ORIGDLVSALORDERLINEORDERLINE'];
-        } else {
-            $orderline	= '0';
-        }
+    if (!empty($dt_demand['ORIGDLVSALORDERLINEORDERLINE'])) {
+        $orderline = $dt_demand['ORIGDLVSALORDERLINEORDERLINE'];
+    } else {
+        $orderline = '0';
+    }
 
-        $sql_po			= db2_exec($conn_db2, "SELECT TRIM(EXTERNALREFERENCE) AS NO_PO FROM ITXVIEW_KGBRUTO 
+    $sql_po = db2_exec($conn_db2, "SELECT TRIM(EXTERNALREFERENCE) AS NO_PO FROM ITXVIEW_KGBRUTO 
                         WHERE PROJECTCODE = '$dt_ITXVIEWKK[PROJECTCODE]' AND ORIGDLVSALORDERLINEORDERLINE IN ($orderline)");
-        $dt_po    		= db2_fetch_assoc($sql_po);
+    $dt_po = db2_fetch_assoc($sql_po);
 
-        $sql_noitem     = db2_exec($conn_db2, "SELECT * FROM ORDERITEMORDERPARTNERLINK WHERE INACTIVE = 0
+    $sql_noitem = db2_exec($conn_db2, "SELECT * FROM ORDERITEMORDERPARTNERLINK WHERE INACTIVE = 0
                         AND ORDPRNCUSTOMERSUPPLIERCODE = '$dt_ITXVIEWKK[ORDPRNCUSTOMERSUPPLIERCODE]' 
                         AND SUBCODE01 = '$dt_ITXVIEWKK[SUBCODE01]' AND SUBCODE02 = '$dt_ITXVIEWKK[SUBCODE02]' 
                         AND SUBCODE03 = '$dt_ITXVIEWKK[SUBCODE03]' AND SUBCODE04 = '$dt_ITXVIEWKK[SUBCODE04]' 
                         AND SUBCODE05 = '$dt_ITXVIEWKK[SUBCODE05]' AND SUBCODE06 = '$dt_ITXVIEWKK[SUBCODE06]'
                         AND SUBCODE07 = '$dt_ITXVIEWKK[SUBCODE07]' AND SUBCODE08 ='$dt_ITXVIEWKK[SUBCODE08]'
                         AND SUBCODE09 = '$dt_ITXVIEWKK[SUBCODE09]' AND SUBCODE10 ='$dt_ITXVIEWKK[SUBCODE10]'");
-        $dt_item        = db2_fetch_assoc($sql_noitem);
+    $dt_item = db2_fetch_assoc($sql_noitem);
 
-        $sql_lebargramasi	= db2_exec($conn_db2, "SELECT i.LEBAR,
+    $sql_lebargramasi = db2_exec($conn_db2, "SELECT i.LEBAR,
                                                 CASE
                                                     WHEN i2.GRAMASI_KFF IS NULL THEN i2.GRAMASI_FKF
                                                     ELSE i2.GRAMASI_KFF
@@ -83,9 +83,9 @@
                                                 LEFT JOIN ITXVIEWGRAMASI i2 ON i2.SALESORDERCODE = '$dt_ITXVIEWKK[PROJECTCODE]' AND i2.ORDERLINE = '$dt_ITXVIEWKK[ORIGDLVSALORDERLINEORDERLINE]'
                                                 WHERE 
                                                     i.SALESORDERCODE = '$dt_ITXVIEWKK[PROJECTCODE]' AND i.ORDERLINE = '$dt_ITXVIEWKK[ORIGDLVSALORDERLINEORDERLINE]'");
-        $dt_lg				= db2_fetch_assoc($sql_lebargramasi);
+    $dt_lg = db2_fetch_assoc($sql_lebargramasi);
 
-        $sql_warna		= db2_exec($conn_db2, "SELECT DISTINCT TRIM(WARNA) AS WARNA FROM ITXVIEWCOLOR 
+    $sql_warna = db2_exec($conn_db2, "SELECT DISTINCT TRIM(WARNA) AS WARNA FROM ITXVIEWCOLOR 
                                                 WHERE ITEMTYPECODE = '$dt_ITXVIEWKK[ITEMTYPEAFICODE]' 
                                                 AND SUBCODE01 = '$dt_ITXVIEWKK[SUBCODE01]' 
                                                 AND SUBCODE02 = '$dt_ITXVIEWKK[SUBCODE02]'
@@ -97,9 +97,9 @@
                                                 AND SUBCODE08 = '$dt_ITXVIEWKK[SUBCODE08]'
                                                 AND SUBCODE09 = '$dt_ITXVIEWKK[SUBCODE09]' 
                                                 AND SUBCODE10 = '$dt_ITXVIEWKK[SUBCODE10]'");
-        $dt_warna		= db2_fetch_assoc($sql_warna);
+    $dt_warna = db2_fetch_assoc($sql_warna);
 
-        $sql_qtyorder   = db2_exec($conn_db2, "SELECT DISTINCT
+    $sql_qtyorder = db2_exec($conn_db2, "SELECT DISTINCT
                                                     USEDUSERPRIMARYQUANTITY AS QTY_ORDER,
                                                     USEDUSERSECONDARYQUANTITY AS QTY_ORDER_YARD,
                                                     CASE
@@ -112,24 +112,24 @@
                                                     ITXVIEW_RESERVATION_KK 
                                                 WHERE 
                                                     ORDERCODE = '$dt_ITXVIEWKK[DEMAND]'");
-        $dt_qtyorder    = db2_fetch_assoc($sql_qtyorder);
+    $dt_qtyorder = db2_fetch_assoc($sql_qtyorder);
 
-        $sql_roll		= db2_exec($conn_db2, "SELECT count(*) AS ROLL, s2.PRODUCTIONORDERCODE
+    $sql_roll = db2_exec($conn_db2, "SELECT count(*) AS ROLL, s2.PRODUCTIONORDERCODE
                     FROM STOCKTRANSACTION s2 
                     WHERE s2.ITEMTYPECODE ='KGF' AND s2.PRODUCTIONORDERCODE = '$dt_ITXVIEWKK[PRODUCTIONORDERCODE]'
                     GROUP BY s2.PRODUCTIONORDERCODE");
-        $dt_roll   		= db2_fetch_assoc($sql_roll);
+    $dt_roll = db2_fetch_assoc($sql_roll);
 
-        $sql_mesinknt	= db2_exec($conn_db2, "SELECT 
+    $sql_mesinknt = db2_exec($conn_db2, "SELECT 
                                                 s.LOTCODE,
                                                 a.VALUESTRING 
                                             FROM STOCKTRANSACTION s 
                                             LEFT JOIN PRODUCTIONDEMAND p ON p.CODE = s.LOTCODE 
                                             LEFT JOIN ADSTORAGE a ON a.UNIQUEID = p.ABSUNIQUEID AND a.NAMENAME = 'MachineNo'
                                             WHERE s.PRODUCTIONORDERCODE = '$nokk'");
-        $dt_mesinknt	= db2_fetch_assoc($sql_mesinknt);
+    $dt_mesinknt = db2_fetch_assoc($sql_mesinknt);
 
-        $sql_bonresep1	= db2_exec($conn_db2, "SELECT
+    $sql_bonresep1 = db2_exec($conn_db2, "SELECT
                                                 TRIM(PRODUCTIONRESERVATION.PRODUCTIONORDERCODE) AS PRODUCTIONORDERCODE,
                                                 TRIM(PRODUCTIONRESERVATION.PRODUCTIONORDERCODE) || '-' || TRIM(PRODUCTIONRESERVATION.GROUPLINE) AS BONRESEP1,
                                                 TRIM(SUFFIXCODE) AS SUFFIXCODE
@@ -141,9 +141,9 @@
                                                 AND NOT SUFFIXCODE = '001'
                                             ORDER BY
                                                 PRODUCTIONRESERVATION.GROUPLINE ASC LIMIT 1");
-        $dt_bonresep1	= db2_fetch_assoc($sql_bonresep1);
+    $dt_bonresep1 = db2_fetch_assoc($sql_bonresep1);
 
-        $sql_bonresep2	= db2_exec($conn_db2, "SELECT
+    $sql_bonresep2 = db2_exec($conn_db2, "SELECT
                                                 TRIM( PRODUCTIONRESERVATION.PRODUCTIONORDERCODE ) AS PRODUCTIONORDERCODE,
                                                 TRIM(PRODUCTIONRESERVATION.PRODUCTIONORDERCODE) || '-' || TRIM(PRODUCTIONRESERVATION.GROUPLINE) AS BONRESEP2,
                                                 TRIM(SUFFIXCODE) AS SUFFIXCODE
@@ -155,6 +155,6 @@
                                                 AND NOT SUFFIXCODE = '001'
                                             ORDER BY
                                                 PRODUCTIONRESERVATION.GROUPLINE DESC LIMIT 1");
-        $dt_bonresep2	= db2_fetch_assoc($sql_bonresep2);
-    }
+    $dt_bonresep2 = db2_fetch_assoc($sql_bonresep2);
+}
 ?>

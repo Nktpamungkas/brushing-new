@@ -4,29 +4,32 @@ session_start();
 include_once("../koneksi.php");
 // include("../../koneksi.php");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Home</title>
 	<script>
-		function roundToTwo(num) {
-			return +(Math.round(num + "e+2") + "e-2");
-		}
-		function jumlah() {
-			var lebar = document.forms['form1']['lebar'].value;
-			var berat = document.forms['form1']['gramasi'].value;
-			var netto = document.forms['form1']['qty'].value;
-			var x, yard;
-			x = ((parseInt(lebar)) * parseInt(berat)) / 43.056;
-			x1 = (1000 / x);
-			yard = x1 * parseFloat(netto);
-			document.form1.qty2.value = roundToTwo(yard).toFixed(2);
+	function roundToTwo(num) {
+		return +(Math.round(num + "e+2") + "e-2");
+	}
 
-		}
+	function jumlah() {
+		var lebar = document.forms['form1']['lebar'].value;
+		var berat = document.forms['form1']['gramasi'].value;
+		var netto = document.forms['form1']['qty'].value;
+		var x, yard;
+		x = ((parseInt(lebar)) * parseInt(berat)) / 43.056;
+		x1 = (1000 / x);
+		yard = x1 * parseFloat(netto);
+		document.form1.qty2.value = roundToTwo(yard).toFixed(2);
+
+	}
 	</script>
 </head>
+
 <body>
 	<?php
 		function nourut()
@@ -271,38 +274,48 @@ include_once("../koneksi.php");
 				</td>
 				<td width="1%">:</td>
 				<td>
-					<select style="width: 40%" id="typekk" name="typekk" onchange="window.location='?typekk='+this.value" required>
+					<select style="width: 40%" id="typekk" name="typekk"
+						onchange="window.location='?typekk='+this.value" required>
 						<option value="" disabled selected>-Pilih Tipe Kartu Kerja-</option>
-						<option value="KKLama" <?php if($_GET['typekk'] == "KKLama"){ echo "SELECTED"; }?>>KK Lama</option>
-						<option value="NOW" <?php if($_GET['typekk'] == "NOW"){ echo "SELECTED"; } ?>>KK NOW</option> -->
-					</select=>
+						<option value="KKLama" <?php if($_GET['typekk'] == "KKLama"){ echo "SELECTED"; }?>>KK Lama
+						</option>
+						<option value="NOW" <?php if($_GET['typekk'] == "NOW"){ echo "SELECTED"; } ?>>KK NOW</option>
+						-->
+						</select=>
 				</td>
 				<td>
 				</td>
 				<td width="1%"></td>
 				<td width="45%">
 				</td>
-			</tr> 
+			</tr>
 			<tr>
 				<td width="11%" scope="row">
 					<h4>Nokk</h4>
 				</td>
 				<td width="1%">:</td>
 				<td width="28%">
-					<input name="nokk" type="text" id="nokk" size="17" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value" value="<?php echo $_GET['idkk']; ?>" /><input type="hidden" value="<?php echo $rw['id']; ?>" name="id" />
+					<input name="nokk" type="text" id="nokk" size="17"
+						onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+this.value"
+						value="<?php echo $_GET['idkk']; ?>" /><input type="hidden" value="<?php echo $rw['id']; ?>"
+						name="id" />
 
 					<?php if ($_GET['typekk'] == 'NOW') { ?>
-					<select style="width: 40%" name="demand" id="demand" onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+document.getElementById(`nokk`).value+'&demand='+this.value" required>
+					<select style="width: 40%" name="demand" id="demand"
+						onchange="window.location='?typekk='+document.getElementById(`typekk`).value+'&idkk='+document.getElementById(`nokk`).value+'&demand='+this.value"
+						required>
 						<option value="" disabled selected>Pilih Nomor Demand</option>
 						<?php 
 						$sql_ITXVIEWKK_demand  = db2_exec($conn_db2, "SELECT DEAMAND AS DEMAND FROM ITXVIEWKK WHERE PRODUCTIONORDERCODE = '$idkk'");
 						while ($r_demand = db2_fetch_assoc($sql_ITXVIEWKK_demand)) :
 						?>
-						<option value="<?= $r_demand['DEMAND']; ?>" <?php if($r_demand['DEMAND'] == $_GET['demand']){ echo 'SELECTED'; } ?>><?= $r_demand['DEMAND']; ?></option>
+						<option value="<?= $r_demand['DEMAND']; ?>"
+							<?php if($r_demand['DEMAND'] == $_GET['demand']){ echo 'SELECTED'; } ?>>
+							<?= $r_demand['DEMAND']; ?></option>
 						<?php endwhile; ?>
 					</select>
 					<?php } else { ?>
-						<input name="demand" id="demand" type="text" placeholder="Nomor Demand">
+					<input name="demand" id="demand" type="text" placeholder="Nomor Demand">
 					<?php } ?>
 				</td>
 				<td width="14%">
@@ -331,15 +344,15 @@ include_once("../koneksi.php");
 				<td>:</td>
 				<td>
 					<?php if ($_GET['typekk'] == "NOW") : ?>
-						<?php $langganan_buyer =  $dt_pelanggan_buyer['PELANGGAN'] . '/' . $dt_pelanggan_buyer['BUYER']; ?>
+					<?php $langganan_buyer =  $dt_pelanggan_buyer['PELANGGAN'] . '/' . $dt_pelanggan_buyer['BUYER']; ?>
 					<?php else : ?>
-						<?php if ($cek > 0) {
+					<?php if ($cek > 0) {
 						$langganan_buyer =  $ssr1['partnername'] . "/" . $ssr2['partnername'];
 						} else {
 						$langganan_buyer =  $rw['langganan'];
 						} ?>
 					<?php endif; ?>
-					<input name="buyer" type="text" id="buyer" size="45" value="<?= $langganan_buyer; ?>"/>
+					<input name="buyer" type="text" id="buyer" size="45" value="<?= $langganan_buyer; ?>" />
 				</td>
 				<td><strong>Shift</strong></td>
 				<td>:</td>
@@ -363,9 +376,9 @@ include_once("../koneksi.php");
 				<td>:</td>
 				<td>
 					<?php if ($_GET['typekk'] == "NOW") : ?>
-						<?php $no_order =  $dt_ITXVIEWKK['PROJECTCODE']; ?>
+					<?php $no_order =  $dt_ITXVIEWKK['PROJECTCODE']; ?>
 					<?php else : ?>
-						<?php if ($cek > 0) {
+					<?php if ($cek > 0) {
 						$no_order =  $ssr['documentno'];
 						} else if ($rc > 0) {
 						$no_order =  $rw['no_order'];
@@ -384,12 +397,13 @@ include_once("../koneksi.php");
 						<?php $qry1 = mysqli_query($con,"SELECT proses,jns FROM tbl_proses ORDER BY id ASC");
 						while ($r = mysqli_fetch_array($qry1)) {
 						?>
-							<option value="<?php echo $r['proses'] . " (" . $r['jns'] . ")"; ?>" <?php if ($rw['proses'] == $r['proses'] . " (" . $r['jns'] . ")") {
+						<option value="<?php echo $r['proses'] . " (" . $r['jns'] . ")"; ?>" <?php if ($rw['proses'] == $r['proses'] . " (" . $r['jns'] . ")") {
 																									echo "SELECTED";
 																								} ?>><?php echo $r['proses'] . " (" . $r['jns'] . ")"; ?></option>
 						<?php } ?>
 					</select>
-					<input type="button" name="btnproses" id="btnproses" value="..." onclick="window.open('pages/data-proses.php','MyWindow','height=400,width=650');" />
+					<input type="button" name="btnproses" id="btnproses" value="..."
+						onclick="window.open('pages/data-proses.php','MyWindow','height=400,width=650');" />
 				</td>
 			</tr>
 			<tr>
@@ -399,9 +413,9 @@ include_once("../koneksi.php");
 				<td valign="top">:</td>
 				<td>
 					<?php if ($_GET['typekk'] == "NOW") : ?>
-						<?php $jk = $dt_ITXVIEWKK['ITEMDESCRIPTION']; ?>
+					<?php $jk = $dt_ITXVIEWKK['ITEMDESCRIPTION']; ?>
 					<?php else : ?>
-						<?php if ($cek > 0) {
+					<?php if ($cek > 0) {
 						$jk = $ssr['productcode'] . " / " . $ssr['description'];
 						} else if ($rc > 0) {
 						$jk = $rw['jenis_kain'];
@@ -415,22 +429,15 @@ include_once("../koneksi.php");
 					<h4>Catatan</h4>
 				</td>
 				<td valign="top">:</td>
-				<td valign="top"><textarea name="catatan" cols="35" id="catatan"><?php echo $rw['catatan']; ?></textarea></td>
+				<td valign="top"><textarea name="catatan" cols="35"
+						id="catatan"><?php echo $rw['catatan']; ?></textarea></td>
 			</tr>
 			<tr>
 				<td scope="row"><strong>Hanger/Item</strong></td>
 				<td>:</td>
 				<td>
 					<?php if ($_GET['typekk'] == "NOW") : ?>
-						<?php $hanger = $dt_ITXVIEWKK['NO_HANGER']; ?>
-					<?php else : ?>
-						<?php if ($cek > 0) {
-							$hanger = $ssr['productcode'];
-						} else if ($rc > 0) {
-							$hanger = $rw['no_item'];
-						} else if ($rcAdm > 0) {
-							$hanger = $rwAdm['no_item'];
-						}?>
+					<?php $hanger = $dt_ITXVIEWKK['NO_HANGER']; ?>
 					<?php endif; ?>
 					<input type="text" name="no_item" id="no_item" value="<?= $hanger; ?>" />
 				</td>
@@ -442,14 +449,18 @@ include_once("../koneksi.php");
 					} else {
 						$nlebar = $rw['lebar'];
 					} ?>
-					<input name="lebar" type="text" id="lebar" size="6" value="<?php if(!empty($nlebar)){ echo $nlebar; }else{ echo floor($dt_lg['LEBAR']); }   ?>" placeholder="0" />
+					<input name="lebar" type="text" id="lebar" size="6"
+						value="<?php if(!empty($nlebar)){ echo $nlebar; }else{ echo floor($dt_lg['LEBAR']); }   ?>"
+						placeholder="0" />
 					&quot; X
 					<?php if ($cek > 0) {
 						$ngramasi = $ssr['weight'];
 					} else {
 						$ngramasi = $rw['gramasi'];
 					} ?>
-					<input name="gramasi" type="text" id="gramasi" size="6" value="<?php if(!empty($ngramasi)) { echo $ngramasi; } else { echo floor($dt_lg['GRAMASI']);}  ?>" placeholder="0" />
+					<input name="gramasi" type="text" id="gramasi" size="6"
+						value="<?php if(!empty($ngramasi)) { echo $ngramasi; } else { echo floor($dt_lg['GRAMASI']);}  ?>"
+						placeholder="0" />
 				</td>
 			</tr>
 			<tr>
@@ -457,9 +468,9 @@ include_once("../koneksi.php");
 				<td>:</td>
 				<td>
 					<?php if ($_GET['typekk'] == "NOW") : ?>
-						<?php $nomor_warna = $dt_ITXVIEWKK['NO_WARNA']; ?>
+					<?php $nomor_warna = $dt_ITXVIEWKK['NO_WARNA']; ?>
 					<?php else : ?>
-						<?php if ($cek > 0) {
+					<?php if ($cek > 0) {
 							$nomor_warna = $ssr['colorno'];
 						} else if ($rc > 0) {
 							$nomor_warna = $rw['no_warna'];
@@ -477,7 +488,9 @@ include_once("../koneksi.php");
 					} else {
 						$berat = $rw['qty'];
 					} ?>
-					<input name="qty" type="text" id="qty" size="8" value="<?php if(!empty($berat)){ echo $berat; }else { echo $dt_qtyorder['QTY_ORDER']; }  ?>" placeholder="0.00" />
+					<input name="qty" type="text" id="qty" size="8"
+						value="<?php if(!empty($berat)){ echo $berat; }else { echo $dt_qtyorder['QTY_ORDER']; }  ?>"
+						placeholder="0.00" />
 					<strong>Kg</strong>
 				</td>
 			</tr>
@@ -492,11 +505,14 @@ include_once("../koneksi.php");
 					} else {
 						$nama_warna = $rw['warna'];
 					} ?>
-					<input name="warna" type="text" id="warna" size="35" value="<?= $dt_warna['WARNA']; ?><?= $nama_warna; ?>" />
+					<input name="warna" type="text" id="warna" size="35"
+						value="<?= $dt_warna['WARNA']; ?><?= $nama_warna; ?>" />
 				</td>
 				<td><strong>Panjang</strong></td>
 				<td>:</td>
-				<td><input name="qty2" type="text" id="qty2" size="8" value="<?php if(!empty($rw['panjang'])){ echo $rw['panjang'];}else{ echo $dt_qtyorder['QTY_ORDER_YARD'];  } ?>" placeholder="0.00" onFocus="jumlah();" />
+				<td><input name="qty2" type="text" id="qty2" size="8"
+						value="<?php if(!empty($rw['panjang'])){ echo $rw['panjang'];}else{ echo $dt_qtyorder['QTY_ORDER_YARD'];  } ?>"
+						placeholder="0.00" onFocus="jumlah();" />
 					<strong>Yard</strong>
 				</td>
 			</tr>
@@ -515,12 +531,13 @@ include_once("../koneksi.php");
 						<?php $qry1 = mysqli_query($con,"SELECT jenis FROM tbl_jenis_kartu ORDER BY id ASC");
 						while ($r = mysqli_fetch_array($qry1)) {
 						?>
-							<option value="<?php echo $r['jenis']; ?>" <?php if ($rw['kondisi_kain'] == $r['jenis']) {
+						<option value="<?php echo $r['jenis']; ?>" <?php if ($rw['kondisi_kain'] == $r['jenis']) {
 																			echo "selected";
 																		} ?>><?php echo $r['jenis']; ?></option>
 						<?php } ?>
 					</select>
-					<input type="button" name="btnproses2" id="btnproses2" value="..." onclick="window.open('pages/data-jenis-kk.php','MyWindow','height=400,width=650');" />
+					<input type="button" name="btnproses2" id="btnproses2" value="..."
+						onclick="window.open('pages/data-jenis-kk.php','MyWindow','height=400,width=650');" />
 				</td>
 			</tr>
 			<tr>
@@ -536,24 +553,26 @@ include_once("../koneksi.php");
 				<td><strong>Jam / Tgl Masuk</strong></td>
 				<td>:</td>
 				<td>
-					<input name="proses_in" type="text" id="proses_in" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$" title=" e.g 14:25" 
-						onkeyup="var time = this.value;
+					<input name="proses_in" type="text" id="proses_in" placeholder="00:00" pattern="[0-9]{2}:[0-9]{2}$"
+						title=" e.g 14:25" onkeyup="var time = this.value;
 								if (time.match(/^\d{2}$/) !== null) {
 									this.value = time + ':';
 								} else if (time.match(/^\d{2}\:\d{2}$/) !== null) {
 									this.value = time + '';
-								}" 
-						value="<?php 
+								}" value="<?php 
 								if ($rw['tgl_in'] != "") {
 									echo date('H:i', strtotime($rw['tgl_in']));
-								} ?>" 
-						size="5" maxlength="5" required />
-					<input name="tgl_proses_m" type="text" id="tgl_proses_m" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_proses_m);return false;" size="10" placeholder="0000-00-00" value="<?php 
+								} ?>" size="5" maxlength="5" required />
+					<input name="tgl_proses_m" type="text" id="tgl_proses_m"
+						onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_proses_m);return false;" size="10"
+						placeholder="0000-00-00" value="<?php 
 														if ($rw['tgl_in'] != "") {
 															echo date('Y-m-d', strtotime($rw['tgl_in']));
 													} ?>" required />
-					<a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_proses_m);return false;">
-					<img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal2" style="border:none" align="absmiddle" border="0" /></a>
+					<a href="javascript:void(0)"
+						onclick="if(self.gfPop)gfPop.fPopCalendar(document.form1.tgl_proses_m);return false;">
+						<img src="../calender/calender.jpeg" alt="" name="popcal" width="30" height="25" id="popcal2"
+							style="border:none" align="absmiddle" border="0" /></a>
 				</td>
 			</tr>
 			<tr>
@@ -562,13 +581,17 @@ include_once("../koneksi.php");
 				</td>
 				<td>:</td>
 				<td>
-					<input name="jumlah_gerobak_in" type="text" size="3" placeholder="0" value="<?= $rw['jumlah_gerobak_in'] ?>" required>
+					<input name="jumlah_gerobak_in" type="text" size="3" placeholder="0"
+						value="<?= $rw['jumlah_gerobak_in'] ?>" required>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="6" scope="row"><input type="submit" name="btnSimpan" id="btnSimpan" value="Simpan" class="art-button" />
-					<input type="button" name="batal" id="batal" value="Batal" onclick="window.location.href='index.php'" class="art-button" />
-					<input type="button" name="button2" id="button2" value="Kembali" onclick="window.location.href='../index.php'" class="art-button" />
+				<td colspan="6" scope="row"><input type="submit" name="btnSimpan" id="btnSimpan" value="Simpan"
+						class="art-button" />
+					<input type="button" name="batal" id="batal" value="Batal"
+						onclick="window.location.href='index.php'" class="art-button" />
+					<input type="button" name="button2" id="button2" value="Kembali"
+						onclick="window.location.href='../index.php'" class="art-button" />
 				</td>
 			</tr>
 		</table>
