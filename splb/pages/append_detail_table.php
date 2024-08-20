@@ -688,7 +688,7 @@ $data = mysqli_fetch_array($sql);
 			<?php echo $data['%PILEBRUSH_B']; ?>
 		</td>
 		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="%PILEBRUSH_F">
-			<?php echo $data['%PILEBRUSH_B']; ?>
+			<?php echo $data['%PILEBRUSH_F']; ?>
 		</td>
 	</tr>
 	<tr class="baris">
@@ -767,11 +767,11 @@ $data = mysqli_fetch_array($sql);
 			<?php echo $data['SPEEDDRUM_F']; ?>
 		</td>
 		<td colspan="4">SPEED KAIN</td>
-		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="SPEEDMESIN_F">
-			<?php echo $data['TENSIONMASUK_F']; ?>
+		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="SPEED_KAIN_B">
+			<?php echo $data['SPEED_KAIN_B']; ?>
 		</td>
-		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="SPEEDMESIN_F">
-			<?php echo $data['TENSIONMASUK_F']; ?>
+		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="SPEED_KAIN_F">
+			<?php echo $data['SPEED_KAIN_F']; ?>
 		</td>
 	</tr>
 	<tr class="baris">
@@ -802,11 +802,11 @@ $data = mysqli_fetch_array($sql);
 		</td>
 		<td data-no="1" colspan="3" rowspan="2">TENSION BELAKANG</td>
 		<td data-no="1" colspan="1" style="width: 10px;">1</td>
-		<td class="bg-danger" data-no="1" colspan="3" data-name="PEACHSKINSPEEDDRUM_B" style="text-align:center">
-			<?php echo $data['PEACHSKINSPEEDDRUM_B']; ?>
+		<td class="bg-danger" data-no="1" colspan="3" data-name="TENSION_01" style="text-align:center">
+			<?php echo $data['TENSION_01']; ?>
 		</td>
-		<td class="bg-danger" data-no="1" colspan="3" data-name="PEACHSKINSPEEDDRUM_F" style="text-align:center">
-			<?php echo $data['PEACHSKINSPEEDDRUM_F']; ?>
+		<td class="bg-danger" data-no="1" colspan="3" data-name="TENSION_02" style="text-align:center">
+			<?php echo $data['TENSION_02']; ?>
 		</td>
 	</tr>
 	<tr class="baris">
