@@ -802,11 +802,11 @@ $data = mysqli_fetch_array($sql);
 		</td>
 		<td data-no="1" colspan="3" rowspan="2">TENSION BELAKANG</td>
 		<td data-no="1" colspan="1" style="width: 10px;">1</td>
-		<td class="bg-danger" data-no="1" colspan="3" data-name="TENSION_01" style="text-align:center">
-			<?php echo $data['TENSION_01']; ?>
+		<td class="bg-danger" data-no="1" colspan="3" data-name="TENSIONBELAKANG_B" style="text-align:center">
+			<?php echo $data['TENSIONBELAKANG_B']; ?>
 		</td>
-		<td class="bg-danger" data-no="1" colspan="3" data-name="TENSION_02" style="text-align:center">
-			<?php echo $data['TENSION_02']; ?>
+		<td class="bg-danger" data-no="1" colspan="3" data-name="TENSIONBELAKANG_F" style="text-align:center">
+			<?php echo $data['TENSIONBELAKANG_F']; ?>
 		</td>
 	</tr>
 	<tr class="baris">
