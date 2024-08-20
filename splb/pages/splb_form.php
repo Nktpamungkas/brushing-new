@@ -1072,12 +1072,12 @@ if ($idkk != "") {
 							<td data-no="1" colspan="2" rowspan="2">TENSION BELAKANG</td>
 							<td data-no="1" colspan="2" style="text-align:center;">1</td>
 							<td class="bg-danger" data-no="1" colspan="3">
-								<input type="text" class="form-control input-xs" name="PEACHSKINSPEEDDRUM_B"
-									id="PEACHSKINSPEEDDRUM_B" placeholder="PEACHSKINSPEEDDRUM_B" style="width: 100%">
+								<input type="text" class="form-control input-xs" name="TENSIONBELAKANG_B"
+									id="TENSIONBELAKANG_B" placeholder="TENSIONBELAKANG_B" style="width: 100%">
 							</td>
 							<td class="bg-danger" data-no="1" colspan="3">
-								<input type="text" class="form-control input-xs" name="PEACHSKINSPEEDDRUM_F"
-									id="PEACHSKINSPEEDDRUM_F" placeholder="PEACHSKINSPEEDDRUM_F" style="width: 100%">
+								<input type="text" class="form-control input-xs" name="TENSIONBELAKANG_F"
+									id="TENSIONBELAKANG_F" placeholder="TENSIONBELAKANG_F" style="width: 100%">
 							</td>
 						</tr>
 						<tr class="baris">
