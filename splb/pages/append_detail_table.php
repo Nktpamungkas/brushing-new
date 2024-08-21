@@ -767,11 +767,11 @@ $data = mysqli_fetch_array($sql);
 			<?php echo $data['SPEEDDRUM_F']; ?>
 		</td>
 		<td colspan="4">SPEED KAIN</td>
-		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="SPEED_KAIN_B">
-			<?php echo $data['SPEED_KAIN_B']; ?>
+		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="SPEEDKAIN_B">
+			<?php echo $data['SPEEDKAIN_B']; ?>
 		</td>
-		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="SPEED_KAIN_F">
-			<?php echo $data['SPEED_KAIN_F']; ?>
+		<td class="bg-danger" style="width: 100px;text-align:center" data-no="1" colspan="3" data-name="SPEEDKAIN_F">
+			<?php echo $data['SPEEDKAIN_F']; ?>
 		</td>
 	</tr>
 	<tr class="baris">
