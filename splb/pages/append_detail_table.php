@@ -185,47 +185,47 @@ $data = mysqli_fetch_array($sql);
 	</tr>
 	<tr class="baris">
 		<td data-no="1" colspan="1">2</td>
-		<td class="bg-danger" data-no="1" data-name="COUNTER_PILE1" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE1']; ?>
+		<td class="bg-danger" data-no="1" data-name="COUNTER_PILE15" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE15']; ?>
 		</td>
-		<td class="bg-danger" data-no="2" data-name="COUNTER_PILE2" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE2']; ?>
+		<td class="bg-danger" data-no="2" data-name="COUNTER_PILE16" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE16']; ?>
 		</td>
-		<td class="bg-danger" data-no="3" data-name="COUNTER_PILE3" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE3']; ?>
+		<td class="bg-danger" data-no="3" data-name="COUNTER_PILE17" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE17']; ?>
 		</td>
-		<td class="bg-danger" data-no="4" data-name="COUNTER_PILE4" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE4']; ?>
+		<td class="bg-danger" data-no="4" data-name="COUNTER_PILE18" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE18']; ?>
 		</td>
-		<td class="bg-danger" data-no="5" data-name="COUNTER_PILE5" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE5']; ?>
+		<td class="bg-danger" data-no="5" data-name="COUNTER_PILE19" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE19']; ?>
 		</td>
-		<td class="bg-danger" data-no="6" data-name="COUNTER_PILE6" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE6']; ?>
+		<td class="bg-danger" data-no="6" data-name="COUNTER_PILE20" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE20']; ?>
 		</td>
-		<td class="bg-danger" data-no="7" data-name="COUNTER_PILE7" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE7']; ?>
+		<td class="bg-danger" data-no="7" data-name="COUNTER_PILE21" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE21']; ?>
 		</td>
-		<td class="bg-danger" data-no="8" data-name="COUNTER_PILE8" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE8']; ?>
+		<td class="bg-danger" data-no="8" data-name="COUNTER_PILE22" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE22']; ?>
 		</td>
-		<td class="bg-danger" data-no="9" data-name="COUNTER_PILE9" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE9']; ?>
+		<td class="bg-danger" data-no="9" data-name="COUNTER_PILE23" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE23']; ?>
 		</td>
-		<td class="bg-danger" data-no="10" data-name="COUNTER_PILE10" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE10']; ?>
+		<td class="bg-danger" data-no="10" data-name="COUNTER_PILE24" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE24']; ?>
 		</td>
-		<td class="bg-danger" data-no="11" data-name="COUNTER_PILE11" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE11']; ?>
+		<td class="bg-danger" data-no="11" data-name="COUNTER_PILE25" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE25']; ?>
 		</td>
-		<td class="bg-danger" data-no="12" data-name="COUNTER_PILE12" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE12']; ?>
+		<td class="bg-danger" data-no="12" data-name="COUNTER_PILE26" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE26']; ?>
 		</td>
-		<td class="bg-danger" data-no="13" data-name="COUNTER_PILE13" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE13']; ?>
+		<td class="bg-danger" data-no="13" data-name="COUNTER_PILE27" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE27']; ?>
 		</td>
-		<td class="bg-danger" data-no="14" data-name="COUNTER_PILE14" style="text-align: center;">
-			<?php echo $data['COUNTER_PILE14']; ?>
+		<td class="bg-danger" data-no="14" data-name="COUNTER_PILE28" style="text-align: center;">
+			<?php echo $data['COUNTER_PILE28']; ?>
 		</td>
 	</tr>
 	<tr class="baris">
@@ -664,8 +664,8 @@ $data = mysqli_fetch_array($sql);
 		</td>
 		<td colspan="4" style="text-align: center;font-size: 15px; font-weight: bold;">PEACHSKIN
 		</td>
-		<td colspan="3" class="bg-danger" style="text-align: center"><?php echo $data['PEACHSKIN_B']; ?></td>
-		<td colspan="3" class="bg-danger" style="text-align: center"><?php echo $data['PEACHSKIN_F']; ?></td>
+		<td colspan="3" class="bg-danger" style="text-align: center"data-name="PEACHSKIN_B"><?php echo $data['PEACHSKIN_B']; ?></td>
+		<td colspan="3" class="bg-danger" style="text-align: center"data-name="PEACHSKIN_F"><?php echo $data['PEACHSKIN_F']; ?></td>
 	</tr>
 	<tr class="baris">
 		<td style="width: 180px;" data-no="1" colspan="2">BAGIAN</td>
@@ -906,7 +906,7 @@ $data = mysqli_fetch_array($sql);
 		<td colspan="4" style="text-align: left;">GAP 2</td>
 		<td colspan="3" class="bg-danger" data-name="GAP_03" style="text-align: center;"><?php echo $data['GAP_03']; ?>
 		</td>
-		<td colspan="3" class="bg-danger" data-name="GAP_04"><?php echo $data['GAP_04']; ?></td>
+		<td colspan="3" class="bg-danger" data-name="GAP_04" style="text-align: center;"><?php echo $data['GAP_04']; ?></td>
 	</tr>
 	<tr class="baris">
 		<td style="width: 180px;" data-no="1" colspan="2">SUEDE ROLLER 2</td>
