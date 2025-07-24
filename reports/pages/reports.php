@@ -41,16 +41,16 @@
     if ($_POST['awal'] != "") {
       $tglawal = $_POST['awal'];
       $tglakhir = $_POST['akhir'];
-      $jamawal = $_POST['jam_awal'];
-      $jamakhir = $_POST['jam_akhir'];
+      $jamawal = $_POST['jam_awal'].":00";
+      $jamakhir = $_POST['jam_akhir'].":00";
       $jns = $_POST['jns'];
       $mc = $_POST['no_mesin'];
       $nmesin = $_POST['nama_mesin'];
     } else {
       $tglawal = $_GET['tgl1'];
       $tglakhir = $_GET['tgl2'];
-      $jamawal = $_GET['jam1'];
-      $jamakhir = $_GET['jam2'];
+      $jamawal = $_GET['jam1'].":00";
+      $jamakhir = $_GET['jam2'].":00";
       $jns = $_GET['jns'];
       $mc = $_GET['no_mesin'];
       $nmesin = $_GET['nama_mesin'];
@@ -66,7 +66,7 @@
 //      $tgl = " ";
 //    }
     if ($tglakhir != "" and $tglawal != "" and $jamakhir != "" and $jamawal != "") {
-      $tgl = " DATE_FORMAT(a.`tgl_buat`,'%Y-%m-%d %H:%i') BETWEEN '$tglawal $jamawal' AND '$tglakhir $jamakhir' ";
+      $tgl = " DATE_FORMAT(a.`tgl_buat`,'%Y-%m-%d %H:%i:%s') BETWEEN '$tglawal $jamawal' AND '$tglakhir $jamakhir' ";
     } else {
       $tgl = " ";
     }
@@ -75,7 +75,7 @@
     } else {
       $shift = " AND a.`shift`='$shft' ";
     }
-    if ($nmesin != "") {
+    if ($nmesin != "ALL") {
       $mesin = " AND a.`nama_mesin`='$nmesin'";
     } else {
       $mesin = " ";
@@ -101,7 +101,7 @@
     <strong><br />
     </strong>
     <form id="form1" name="form1" method="post" action="">
-      <strong> Periode: <?php echo $tglawal . " " . $jamawal; ?> s/d
+      <strong> Periode1: <?php echo $tglawal . " " . $jamawal; ?> s/d
         <?php echo $tglakhir . " " . $jamakhir; ?></strong><br />
       <strong>Shift: <?php echo $shft; ?> <br />Mesin: <?php echo $nmesin; ?></strong><br />
       <strong>No Mesin: <?php echo $mc; ?></strong>

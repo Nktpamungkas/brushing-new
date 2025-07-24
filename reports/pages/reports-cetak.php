@@ -9,7 +9,7 @@
   $jamakhir = $_GET['jamakhir'];
   $shft     = $_GET['shift'];
   $nmesin   = $_GET['mesin'];
-  $mc     = $_GET['no_mesin'];
+  $mc       = $_GET['no_mesin'];
 
 //  if ($tglakhir != "" and $tglawal != "") {
 //    $tgl = "DATE_FORMAT(a.`tgl_update`,'%Y-%m-%d') BETWEEN '$tglawal' AND '$tglakhir' ";
@@ -17,7 +17,7 @@
 //    $tgl = " ";
 //  }
   if ($tglakhir != "" and $tglawal != "" and $jamakhir != "" and $jamawal != "") {
-    $tgl = "DATE_FORMAT(a.`tgl_buat`,'%Y-%m-%d %H:%i') BETWEEN '$tglawal $jamawal' AND '$tglakhir $jamakhir' ";
+    $tgl = "DATE_FORMAT(a.`tgl_buat`,'%Y-%m-%d %H:%i:%s') BETWEEN '$tglawal $jamawal' AND '$tglakhir $jamakhir' ";
   } else {
     $tgl = " ";
   }
@@ -26,7 +26,7 @@
   } else {
     $shift = " AND a.`shift`='$shft' ";
   }
-  if ($nmesin != "") {
+  if ($nmesin != "ALL") {
     $mesin = " AND a.`nama_mesin`='$nmesin'";
   } else {
     $mesin = " ";
